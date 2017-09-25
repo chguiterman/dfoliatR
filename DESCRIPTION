@@ -1,0 +1,10 @@
+Package: bugr
+Type: Package
+Title: Detection and analysis of insect defoliation in tree rings
+Version: 0.0.1
+Author: Christopher H Guiterman
+Maintainer: Christopher H Guiterman <chguiterman@email.arizona.edu>
+Description: A package to replicate and build on the OUTBREAK fortran program written by Richard Holmes.
+License: 
+Encoding: UTF-8
+LazyData: true
