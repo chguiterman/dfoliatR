@@ -5,6 +5,8 @@ Version: 0.0.1
 Author: Christopher H Guiterman
 Maintainer: Christopher H Guiterman <chguiterman@email.arizona.edu>
 Description: A package to replicate and build on the OUTBREAK fortran program written by Richard Holmes.
+URL: http://github.com/chguiterman/bugr
+BugReports: http://github.com/chguiterman/bugr/issues
 License: 
 Encoding: UTF-8
 LazyData: true
