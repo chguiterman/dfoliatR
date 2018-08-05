@@ -14,12 +14,12 @@ correct_host_series <- function(input_series){
   nam1 <- paste(nms[2], '_rescale', sep='')
   nam2 <- paste(nms[1], '_crct', sep='')
   nam3 <- paste(nms[1], '_norm', sep='')
-  h_sd <- stats::sd(inut_series[, 1])
-  nh_sd <- stats::sd(inut_series[, 2])
-  nh_mean <- mean(inut_series[, 2])
-  inut_series[, 3] <- (inut_series[, 2] - nh_mean) * (h_sd / nh_sd)
-  inut_series[, 4] <- inut_series[, 1] - inut_series[, 3]
-  inut_series[, 5] <- scale(inut_series[, 4])
+  h_sd <- stats::sd(input_series[, 1])
+  nh_sd <- stats::sd(input_series[, 2])
+  nh_mean <- mean(input_series[, 2])
+  input_series[, 3] <- (input_series[, 2] - nh_mean) * (h_sd / nh_sd)
+  input_series[, 4] <- inut_series[, 1] - inut_series[, 3]
+  input_series[, 5] <- scale(input_series[, 4])
   names(input_series) <- c(nms, nam1, nam2, nam3)
   return(input_series)
 }
