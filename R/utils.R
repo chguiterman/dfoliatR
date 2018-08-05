@@ -65,3 +65,21 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
   names(input_series)[6] <- "defol_status"
   return(input_series)
 }
+
+
+#' stack defolation list object
+#'
+
+stack_defoliation <- function(x){
+  out <- ldply(x, function(i){
+    inout <- range(as.numeric(rownames(i)))
+    yrs <- as.integer(c(inout[1], as.numeric(rownames(i))[!is.na(i$rec_type)], inout[2]))
+    out <- data.frame(year = yrs, series = colnames(i)[1], defol_status = i[, 6])
+    return(out)
+  }
+  )
+  class(out) <- c('defol_tree', 'data.frame')
+  return(out)
+}
+
+
