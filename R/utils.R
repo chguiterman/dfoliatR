@@ -18,7 +18,7 @@ correct_host_series <- function(input_series){
   nh_sd <- stats::sd(input_series[, 2])
   nh_mean <- mean(input_series[, 2])
   input_series[, 3] <- (input_series[, 2] - nh_mean) * (h_sd / nh_sd)
-  input_series[, 4] <- inut_series[, 1] - inut_series[, 3]
+  input_series[, 4] <- input_series[, 1] - input_series[, 3]
   input_series[, 5] <- scale(input_series[, 4])
   names(input_series) <- c(nms, nam1, nam2, nam3)
   return(input_series)
