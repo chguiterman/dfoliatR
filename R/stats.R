@@ -1,7 +1,7 @@
 #' Composite defoliation series
 #'
 
-composite <- function(x, filter_prop = 0.25, filter_min_series = 3){
+composite <- function(x, comp_name = "comp", filter_prop = 0.25, filter_min_series = 3){
   defol_events <- c("defoliated", "max_defoliation")
   event_count <- as.data.frame(table(year = subset(x, x$defol_status %in% defol_events)$year))
   series_count <- sample_depth(x)
@@ -9,11 +9,17 @@ composite <- function(x, filter_prop = 0.25, filter_min_series = 3){
                   by = 'year')
   counts$prop <- counts$Freq / counts$samp_depth
   filter_mask <- (counts$prop >= filter_prop) & (counts$samp_depth >= filter_min_series)
-  out <- subset(counts, filter_mask)$year
-  event_years <- data.frame(as.integer(levels(out)[out]))
+  comp_years <- subset(counts, filter_mask)$year
+  event_years <- data.frame(year = as.integer(levels(comp_years)[comp_years]),
+                            defol_status = "defoliated")
 
-  series_cast <- reshape2::dcast(x, year ~ series, value)
-
+  series_cast <- reshape2::dcast(x, year ~ series, value.var = "value")
+  series_cast$mean <- rowMeans(series_cast[, -1], na.rm=TRUE)
+  out <- merge(series_cast[, c("year", "mean")], event_years, by = "year", all = TRUE)
+  out$series <- comp_name
+  out <- out[, c('year', 'series', 'mean', 'defol_status')]
+  class(out) <- c("defol", "data.frame")
+  return(out)
 }
 
 
