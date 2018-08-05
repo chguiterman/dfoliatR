@@ -30,6 +30,10 @@ remove_climate <- function(input_series){
 #' @param duration_years the minimum length of time in which the tree is considered to be in defoliation
 #'
 #' @param max_reduction defaults to -1.28
+#'
+#' @return after performing runs analyses, the function adds a column to the input data.frame
+#' that distinguished years of defoliation and the maximum defoliation year (ie. the year the
+#' greatest negative growth departure).
 
 id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.28){
   rns <- rle(as.vector(input_series[, 5] < 0))
@@ -54,5 +58,8 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
     }
     if(length(dep.seq) < duration_years) next # Includes setting for min defoliation duration
     if(min(aa[dep.seq, 5]) != aa[max.red, 5]) next
+    input_series[dep.seq, 6] <- "defoliated"
+    input_series[max.red, 6] <- "max_defoliation"
   }
+  return(input_series)
 }
