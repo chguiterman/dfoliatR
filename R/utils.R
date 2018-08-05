@@ -61,5 +61,6 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
     input_series[dep.seq, 6] <- "defoliated"
     input_series[max.red, 6] <- "max_defoliation"
   }
+  names(input_series)[6] <- "defol_status"
   return(input_series)
 }
