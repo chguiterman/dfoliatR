@@ -74,11 +74,11 @@ stack_defoliation <- function(x){
   out <- plyr::ldply(x, function(i){
     inout <- range(as.numeric(rownames(i)))
     yrs <- as.integer(c(inout[1]:inout[2]))
-    out <- data.frame(year = yrs, series = colnames(i)[1], defol_status = i[, 6])
+    out <- data.frame(year = yrs, series = colnames(i)[1], value = i[, 5],  defol_status = i[, 6])
     return(out)
     }
   )
-  class(out) <- c('defol_tree', 'data.frame')
+  class(out) <- c('defol', 'data.frame')
   return(out)
 }
 
