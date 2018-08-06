@@ -9,6 +9,7 @@
 #'
 #' @return a list object with elements containing data.frame rwl objects of the host and non-host series, corrected
 #'
+#' @export
 
 defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8, max_reduction = -1.28) {
   if(ncol(nonhost_chron) > 1) stop("nonhost_chron can only contain 1 series")
