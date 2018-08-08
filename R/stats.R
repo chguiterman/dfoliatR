@@ -39,7 +39,7 @@ outbreak <- function(x, comp_name = "comp", filter_prop = 0.25, filter_min_serie
 #' @export
 sample_depth <- function(x) {
   if(!is.defol(x)) stop("x must be a defol object")
-  x_stats <- series_stats(x)
+  x_stats <- defol_stats(x)
   n_trees <- nrow(x_stats)
   out <- data.frame(year = min(x_stats$first):max(x_stats$last))
   for(i in 1:n_trees){
@@ -82,13 +82,13 @@ defol_stats <- function(x) {
 
 #' Outbreak statistics
 #'
-#'  @param x An outbreak object after running \code{outbreak}
+#' @param x An outbreak object after running \code{outbreak}
 #'
-#'  @return A data.frame with descriptive statistics for each outbreak event determined by \code{outbreak},
+#' @return A data.frame with descriptive statistics for each outbreak event determined by \code{outbreak},
 #'  inluding start and end years, duration, the year with the most number of trees in the outbreak and its
 #'  associated tree count, and the year with the maximum growth suppression with its associated mean_index value.
 #'
-#'  @export
+#'@export
 outbreak_stats <- function(x){
   if(!is.outbreak(x)) stop ("x must be an outbreak object")
   events <- rle(x$outbreak_status == "outbreak")
@@ -107,7 +107,7 @@ outbreak_stats <- function(x){
   peaks <- data.frame(matrix(NA, ncol=4, nrow=nrow(deps)))
   names(peaks) <- c("peak_outbreak_year", "num_trees_outbreak", "peak_defol_year", "min_index")
   for(i in 1:nrow(deps)){
-    ob <- ef_comp[deps$starts[i] : deps$ends[i], ]
+    ob <- x[deps$starts[i] : deps$ends[i], ]
     peaks[i, 1] <- ob[which.max(ob$num_defol_trees), ]$year
     peaks[i, 2] <- max(ob$num_defol_trees)
     peaks[i, 3] <- ob[which.min(ob$mean_index), ]$year

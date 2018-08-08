@@ -6,13 +6,14 @@
 \usage{
 outbreak_stats(x)
 }
-\description{
-@param x An outbreak object after running \code{outbreak}
+\arguments{
+\item{x}{An outbreak object after running \code{outbreak}}
 }
-\details{
-@return A data.frame with descriptive statistics for each outbreak event determined by \code{outbreak},
+\value{
+A data.frame with descriptive statistics for each outbreak event determined by \code{outbreak},
  inluding start and end years, duration, the year with the most number of trees in the outbreak and its
  associated tree count, and the year with the maximum growth suppression with its associated mean_index value.
-
-@export
+}
+\description{
+Outbreak statistics
 }
