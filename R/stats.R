@@ -56,48 +56,28 @@ sample_depth <- function(x) {
   return(out)
 }
 
-#' Generate series-level descriptive statistics.
+#' Generate tree-level descriptive statistics on a defol object.
 #'
-#' @param x An rwl object.
-#' @param func_list A list of named functions that will be run on each series
-#'   in the fhx object. The list name for each function is the corresponding
-#'   column name in the output data.frame.
+#' @param x A defol object after running \code{defoliate_trees}.
 #'
-#' @return A data.frame containing series-level statistics.
-#'
-
-#'
-#' # You can create your own list of statistics to output. You can also create
-#' # your own functions:
-#' flist <- list(n = count_year_span,
-#'               xbar_interval = function(x) mean_interval(x, injury_event = TRUE))
-#' sstats <- series_stats(lgr2)
-#' head(sstats)
+#' @return A data.frame containing tree/series-level statistics.
 #'
 #' @export
-series_stats <- function(x, func_list=list(first=first_year,last=last_year)) {
-  # stopifnot(is.fhx(x))
-  plyr::ddply(x, c('series'), function(df) data.frame(lapply(func_list, function(f) f(df))))
+defol_stats <- function(x) {
+  if(!is.defol(x)) stop("x must be a defol object")
+  plyr::ddply(x, c('series'), function(df) {
+    first <- min(df$year)
+    last <- max(df$year)
+    years <- length(df$year)
+    count <- plyr::count(df, "defol_status")
+    num_defol <- count$freq[2]
+    tot_defol <- sum(count$freq[c(1, 2)])
+    avg_defol <- round(tot_defol / num_defol, 0)
+    out <- c(first, last, years, num_defol, tot_defol, avg_defol)
+    names(out) <- c("first", "last", "years", "num_events", "tot_years", "mean_duration")
+    return(out)
+    }
+  )
 }
 
-#' First (earliest) year of an fhx series.
-#'
-#' @param x An fhx object.
-#'
-#' @return The minimum or first year of series in 'x'.
-#'
-#' @export
-first_year <- function(x) {
-  min(x$year)
-}
 
-#' Last (most recent) year of an fhx series.
-#'
-#' @param x An fhx object.
-#'
-#' @return The maximum or last year of series in 'x'. 'NA' will be returned if 'NA' is in x$year.
-#'
-#' @export
-last_year <- function(x) {
-  max(x$year)
-}
