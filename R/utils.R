@@ -101,7 +101,7 @@ is.defol <- function(x) {
 #' @return Boolean indicating whether `x` is an outbreak object.
 #'
 #' @export
-is.object <- function(x) {
+is.outbreak <- function(x) {
   inherits(x, 'outbreak')
 }
 
