@@ -56,7 +56,7 @@ sample_depth <- function(x) {
   return(out)
 }
 
-#' Generate tree-level descriptive statistics on a defol object.
+#' Tree-level defoliation descriptive statistics
 #'
 #' @param x A defol object after running \code{defoliate_trees}.
 #'
@@ -80,4 +80,41 @@ defol_stats <- function(x) {
   )
 }
 
+#' Outbreak statistics
+#'
+#'  @param x An outbreak object after running \code{outbreak}
+#'
+#'  @return A data.frame with descriptive statistics for each outbreak event determined by \code{outbreak},
+#'  inluding start and end years, duration, the year with the most number of trees in the outbreak and its
+#'  associated tree count, and the year with the maximum growth suppression with its associated mean_index value.
+#'
+#'  @export
+outbreak_stats <- function(x){
+  if(!is.outbreak(x)) stop ("x must be an outbreak object")
+  events <- rle(x$outbreak_status == "outbreak")
+  events_index <- cumsum(events$lengths)
+  events_pos <- which(events$values == TRUE)
+  ends <- events_index[events_pos]
+  newindex = ifelse(events_pos > 1, events_pos - 1, 0)
+  starts <- events_index[newindex] + 1
+  if (0 %in% newindex) starts = c(1,starts)
+  deps <- data.frame(cbind(starts, ends))
 
+  start_years <- x$year[starts]
+  end_years <- x$year[ends]
+  duration <- end_years - start_years + 1
+
+  peaks <- data.frame(matrix(NA, ncol=4, nrow=nrow(deps)))
+  names(peaks) <- c("peak_outbreak_year", "num_trees_outbreak", "peak_defol_year", "min_index")
+  for(i in 1:nrow(deps)){
+    ob <- ef_comp[deps$starts[i] : deps$ends[i], ]
+    peaks[i, 1] <- ob[which.max(ob$num_defol_trees), ]$year
+    peaks[i, 2] <- max(ob$num_defol_trees)
+    peaks[i, 3] <- ob[which.min(ob$mean_index), ]$year
+    peaks[i, 4] <- round(min(ob$mean_index), 3)
+  }
+  out <- data.frame(start = start_years, end = end_years,
+                  duration = duration)
+  out <- cbind(out, peaks)
+  return(out)
+}
