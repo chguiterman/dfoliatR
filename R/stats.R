@@ -38,7 +38,7 @@ outbreak <- function(x, comp_name = "comp", filter_prop = 0.25, filter_min_serie
 #' @export
 #'
 sample_depth <- function(x) {
-  # if(!is.fhx(x)) stop("x must be an fhx object")
+  if(!is.defol(x)) stop("x must be a defol object")
   x_stats <- series_stats(x)
   n_trees <- nrow(x_stats)
   out <- data.frame(year = min(x_stats$first):max(x_stats$last))
