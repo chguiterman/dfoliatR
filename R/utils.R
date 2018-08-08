@@ -88,7 +88,6 @@ stack_defoliation <- function(x){
 #'
 #' @return Boolean indicating whether `x` is a defol object.
 #'
-#'
 #' @export
 is.defol <- function(x) {
   inherits(x, 'defol')
@@ -104,4 +103,5 @@ is.defol <- function(x) {
 is.outbreak <- function(x) {
   inherits(x, 'outbreak')
 }
+
 
