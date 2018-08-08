@@ -4,7 +4,8 @@
 #' @param comp_name the desired series name for the outbreak composite
 #' @param filter_prop the minimum proportion of defoliated trees to be considered an outbreak. Default is 0.25.
 #' @param filter_min_series The minimum number of trees required for an outbreak event. Default is 3 trees
-
+#'
+#' @export
 outbreak <- function(x, comp_name = "comp", filter_prop = 0.25, filter_min_series = 3){
   if(!is.defol(x)) stop("x must be a defol object")
   defol_events <- c("defoliated", "max_defoliation")
@@ -29,14 +30,13 @@ outbreak <- function(x, comp_name = "comp", filter_prop = 0.25, filter_min_serie
 }
 
 
-
-#' Calculate the sample depth of a host series data.frame
+#' Calculate the sample depth of a defol object
 #'
-#' @param x An rwl object.
+#' @param x A defol object.
+#'
 #' @return A data.frame containing the years and number of trees
 #'
 #' @export
-#'
 sample_depth <- function(x) {
   if(!is.defol(x)) stop("x must be a defol object")
   x_stats <- series_stats(x)
@@ -56,7 +56,7 @@ sample_depth <- function(x) {
   return(out)
 }
 
-#' Tree-level defoliation descriptive statistics
+#' Descriptive statistics for defoliation trees
 #'
 #' @param x A defol object after running \code{defoliate_trees}.
 #'
