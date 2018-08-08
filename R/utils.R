@@ -82,4 +82,26 @@ stack_defoliation <- function(x){
   return(out)
 }
 
+#' Check if object is defol, indicating tree-level defoliation object
+#'
+#' @param x Any R object.
+#'
+#' @return Boolean indicating whether `x` is a defol object.
+#'
+#'
+#' @export
+is.defol <- function(x) {
+  inherits(x, 'defol')
+}
+
+#' Check if object is outbreak, meaning site-level outbreak object
+#'
+#' @param x Any R object.
+#'
+#' @return Boolean indicating whether `x` is an outbreak object.
+#'
+#' @export
+is.object <- function(x) {
+  inherits(x, 'outbreak')
+}
 
