@@ -16,5 +16,5 @@ data.frame with 3 added columns, (1) the mean/sd sdjusted non-host chronology,
 and (3) the "normalized" or scaled climate-corrected host series used to identify defoliation events
 }
 \description{
-Removes the nonhost growth signal (ie. climate) from host series
+Removes the nonhost growth signal from host series
 }

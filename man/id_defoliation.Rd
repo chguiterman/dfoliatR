@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{id_defoliation}
 \alias{id_defoliation}
-\title{Identify defoliation events in climate-corrected host series}
+\title{Identify defoliation events in nonhost-corrected host series}
 \usage{
 id_defoliation(input_series, duration_years = 8, max_reduction = -1.28)
 }
@@ -20,5 +20,5 @@ that distinguished years of defoliation and the maximum defoliation year (ie. th
 greatest negative growth departure).
 }
 \description{
-Identify defoliation events in climate-corrected host series
+Identify defoliation events in nonhost-corrected host series
 }
