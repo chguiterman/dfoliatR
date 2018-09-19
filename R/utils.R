@@ -1,5 +1,5 @@
 #' Correct host series
-#' @description Removes the nonhost growth signal (ie. climate) from host series
+#' @description Removes the nonhost growth signal from host series
 #'
 #' @param input_series data.frame rwl object with the host tree series
 #' as first column and non-host chornology as second
@@ -22,7 +22,7 @@ correct_host_series <- function(input_series){
   return(input_series)
 }
 
-#' Identify defoliation events in climate-corrected host series
+#' Identify defoliation events in nonhost-corrected host series
 #' @param input_series a data.frame with 5 columns. This was generated after running
 #' \code{remove_climate}.
 #'
