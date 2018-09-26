@@ -1,5 +1,4 @@
 #' Measure defoliation events in host trees
-#' @description Conduct host/nonhost comparison to identify defoliation events
 #'
 #' @param host_tree a data.frame rwl object containing the tree-level growth series for all
 #' host trees to be compared to the non-host chronology
@@ -56,8 +55,8 @@ outbreak <- function(x, comp_name = "comp", filter_perc = 25, filter_min_series 
   series_cast$mean <- rowMeans(series_cast[, -1], na.rm=TRUE)
   out <- merge(series_cast[, c("year", "mean")], comp, by = "year")
   out$series <- comp_name
-  out <- out[, c('year', 'series', 'samp_depth', 'Freq', 'prop', 'mean', 'defol_status')]
-  names(out)[c(3:7)] <- c("num_trees", "num_defol_trees", "prop_defol_trees", "mean_index", "outbreak_status")
+  out <- out[, c('year', 'series', 'samp_depth', 'Freq', 'perc', 'mean', 'defol_status')]
+  names(out)[c(3:7)] <- c("num_trees", "num_defol_trees", "percent_defol_trees", "mean_index", "outbreak_status")
   class(out) <- c("outbreak", "data.frame")
   return(out)
 }
