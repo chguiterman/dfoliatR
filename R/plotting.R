@@ -55,7 +55,7 @@ plot_outbreak <- function(x){
   # mid plot
   prop <- p +
     ggplot2::geom_vline(xintercept = minor_labs, colour="grey50") +
-    ggplot2::geom_ribbon(ggplot2::aes_string(ymax="prop_defol_trees", ymin=0)) +
+    ggplot2::geom_ribbon(ggplot2::aes_string(ymax="percent_defol_trees", ymin=0)) +
     ggplot2::scale_y_continuous(name = "% defoliated") +
     ggpubr::theme_pubr() +
     ggplot2::theme(plot.margin = ggplot2::unit(c(0.1, 0, 0, 0), "cm"),
