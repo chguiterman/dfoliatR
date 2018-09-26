@@ -35,19 +35,19 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8, max_re
 #'
 #' @param x a defol object
 #' @param comp_name the desired series name for the outbreak composite
-#' @param filter_prop the minimum proportion of defoliated trees to be considered an outbreak. Default is 0.25.
+#' @param filter_perc the minimum percentage of defoliated trees to be considered an outbreak. Default is 25(%).
 #' @param filter_min_series The minimum number of trees required for an outbreak event. Default is 3 trees
 #'
 #' @export
-outbreak <- function(x, comp_name = "comp", filter_prop = 0.25, filter_min_series = 3){
+outbreak <- function(x, comp_name = "comp", filter_perc = 25, filter_min_series = 3){
   if(!is.defol(x)) stop("x must be a defol object")
   defol_events <- c("defoliated", "max_defoliation")
   event_count <- as.data.frame(table(year = subset(x, x$defol_status %in% defol_events)$year))
   series_count <- sample_depth(x)
   counts <- merge(event_count, series_count,
                   by = 'year')
-  counts$prop <- counts$Freq / counts$samp_depth
-  filter_mask <- (counts$prop >= filter_prop) & (counts$samp_depth >= filter_min_series)
+  counts$perc <- counts$Freq / counts$samp_depth * 100
+  filter_mask <- (counts$perc >= filter_perc) & (counts$samp_depth >= filter_min_series)
   comp_years <- subset(counts, filter_mask)$year
   event_years <- data.frame(year = as.integer(levels(comp_years)[comp_years]),
                             defol_status = "outbreak")
