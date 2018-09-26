@@ -25,5 +25,5 @@ the character string identifying the defoliation events.}
 a list object with elements containing data.frame rwl objects of the host and non-host series, corrected
 }
 \description{
-Conduct host/nonhost comparison to identify defoliation events
+Measure defoliation events in host trees
 }
