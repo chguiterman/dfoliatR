@@ -19,6 +19,7 @@ Imports:
     MASS,
     stats,
     ggplot2,
+    ggpubr,
     reshape2,
     plyr
 Encoding: UTF-8
