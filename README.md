@@ -82,7 +82,7 @@ The intervals between outbreak events can be assessed by extracting representati
 1. The first year of outbreak
 2. the year with the greatest number of defoliated trees
 3. the year with the greatest departure in growth. 
-Short or long duration can be removed with filtering by the outbreak duration.
+
 ```R
 ef_outbrk <- outbreak_stats(ef_comp)
 
@@ -94,7 +94,7 @@ ef_interv <- diff(ef_outbrk$peak_outbreak_year)
 ```
 This produces a simple vector of intervals. We can plot it and calculate basic stats
 ```R
-plot(hist(ef_interv), xlab="Intervals (years)", main = "Outbreak intervals at East Fork")
+hist(ef_interv, xlab="Intervals (years)", main = "Outbreak intervals at East Fork")
 
 boxplot(ef_interv, horizontal = TRUE, xlab="Intervals (years)", ylab = "East Fork Douglas-fir")
 
@@ -102,7 +102,7 @@ mean(ef_interv)
 median(ef_interv)
 ```
 
-#### Questions, concerns, problems, ideas?
+#### Questions, concerns, problems, ideas, want to contribute?
 Please contact the author, Chris Guiterman
 
 
