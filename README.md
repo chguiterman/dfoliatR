@@ -65,7 +65,7 @@ defol_stats(ef_defol)
 
 It is important to note that`bugr` distinguishes between a "defoliation event", recorded on individual trees, and an "outbreak" that synchronously effected a proportion of trees. 
 
-Outbreak periods can identified with the function `outbreak`. In essence, this is a compositing function that combines all trees provided in the "defol" object to assess the synchrony and scale of defolation. Should enough trees record defoliation (regardless of the duration), it will be termed an "outbreak". Filter parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak.
+Outbreak periods can be identified with the function `outbreak`. In essence, this is a compositing function that combines all trees provided in the "defol" object to assess the synchrony and scale of defolation. Should enough trees record defoliation (regardless of the duration), it will be termed an "outbreak". Filter parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak. Short outbreaks can be removed after running `outbreak_stats()`.
 
 ```R
 ef_comp <- outbreak(ef_defol, comp_name = "EF", filter_perc = 25, 
@@ -78,7 +78,32 @@ outbreak_stats(ef_comp)
 
 plot_outbreak()
 ```
+The intervals between outbreak events can be assessed by extracting representative year for each event. `outbreak_stats` provides several options:
+1. The first year of outbreak
+2. the year with the greatest number of defoliated trees
+3. the year with the greatest departure in growth. 
+Short or long durations can be removed with filtering by the outbreak duration.
+```R
+ef_outbrk <- outbreak_stats(ef_comp)
 
+# remove outbreaks lasting less than 10 years (n=1 in this case)
+ef_outbrk <- ef_outbrk[ef_outbrk$duration >= 10, ]
+
+# calculate intervals based on the year with the most defoliated trees
+ef_interv <- diff(ef_outbrk$peak_outbreak_year)
+```
+This produces a simple vector of intervals. We can plot it and calculate basic stats
+```R
+plot(hist(ef_interv), xlab="Intervals (years)", main = "Outbreak intervals at East Fork")
+
+boxplot(ef_interv, horizontal = TRUE, xlab="Intervals (years)", ylab = "East Fork Douglas-fir")
+
+mean(ef_interv)
+median(ef_interv)
+```
+
+#### Questions, concerns, problems, ideas?
+Please contact the author, Chris Guiterman
 
 
 
