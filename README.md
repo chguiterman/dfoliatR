@@ -2,7 +2,7 @@
 
 ### Installation
 
-`bugr` is not currently on CRAN. to install `bugr` use the `devtools` package:
+`bugr` is not currently on CRAN. To install `bugr` use the `devtools` package:
 
 ```R
 library(devtools)
