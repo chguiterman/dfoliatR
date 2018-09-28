@@ -16,20 +16,21 @@ library(bugr)
 ### Data
 
 `bugr` requires two independent datasets: 
-* Host-tree series, as standardized ring widths. 
+* Host-tree series, of one or more individual trees (not cores), as standardized ring widths. To average cores and obtain individual tree series, see `dplr::treeMean`. 
 * A non-host standardized tree-ring chronology.
-These datasets can be created in ARSTAN or using the `detrend()` function in the `dplR` library. A chronology can be created in `dplR` with the `chron()` function. Once read into R, the data can be passed to `bugr` functions. They must share the formatting of `rwl` objects in `dplR`.
+
+These datasets can be created in ARSTAN or by with the `detrend()` function in the `dplR` library. A chronology can be created in `dplR` with the `chron()` function. Once read into R, the data can be passed to `bugr` functions. They must share the formatting of `rwl` objects in `dplR`.
 
 Data are provided in this package to demonstrate some of the utilities of `bugr`, courtesy of Dr. Ann Lynch. 
 
-Here, we can read in Douglas-fir host series from the East Fork site in the Jemez Mountains, `ef`.
+Here, we can read in Douglas-fir host series from the East Fork site in the Jemez Mountains, `ef`. These are standardized tree-ring index for individual trees.
 
 ```R
 data(ef)
 
-head(ef)
+head(ef)[1:8] # note the formatting of this rwl object
 ```
-These trees are compared against a non-host chronology from a nearby site. The BAC chornology is from ponderosa pine at the Baca site in the Jemez Mountains.
+We compared these trees against a non-host chronology from a nearby site. The BAC chornology is from ponderosa pine at the Baca site in the Jemez Mountains.
 
 ```R
 data(bac_crn)
@@ -37,18 +38,49 @@ data(bac_crn)
 
 ### Operation
 
-The first thing to do is perform the "correction" on the host trees, whereby the climate-growth signal of the non-host chronology is removed. From there, `bugr` will employ the same runs analyses as in the program OUTBREAK to assess for defoliation periods in each tree. Some parameters around the length and depth of growth departure can be changed in the `defoliate_trees` function.
+`bugr` employs the same processes as the Fortran program OUTBREAK, developed by Richard Holmes and Thomas Swetnam. 
+
+The first thing to do is perform the "correction" on the host trees using the `defoliate_trees()` function. This removes the growth signal of the non-host chronology to reduce the influence of climate from the host trees, providing clearer ecological variability that might relate to defoliation events.
+
+Once corrected, `defoliate_trees` will employ runs analyses to identify defoliation periods in each tree. Some parameters regarding the length and severity of growth departure can be changed by the user. The parameter defaults follow those in OUTBREAK. Definitions of the function parameters are provided with `?defoliate_trees`
+
+To run the function, follow the script below, making a new object with the results. This output dataset is termed by `bugr` as a "defol" object to aid the functions in seeing that it represents individual trees as opposed to a composited site-level dataset.
 
 ```R
 ef_defol <- defoliate_trees(host_tree = ef, nonhost_chron = bac_crn, 
       duration_years = 8, max_reduction = -1.28, list_output = FALSE)
 ```
-Definitions of the function parameters are provided with `?defoliate_trees`
 
-We can view the individual time series and the defoliation periods identified by the function by plotting the new `defol` object:
+We can view the individual time series and the defoliation periods identified by the function by plotting the new `defol` object in a stacked graph:
 ```R
 plot_defol(ef_defol)
 ```
+
+The `plot_defol()` function allows for a color change of the defoliation events with the paramter `col_defol`. The default is "black", but any color can be used by using names (e.g., "red"), color codes (e.g., "#8B4500"), or numeric color indicators (e.g., 3).
+
+Basic and informative tree-level statistics regarding the sample data and defoliation events can be viewed by
+```R
+defol_stats(ef_defol)
+```
+
+It is important to note that`bugr` distinguishes between a "defoliation event", recorded on individual trees, and an "outbreak" that synchronously effected a proportion of trees. 
+
+Outbreak periods can identified with the function `outbreak`. In essence, this is a compositing function that combines all trees provided in the "defol" object to assess the synchrony and scale of defolation. Should enough trees record defoliation (regardless of the duration), it will be termed an "outbreak". Filter parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak.
+
+```R
+ef_comp <- outbreak(ef_defol, comp_name = "EF", filter_perc = 25, 
+                    filter_min_series = 3)
+```
+
+As with the "defol" object, basic statistics and graphics are available for the new "outbreak" object.
+```R
+outbreak_stats(ef_comp)
+
+plot_outbreak()
+```
+
+
+
 
 
 
