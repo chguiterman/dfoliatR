@@ -1,8 +1,3 @@
-# **bugr**
-
-Detection and analysis of insect defoliation signals in tree rings
-
-
 ### Installation
 
 `bugr` is not currently on CRAN. to install `bugr` use the `devtools` package:
@@ -29,7 +24,7 @@ Data are provided in this package to demonstrate some of the utilities of `bugr`
 
 Here, we can read in Douglas-fir host series from the East Fork site in the Jemez Mountains, `ef`.
 
-```{r, eval = TRUE}
+```R
 data(ef)
 
 head(ef)
@@ -45,7 +40,8 @@ data(bac_crn)
 The first thing to do is perform the "correction" on the host trees, whereby the climate-growth signal of the non-host chronology is removed. From there, `bugr` will employ the same runs analyses as in the program OUTBREAK to assess for defoliation periods in each tree. Some parameters around the length and depth of growth departure can be changed in the `defoliate_trees` function.
 
 ```R
-ef_defol <- defoliate_trees(host_tree = ef, nonhost_chron = bac_crn, duration_years = 8, max_reduction = -1.28, list_output = FALSE)
+ef_defol <- defoliate_trees(host_tree = ef, nonhost_chron = bac_crn, 
+      duration_years = 8, max_reduction = -1.28, list_output = FALSE)
 ```
 Definitions of the function parameters are provided with `?defoliate_trees`
 
@@ -53,6 +49,8 @@ We can view the individual time series and the defoliation periods identified by
 ```R
 plot_defol(ef_defol)
 ```
-![](vignettes/ef_defol_plot.tiff)
+
+
+
 
 
