@@ -1,3 +1,5 @@
+# bugr
+
 ### Installation
 
 `bugr` is not currently on CRAN. to install `bugr` use the `devtools` package:
