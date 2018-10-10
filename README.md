@@ -1,5 +1,7 @@
 # bugr
 
+**Please note** This R package is under development. All functions are preliminary. Output results should be (and are being) validated with other software and analyses. Anyone applying the software does so at their own risk. However, we are open to further colaboration and contributions. Please contact the lead developer, Chris Guiterman, and fork the software to continue with development. Thank you.
+
 ### Installation
 
 `bugr` is not currently on CRAN. To install `bugr` use the `devtools` package:
