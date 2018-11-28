@@ -42,13 +42,15 @@ outbreak <- function(x, comp_name = "comp", filter_perc = 25, filter_min_series 
   if(!is.defol(x)) stop("x must be a defol object")
   defol_events <- c("defoliated", "max_defoliation")
   event_count <- as.data.frame(table(year = subset(x, x$defol_status %in% defol_events)$year))
+  event_count$year <- as.numeric(as.character(event_count$year))
   series_count <- sample_depth(x)
   counts <- merge(event_count, series_count,
-                  by = 'year')
+                  by = 'year', all=TRUE)
+  counts$Freq <- replace(counts$Freq, is.na(counts$Freq), 0)
   counts$perc <- counts$Freq / counts$samp_depth * 100
   filter_mask <- (counts$perc >= filter_perc) & (counts$samp_depth >= filter_min_series)
   comp_years <- subset(counts, filter_mask)$year
-  event_years <- data.frame(year = as.integer(levels(comp_years)[comp_years]),
+  event_years <- data.frame(year = comp_years,
                             defol_status = "outbreak")
   comp <- merge(counts, event_years, by = "year", all = TRUE)
   series_cast <- reshape2::dcast(x, year ~ series, value.var = "value")
