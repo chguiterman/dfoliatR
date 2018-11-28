@@ -30,7 +30,7 @@ plot_defol <- function(x, col_defol = 'black') {
 plot_outbreak <- function(x){
   if(!is.outbreak(x)) stop("'x' must be an 'outbreak' object")
 
-  outbrk_events <- x[x$outbreak_status == "outbreak", ]
+  outbrk_events <- x[! is.na(x$outbreak_status), ]
 
   # setup plot
   p <- ggplot2::ggplot(data = x, ggplot2::aes_string(x="year"))
