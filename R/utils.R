@@ -36,6 +36,8 @@ correct_host_series <- function(input_series){
 #' @return after performing runs analyses, the function adds a column to the input data.frame
 #' that distinguished years of defoliation and the maximum defoliation year (ie. the year the
 #' greatest negative growth departure).
+#'
+#' @export
 
 id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.28){
   rns <- rle(as.vector(input_series[, 5] < 0))
