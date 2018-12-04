@@ -15,6 +15,7 @@
 defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8, max_reduction = -1.28, list_output = FALSE) {
   if(ncol(nonhost_chron) > 1) stop("nonhost_chron can only contain 1 series")
   if(max_reduction > 0) max_reduction <- max_reduction * -1
+  # To DO: Add provision that if only host series are given, no correction is made, but series are scanned for defol_status
   host_tree <- data.frame(host_tree)
   nonhost_chron <- data.frame(nonhost_chron)
   nseries <- ncol(host_tree)
@@ -34,8 +35,8 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8, max_re
 #'
 #' @param x a defol object
 #' @param comp_name the desired series name for the outbreak composite
-#' @param filter_perc the minimum percentage of defoliated trees to be considered an outbreak. Default is 25(%).
-#' @param filter_min_series The minimum number of trees required for an outbreak event. Default is 3 trees
+#' @param filter_perc the minimum percentage of defoliated trees to be considered an outbreak. Default is 25 percent.
+#' @param filter_min_series The minimum number of trees required for an outbreak event. Default is 3 trees.
 #'
 #' @export
 outbreak <- function(x, comp_name = "comp", filter_perc = 25, filter_min_series = 3){
