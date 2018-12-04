@@ -12,9 +12,9 @@ outbreak(x, comp_name = "comp", filter_perc = 25,
 
 \item{comp_name}{the desired series name for the outbreak composite}
 
-\item{filter_perc}{the minimum percentage of defoliated trees to be considered an outbreak. Default is 25(%).}
+\item{filter_perc}{the minimum percentage of defoliated trees to be considered an outbreak. Default is 25 percent.}
 
-\item{filter_min_series}{The minimum number of trees required for an outbreak event. Default is 3 trees}
+\item{filter_min_series}{The minimum number of trees required for an outbreak event. Default is 3 trees.}
 }
 \description{
 Composite defoliation series to determine outbreak events
