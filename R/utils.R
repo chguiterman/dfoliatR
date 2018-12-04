@@ -7,6 +7,8 @@
 #' @return data.frame with 3 added columns, (1) the mean/sd sdjusted non-host chronology,
 #' (2) the "corrected" host series after subtraction from the adjusted host chronology,
 #' and (3) the "normalized" or scaled climate-corrected host series used to identify defoliation events
+#'
+#' @export
 correct_host_series <- function(input_series){
   nms <- colnames(input_series)
   nam1 <- paste(nms[2], '_rescale', sep='')
@@ -38,7 +40,6 @@ correct_host_series <- function(input_series){
 #' greatest negative growth departure).
 #'
 #' @export
-
 id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.28){
   rns <- rle(as.vector(input_series[, 5] < 0))
   rns.index = cumsum(rns$lengths)
@@ -90,6 +91,7 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
 #' @param x a list object created within \code{defoliate_trees}.
 #'
 #' @return a data.frame defol object
+#' @export
 
 stack_defoliation <- function(x){
   out <- plyr::ldply(x, function(i){
