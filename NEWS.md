@@ -1,3 +1,7 @@
+# bugr v0.0.2
+* This version in response to validation trials with real data
+* Improve id_defoliation to prevent overlapping defol events
+
 # bugr v0.0.1
 
 * Initial uploads of basic functions
