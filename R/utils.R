@@ -21,7 +21,7 @@ correct_host_series <- function(input_series){
   # See outbreak.txt for description of fractional power.
   input_series[, 3] <- (input_series[, 2] - nh_mean) * (h_sd / nh_sd)
   input_series[, 4] <- input_series[, 1] - input_series[, 3]
-  input_series[, 4] <- replace(input_series[, 4], input_series[, 4] < 0, 0) # set negative #s to zero
+  # input_series[, 4] <- replace(input_series[, 4], input_series[, 4] < 0, 0) # set negative #s to zero
   input_series[, 5] <- scale(input_series[, 4])
   names(input_series) <- c(nms, nam1, nam2, nam3)
   return(input_series)
