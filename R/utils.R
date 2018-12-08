@@ -52,6 +52,7 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
   deps$length <- deps$ends - deps$starts + 1
   input_series$defol_status = NA
   for(y in 1:nrow(deps)){
+    if(any(input_series[deps$starts[y] : deps$ends[y], ]$defol_status %in% c("defoliated", "max_defoliation"))) next
     bb <- input_series[deps$starts[y] : deps$ends[y], 5]
     max.red <- deps$starts[y] + which.min(bb) - 1
     if(input_series[max.red, 5] > max_reduction) next  # Includes setting for max growth reduction
