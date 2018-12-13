@@ -18,6 +18,7 @@ Suggests:
 Imports:
     dplR,
     dplyr,
+    rlang,
     MASS,
     stats,
     ggplot2,
