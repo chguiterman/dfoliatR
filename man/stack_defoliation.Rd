@@ -2,16 +2,16 @@
 % Please edit documentation in R/utils.R
 \name{stack_defoliation}
 \alias{stack_defoliation}
-\title{stack defolation list object}
+\title{Stack a defolation list}
 \usage{
 stack_defoliation(x)
 }
 \arguments{
-\item{x}{a list object created within \code{defoliate_trees}.}
+\item{x}{a list object created by \code{defoliate_trees}}
 }
 \value{
-a data.frame defol object
+a defol object (long-format data.frame)
 }
 \description{
-stack defolation list object
+Stack a defolation list
 }
