@@ -87,18 +87,20 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
 }
 
 
-#' stack defolation list object
+#' Stack a defolation list
 #'
-#' @param x a list object created within \code{defoliate_trees}.
+#' @param x a list object created by \code{defoliate_trees}
 #'
-#' @return a data.frame defol object
+#' @return a defol object (long-format data.frame)
 #' @export
-
 stack_defoliation <- function(x){
   out <- plyr::ldply(x, function(i){
     inout <- range(as.numeric(rownames(i)))
     yrs <- as.integer(c(inout[1]:inout[2]))
-    out <- data.frame(year = yrs, series = colnames(i)[1], value = i[, 5],  defol_status = i[, 6])
+    out <- data.frame(year = yrs, series = colnames(i)[1],
+                      cor_series = i[, 4],
+                      norm_series = i[, 5],
+                      defol_status = i[, 6])
     return(out)
     }
   )
