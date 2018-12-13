@@ -34,32 +34,41 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8, max_re
 #' Composite defoliation series to determine outbreak events
 #'
 #' @param x a defol object
-#' @param comp_name the desired series name for the outbreak composite
+#' @param comp_name the desired series name for the outbreak composite. Defaults to "COMP"
 #' @param filter_perc the minimum percentage of defoliated trees to be considered an outbreak. Default is 25 percent.
 #' @param filter_min_series The minimum number of trees required for an outbreak event. Default is 3 trees.
 #'
 #' @export
-outbreak <- function(x, comp_name = "comp", filter_perc = 25, filter_min_series = 3){
+outbreak <- function(x, comp_name = "COMP", filter_perc = 25, filter_min_series = 3){
   if(!is.defol(x)) stop("x must be a defol object")
+  series_count <- sample_depth(x)
   defol_events <- c("defoliated", "max_defoliation")
   event_count <- as.data.frame(table(year = subset(x, x$defol_status %in% defol_events)$year))
   event_count$year <- as.numeric(as.character(event_count$year))
-  series_count <- sample_depth(x)
-  counts <- merge(event_count, series_count,
-                  by = 'year', all=TRUE)
-  counts$Freq <- replace(counts$Freq, is.na(counts$Freq), 0)
-  counts$perc <- counts$Freq / counts$samp_depth * 100
-  filter_mask <- (counts$perc >= filter_perc) & (counts$samp_depth >= filter_min_series)
+  max_count <- as.data.frame(table(year = subset(x, x$defol_status == "max_defoliation")$year))
+  max_count$year <- as.numeric(as.character(max_count$year))
+  defol_counts <- merge(event_count, max_count, by = 'year', all=TRUE)
+  names(defol_counts) <- c('year', 'num_defol', 'num_max_defol')
+  counts <- merge(series_count, defol_counts, by = 'year', all=TRUE)
+  counts <- dplyr::mutate(counts,
+                          num_defol = replace(num_defol, is.na(num_defol), 0),
+                          num_max_defol = replace(num_max_defol, is.na(num_max_defol), 0),
+                          perc_defol = num_defol / samp_depth * 100,
+                          perc_max_defol = num_max_defol / samp_depth *100)
+  filter_mask <- (counts$perc_defol >= filter_perc) & (counts$samp_depth >= filter_min_series)
   comp_years <- subset(counts, filter_mask)$year
   event_years <- data.frame(year = comp_years,
-                            defol_status = "outbreak")
+                            outbreak_status = "outbreak")
   comp <- merge(counts, event_years, by = "year", all = TRUE)
-  series_cast <- reshape2::dcast(x, year ~ series, value.var = "value")
-  series_cast$mean <- rowMeans(series_cast[, -1], na.rm=TRUE)
-  out <- merge(series_cast[, c("year", "mean")], comp, by = "year")
-  out$series <- comp_name
-  out <- out[, c('year', 'series', 'samp_depth', 'Freq', 'perc', 'mean', 'defol_status')]
-  names(out)[c(3:7)] <- c("num_trees", "num_defol_trees", "percent_defol_trees", "mean_index", "outbreak_status")
+  series_cast_cor <- reshape2::dcast(x, year ~ series, value.var = "cor_series")
+  series_cast_cor$mean_corrected <- rowMeans(series_cast_cor[, -1], na.rm=TRUE)
+  series_cast_norm <- reshape2::dcast(x, year ~ series, value.var = "norm_series")
+  series_cast_norm$mean_norm <- rowMeans(series_cast_norm[, -1], na.rm=TRUE)
+  mean_series <- merge(series_cast_cor[, c("year", "mean_corrected")],
+                       series_cast_norm[, c("year", "mean_norm")])
+  out <- merge(comp, mean_series, by = "year")
+  out <- dplyr::select(out, "year", "samp_depth", "num_defol", "perc_defol",  "num_max_defol",
+                       "perc_max_defol", "mean_corrected", "mean_norm", "outbreak_status")
   class(out) <- c("outbreak", "data.frame")
   return(out)
 }
