@@ -12,9 +12,11 @@ plot_defol <- function(x, disp_index = "norm_index", col_defol = 'black') {
     warning("Displaying the 'norm_index'")
     disp_index <- "norm_index"
   }
+  if(disp_index == "norm_index") y_intercept <- 0
+  else y_intercept <- 1
   defol_events <- x[!is.na(x$defol_status), ]
   p <- ggplot2::ggplot(data = x, ggplot2::aes_string(x="year", y=disp_index, group="series"))
-  p <- (p + ggplot2::geom_hline(yintercept = 0) + ggplot2::geom_line())
+  p <- (p + ggplot2::geom_hline(yintercept = y_intercept) + ggplot2::geom_line())
   p <- (p + ggplot2::geom_bar(data = defol_events,
                               ggplot2::aes_string(x="year", y=disp_index), stat="identity",
                               fill = col_defol))
