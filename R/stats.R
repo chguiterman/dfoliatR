@@ -67,22 +67,24 @@ outbreak_stats <- function(x){
   starts <- events_index[newindex] + 1
   if (0 %in% newindex) starts = c(1,starts)
   deps <- data.frame(cbind(starts, ends))
-
   start_years <- x$year[starts]
   end_years <- x$year[ends]
   duration <- end_years - start_years + 1
-
-  peaks <- data.frame(matrix(NA, ncol=4, nrow=nrow(deps)))
-  names(peaks) <- c("peak_outbreak_year", "num_trees_outbreak", "peak_defol_year", "min_index")
+  peaks <- data.frame(matrix(NA, ncol=7, nrow=nrow(deps)))
+  names(peaks) <- c("num_trees_start", "perc_trees_start", "peak_outbreak_year",
+                    "num_trees_outbreak", "peak_defol_year", "min_cor_index", "mean_norm_index")
   for(i in 1:nrow(deps)){
     ob <- x[deps$starts[i] : deps$ends[i], ]
-    peaks[i, 1] <- ob[which.max(ob$num_defol_trees), ]$year
-    peaks[i, 2] <- max(ob$num_defol_trees)
-    peaks[i, 3] <- ob[which.min(ob$mean_index), ]$year
-    peaks[i, 4] <- round(min(ob$mean_index), 3)
+    peaks[i, 1] <- ob[1, ]$num_defol
+    peaks[i, 2] <- ob[1, ]$perc_defol
+    peaks[i, 3] <- ob[which.max(ob$num_defol), ]$year
+    peaks[i, 4] <- max(ob$num_defol)
+    peaks[i, 5] <- ob[which.min(ob$mean_norm_index), ]$year
+    peaks[i, 6] <- round(min(ob$mean_cor_index), 3)
+    peaks[i, 7] <- round(min(ob$mean_norm_index), 3)
   }
   out <- data.frame(start = start_years, end = end_years,
-                  duration = duration)
+                    duration = duration)
   out <- cbind(out, peaks)
   return(out)
 }
