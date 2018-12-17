@@ -98,8 +98,8 @@ stack_defoliation <- function(x){
     inout <- range(as.numeric(rownames(i)))
     yrs <- as.integer(c(inout[1]:inout[2]))
     out <- data.frame(year = yrs, series = colnames(i)[1],
-                      cor_series = i[, 4],
-                      norm_series = i[, 5],
+                      cor_index = i[, 4],
+                      norm_index = i[, 5],
                       defol_status = i[, 6])
     return(out)
     }
