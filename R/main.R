@@ -62,15 +62,15 @@ outbreak <- function(x, comp_name = "COMP", filter_perc = 25, filter_min_series 
   event_years <- data.frame(year = comp_years,
                             outbreak_status = "outbreak")
   comp <- merge(counts, event_years, by = "year", all = TRUE)
-  series_cast_cor <- reshape2::dcast(x, year ~ series, value.var = "cor_series")
+  series_cast_cor <- reshape2::dcast(x, year ~ series, value.var = "cor_index")
   series_cast_cor$mean_corrected <- rowMeans(series_cast_cor[, -1], na.rm=TRUE)
-  series_cast_norm <- reshape2::dcast(x, year ~ series, value.var = "norm_series")
+  series_cast_norm <- reshape2::dcast(x, year ~ series, value.var = "norm_index")
   series_cast_norm$mean_norm <- rowMeans(series_cast_norm[, -1], na.rm=TRUE)
-  mean_series <- merge(series_cast_cor[, c("year", "mean_corrected")],
-                       series_cast_norm[, c("year", "mean_norm")])
+  mean_series <- merge(series_cast_cor[, c("year", "mean_cor_index")],
+                       series_cast_norm[, c("year", "mean_norm_index")])
   out <- merge(comp, mean_series, by = "year")
   out <- dplyr::select(out, "year", "samp_depth", "num_defol", "perc_defol",  "num_max_defol",
-                       "perc_max_defol", "mean_corrected", "mean_norm", "outbreak_status")
+                       "perc_max_defol", "mean_cor_index", "mean_norm_index", "outbreak_status")
   class(out) <- c("outbreak", "data.frame")
   return(out)
 }
