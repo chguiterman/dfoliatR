@@ -1,6 +1,7 @@
 # bugr v0.0.2
 * This version in response to validation trials with real data
 * Improve id_defoliation to prevent overlapping defol events
+* Add both corrected and normalized index series to outputs of defoliate_trees and outbreak functions
 
 # bugr v0.0.1
 
