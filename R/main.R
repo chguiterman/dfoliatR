@@ -64,9 +64,9 @@ outbreak <- function(x, comp_name = "COMP", filter_perc = 25, filter_min_series 
                             outbreak_status = "outbreak")
   comp <- merge(counts, event_years, by = "year", all = TRUE)
   series_cast_cor <- reshape2::dcast(x, year ~ series, value.var = "cor_index")
-  series_cast_cor$mean_corrected <- rowMeans(series_cast_cor[, -1], na.rm=TRUE)
+  series_cast_cor$mean_cor_index <- rowMeans(series_cast_cor[, -1], na.rm=TRUE)
   series_cast_norm <- reshape2::dcast(x, year ~ series, value.var = "norm_index")
-  series_cast_norm$mean_norm <- rowMeans(series_cast_norm[, -1], na.rm=TRUE)
+  series_cast_norm$mean_norm_index <- rowMeans(series_cast_norm[, -1], na.rm=TRUE)
   mean_series <- merge(series_cast_cor[, c("year", "mean_cor_index")],
                        series_cast_norm[, c("year", "mean_norm_index")])
   out <- merge(comp, mean_series, by = "year")
