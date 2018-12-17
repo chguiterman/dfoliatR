@@ -4,10 +4,12 @@
 \alias{plot_outbreak}
 \title{Produce a stacked plot to present composited, site-level insect outbreak chronologies}
 \usage{
-plot_outbreak(x)
+plot_outbreak(x, disp_index = "mean_norm_index")
 }
 \arguments{
 \item{x}{an 'outbreak' object produced by \code{outbreak}}
+
+\item{disp_index}{Identify the timeseries index to plot. Defaults to \code{mean_norm_index}. The only other option is \code{mean_cor_index}.}
 }
 \description{
 Produce a stacked plot to present composited, site-level insect outbreak chronologies
