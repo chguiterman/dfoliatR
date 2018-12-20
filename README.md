@@ -1,31 +1,31 @@
-# bugr
+# dfoliatR
 
 **Please note** This R package is under development. All functions are preliminary. Output results should be (and are being) validated with other software and analyses. Anyone applying the software does so at their own risk. However, we are open to further colaboration and contributions. Please contact the lead developer, Chris Guiterman, and fork the software to continue with development. Thank you.
 
 ### Installation
 
-`bugr` is not currently on CRAN. To install `bugr` use the `devtools` package:
+`dfoliatR` is not currently on CRAN. To install `dfoliatR` use the `devtools` package:
 
 ```R
 library(devtools)
 
-install_github("chguiterman/bugr")
+install_github("chguiterman/dfoliatR")
 ```
-Once installed, `bugr` can be called like any other R package
+Once installed, `dfoliatR` can be called like any other R package
 
 ```R
-library(bugr)
+library(dfoliatR)
 ```
 
 ### Data
 
-`bugr` requires two independent datasets: 
+`dfoliatR` requires two independent datasets: 
 * Host-tree series, of one or more individual trees (not cores), as standardized ring widths. To average cores and obtain individual tree series, see `dplr::treeMean`. 
 * A non-host standardized tree-ring chronology.
 
-These datasets can be created in ARSTAN or by with the `detrend()` function in the `dplR` library. A chronology can be created in `dplR` with the `chron()` function. Once read into R, the data can be passed to `bugr` functions. They must share the formatting of `rwl` objects in `dplR`.
+These datasets can be created in ARSTAN or by with the `detrend()` function in the `dplR` library. A chronology can be created in `dplR` with the `chron()` function. Once read into R, the data can be passed to `dfoliatR` functions. They must share the formatting of `rwl` objects in `dplR`.
 
-Data are provided in this package to demonstrate some of the utilities of `bugr`, courtesy of Dr. Ann Lynch. 
+Data are provided in this package to demonstrate some of the utilities of `dfoliatR`, courtesy of Dr. Ann Lynch. 
 
 Here, we can read in Douglas-fir host series from the East Fork site in the Jemez Mountains, `ef`. These are standardized tree-ring index for individual trees.
 
@@ -42,13 +42,13 @@ data(bac_crn)
 
 ### Operation
 
-`bugr` employs the same processes as the FORTRAN program OUTBREAK, developed by Richard Holmes and Thomas Swetnam. 
+`dfoliatR` employs the same processes as the FORTRAN program OUTBREAK, developed by Richard Holmes and Thomas Swetnam. 
 
 The first thing to do is perform the "correction" on the host trees using the `defoliate_trees()` function. This removes the growth signal of the non-host chronology to reduce the influence of climate from the host trees, providing clearer ecological variability that might relate to defoliation events.
 
 Once corrected, `defoliate_trees` will employ runs analyses to identify defoliation periods in each tree. Some parameters regarding the length and severity of growth departure can be changed by the user. The parameter defaults follow those in OUTBREAK. Definitions of the function parameters are provided with `?defoliate_trees`
 
-To run the function, follow the script below, making a new object with the results. This output dataset is termed by `bugr` as a "defol" object to aid the functions in seeing that it represents individual trees as opposed to a composited site-level dataset.
+To run the function, follow the script below, making a new object with the results. This output dataset is termed by `dfoliatR` as a "defol" object to aid the functions in seeing that it represents individual trees as opposed to a composited site-level dataset.
 
 ```R
 ef_defol <- defoliate_trees(host_tree = ef, nonhost_chron = bac_crn, 
@@ -67,7 +67,7 @@ Basic and informative tree-level statistics regarding the sample data and defoli
 defol_stats(ef_defol)
 ```
 
-It is important to note that`bugr` distinguishes between a "defoliation event", recorded on individual trees, and an "outbreak" that synchronously effected a proportion of trees. 
+It is important to note that`dfoliatR` distinguishes between a "defoliation event", recorded on individual trees, and an "outbreak" that synchronously effected a proportion of trees. 
 
 Outbreak periods can be identified with the function `outbreak`. In essence, this is a compositing function that combines all trees provided in the "defol" object to assess the synchrony and scale of defoliation. Should enough trees record defoliation (regardless of the duration), it will be termed an "outbreak". Filter parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak. Short outbreaks can be removed after running `outbreak_stats()`.
 
