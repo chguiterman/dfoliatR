@@ -1,5 +1,6 @@
 # dfoliatR v0.0.3
 * Changed package name
+* Add parameter to allow for events that are ongoing at the time of sampling, called end-series events.
 
 # bugr v0.0.2
 * This version in response to validation trials with real data

@@ -25,7 +25,8 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
   tree_list <- lapply(seq_len(nseries), function(i){
     input_series <- stats::na.omit(dplR::combine.rwl(host_tree[, i, drop=FALSE], nonhost_chron))
     corrected_series <- correct_host_series(input_series)
-    defoliated_series <- id_defoliation(corrected_series, duration_years = duration_years, max_reduction = max_reduction)
+    defoliated_series <- id_defoliation(corrected_series, duration_years = duration_years,
+                                        max_reduction = max_reduction, end_series_event = end_series_event)
     return(defoliated_series)
     }
   )
