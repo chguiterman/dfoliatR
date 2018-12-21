@@ -4,7 +4,7 @@
 #' @param input_series data.frame rwl object with the host tree series
 #' as first column and non-host chornology as second
 #'
-#' @return data.frame with 3 added columns, (1) the mean/sd sdjusted non-host chronology,
+#' @return data.frame with 3 added columns, (1) the mean/sd adjusted non-host chronology,
 #' (2) the "corrected" host series after subtraction from the adjusted host chronology,
 #' and (3) the "normalized" or scaled climate-corrected host series used to identify defoliation events
 #'
@@ -30,17 +30,15 @@ correct_host_series <- function(input_series){
 #' Identify defoliation events in nonhost-corrected host series
 #' @param input_series a data.frame with 5 columns. This was generated after running
 #' \code{remove_climate}.
-#'
 #' @param duration_years the minimum length of time in which the tree is considered to be in defoliation
-#'
 #' @param max_reduction defaults to -1.28
-#'
+#' @param end_series_event Binary, defaults to FALSE. Whether to consider possitive index values at the end of the series as part of an ongoing defoliation event
 #' @return after performing runs analyses, the function adds a column to the input data.frame
 #' that distinguished years of defoliation and the maximum defoliation year (ie. the year the
 #' greatest negative growth departure).
 #'
 #' @export
-id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.28){
+id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.28, end_series_event = FALSE){
   rns <- rle(as.vector(input_series[, 5] < 0))
   rns.index = cumsum(rns$lengths)
   neg.runs.pos <- which(rns$values == TRUE)
@@ -77,8 +75,12 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
         dep.seq <- c(min(dep.seq) : deps$ends[y + 1])
       }
     }
+    if(end_series_event){
+      if(any((deps[y, 'ends'] - nrow(input_series)) == c(1:2))){
+        dep.seq <- c(min(dep.seq) : nrow(input_series))
+      }
+    }
     if(length(dep.seq) < duration_years) next # Includes setting for min defoliation duration
-    # if(min(input_series[dep.seq, 5]) != input_series[max.red, 5]) next
     input_series[dep.seq, 6] <- "defoliated"
     input_series[max.red, 6] <- "max_defoliation"
   }

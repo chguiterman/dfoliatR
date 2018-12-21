@@ -5,6 +5,7 @@
 #' @param nonhost_chron a data.frame rwl object comtaining a single non-host chronology
 #' @param duration_years the mimimum number of years in which to consider a defolation event
 #' @param max_reduction the minimum level of tree growth to be considered in defoliation
+#' @param end_series_event Binary, defaults to FALSE. Whether to consider possitive index values at the end of the series as part of an ongoing defoliation event
 #' @param list_output defaults to \code{FALSE}. This option is to output a long list object containing a separate data.frame for each series in
 #' \code{host_tree} that includes the input series and the \code{nonhost_chron}, the corrected series, and
 #' the character string identifying the defoliation events.
@@ -12,7 +13,9 @@
 #' @return a list object with elements containing data.frame rwl objects of the host and non-host series, corrected
 #'
 #' @export
-defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8, max_reduction = -1.28, list_output = FALSE) {
+defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
+                            max_reduction = -1.28, end_series_event = FALSE,
+                            list_output = FALSE) {
   if(ncol(nonhost_chron) > 1) stop("nonhost_chron can only contain 1 series")
   if(max_reduction > 0) max_reduction <- max_reduction * -1
   # To DO: Add provision that if only host series are given, no correction is made, but series are scanned for defol_status

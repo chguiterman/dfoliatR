@@ -11,7 +11,7 @@ correct_host_series(input_series)
 as first column and non-host chornology as second}
 }
 \value{
-data.frame with 3 added columns, (1) the mean/sd sdjusted non-host chronology,
+data.frame with 3 added columns, (1) the mean/sd adjusted non-host chronology,
 (2) the "corrected" host series after subtraction from the adjusted host chronology,
 and (3) the "normalized" or scaled climate-corrected host series used to identify defoliation events
 }

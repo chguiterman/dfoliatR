@@ -4,7 +4,8 @@
 \alias{id_defoliation}
 \title{Identify defoliation events in nonhost-corrected host series}
 \usage{
-id_defoliation(input_series, duration_years = 8, max_reduction = -1.28)
+id_defoliation(input_series, duration_years = 8, max_reduction = -1.28,
+  end_series_event = FALSE)
 }
 \arguments{
 \item{input_series}{a data.frame with 5 columns. This was generated after running
@@ -13,6 +14,8 @@ id_defoliation(input_series, duration_years = 8, max_reduction = -1.28)
 \item{duration_years}{the minimum length of time in which the tree is considered to be in defoliation}
 
 \item{max_reduction}{defaults to -1.28}
+
+\item{end_series_event}{Binary, defaults to FALSE. Whether to consider possitive index values at the end of the series as part of an ongoing defoliation event}
 }
 \value{
 after performing runs analyses, the function adds a column to the input data.frame
