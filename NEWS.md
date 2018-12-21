@@ -1,6 +1,8 @@
 # dfoliatR v0.0.3
 * Changed package name
 * Add parameter to allow for events that are ongoing at the time of sampling, called end-series events.
+* Update author list to reflect significant contributions to dfoliatR development by Ann Lynch and Jodi Axelson.
+* Replaced the correct_host_series fucntion with gsi to better capture the process of calculating the growth suppression index.
 
 # bugr v0.0.2
 * This version in response to validation trials with real data
