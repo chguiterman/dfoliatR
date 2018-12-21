@@ -2,31 +2,49 @@
 % Please edit documentation in R/main.R
 \name{defoliate_trees}
 \alias{defoliate_trees}
-\title{Measure defoliation events in host trees}
+\title{Identify defoliation events in host trees}
 \usage{
 defoliate_trees(host_tree, nonhost_chron, duration_years = 8,
   max_reduction = -1.28, end_series_event = FALSE,
   list_output = FALSE)
 }
 \arguments{
-\item{host_tree}{a data.frame rwl object containing the tree-level growth series for all
-host trees to be compared to the non-host chronology}
+\item{host_tree}{a data.frame rwl object containing the tree-level growth
+series for all host trees to be compared to the non-host chronology}
 
-\item{nonhost_chron}{a data.frame rwl object comtaining a single non-host chronology}
+\item{nonhost_chron}{a data.frame rwl object comtaining a single non-host
+chronology}
 
-\item{duration_years}{the mimimum number of years in which to consider a defolation event}
+\item{duration_years}{the mimimum number of years in which to consider a
+defolation event}
 
-\item{max_reduction}{the minimum level of tree growth to be considered in defoliation}
+\item{max_reduction}{the minimum level of tree growth to be considered in
+defoliation}
 
-\item{end_series_event}{Binary, defaults to FALSE. Whether to consider possitive index values at the end of the series as part of an ongoing defoliation event}
+\item{end_series_event}{Binary, defaults to FALSE. Whether to consider
+possitive index values at the end of the series as part of an ongoing
+defoliation event}
 
-\item{list_output}{defaults to \code{FALSE}. This option is to output a long list object containing a separate data.frame for each series in
-\code{host_tree} that includes the input series and the \code{nonhost_chron}, the corrected series, and
-the character string identifying the defoliation events.}
+\item{list_output}{defaults to \code{FALSE}. This option is to output a long
+list object containing a separate data.frame for each series in
+\code{host_tree} that includes the input series and the
+\code{nonhost_chron}, the corrected series, and the character string
+identifying the defoliation events.}
 }
 \value{
-a list object with elements containing data.frame rwl objects of the host and non-host series, corrected
+By default this returns a long-form data.frame of tree-level growth
+  suppression indices and identified defoliation events. If \code{list_output
+  = TRUE}, it returns a list object with each element containing a data.frame
+  rwl object of the host and non-host series, plus the outputs from
+  \code{gsi}. The list object is useful for assessing the effects of running
+  \code{gsi} on the host and nonhost data.
 }
 \description{
-Measure defoliation events in host trees
+Identify defoliation events in host trees
+}
+\note{
+Other functions in \code{dfoliatR}, like \code{outbreak} and
+  \code{plot_defol}, require a long-form data.frame identifiable as a
+  \code{defol} object. Selecting \code{list_output = TRUE} will trigger
+  errors in running other functions.
 }
