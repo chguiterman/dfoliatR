@@ -4,12 +4,14 @@
 \alias{plot_defol}
 \title{Graph individual tree-ring series from a 'defol' object}
 \usage{
-plot_defol(x, disp_index = "norm_index", col_defol = "black")
+plot_defol(x, disp_index = "ngsi", col_defol = "black")
 }
 \arguments{
 \item{x}{a 'defol' object}
 
-\item{disp_index}{Identify the timeseries index to plot. Defaults to \code{norm_index}. The only other option is \code{cor_index}.}
+\item{disp_index}{Identify the timeseries index to plot. Defaults to
+\code{ngsi}, the normalized growth suppression index. The only other option
+is \code{gsi}, the growth suppression index.}
 
 \item{col_defol}{the color of verticle bars indicating defoliation years}
 }

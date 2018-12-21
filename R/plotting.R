@@ -1,18 +1,20 @@
 #' Graph individual tree-ring series from a 'defol' object
 #'
 #' @param x a 'defol' object
-#' @param disp_index Identify the timeseries index to plot. Defaults to \code{norm_index}. The only other option is \code{cor_index}.
+#' @param disp_index Identify the timeseries index to plot. Defaults to
+#'   \code{ngsi}, the normalized growth suppression index. The only other option
+#'   is \code{gsi}, the growth suppression index.
 #' @param col_defol the color of verticle bars indicating defoliation years
 #'
 #' @export
 
-plot_defol <- function(x, disp_index = "norm_index", col_defol = 'black') {
+plot_defol <- function(x, disp_index = "ngsi", col_defol = 'black') {
   if(!is.defol(x)) stop("'x' must be a 'defol' object")
-  if(! (disp_index == "cor_index" | disp_index == "norm_index")) {
-    warning("Displaying the 'norm_index'")
-    disp_index <- "norm_index"
+  if(! (disp_index == "gsi" | disp_index == "norm_index")) {
+    warning("Displaying the 'ngsi'")
+    disp_index <- "ngsi"
   }
-  if(disp_index == "norm_index") y_intercept <- 0
+  if(disp_index == "ngsi") y_intercept <- 0
   else y_intercept <- 1
   defol_events <- x[!is.na(x$defol_status), ]
   p <- ggplot2::ggplot(data = x, ggplot2::aes_string(x="year", y=disp_index, group="series"))
@@ -27,19 +29,22 @@ plot_defol <- function(x, disp_index = "norm_index", col_defol = 'black') {
   p
 }
 
-#' Produce a stacked plot to present composited, site-level insect outbreak chronologies
+#' Produce a stacked plot to present composited, site-level insect outbreak
+#' chronologies
 #'
 #' @param x an 'outbreak' object produced by \code{outbreak}
-#' @param disp_index Identify the timeseries index to plot. Defaults to \code{mean_norm_index}. The only other option is \code{mean_cor_index}.
+#' @param disp_index Identify the timeseries index to plot. Defaults to
+#'   \code{mean_ngsi}, the average normalized growth suppression index for the
+#'   site. The only other option is \code{mean_gsi}, the average growth suppression index.
 #'
 #' @export
-plot_outbreak <- function(x, disp_index = "mean_norm_index"){
+plot_outbreak <- function(x, disp_index = "mean_ngsi"){
   if(!is.outbreak(x)) stop("'x' must be an 'outbreak' object")
-  if(! (disp_index == "mean_cor_index" | disp_index == "mean_norm_index")) {
-    warning("Displaying the 'mean_norm_index'")
-    disp_index <- "mean_norm_index"
+  if(! (disp_index == "mean_gsi" | disp_index == "mean_ngsi")) {
+    warning("Displaying the 'mean_ngsi'")
+    disp_index <- "mean_ngsi"
   }
-  if(disp_index == "mean_norm_index") y_intercept <- 0
+  if(disp_index == "mean_ngsi") y_intercept <- 0
   else y_intercept <- 1
   outbrk_events <- x[! is.na(x$outbreak_status), ]
   # setup plot
@@ -56,7 +61,7 @@ plot_outbreak <- function(x, disp_index = "mean_norm_index"){
                           ggplot2::aes_string(x="year", xend="year",
                                               y=y_intercept, yend=disp_index),
                           size=2) +
-    ggplot2::scale_y_continuous(name = "Growth index") +
+    ggplot2::scale_y_continuous(name = "Growth suppression index") +
     ggpubr::theme_pubr() +
     ggplot2::theme(plot.margin = ggplot2::unit(c(0.1, 0, 0, 0), "cm"),
                    axis.title.x=ggplot2::element_blank(),
