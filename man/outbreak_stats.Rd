@@ -11,8 +11,8 @@ outbreak_stats(x)
 }
 \value{
 A data.frame with descriptive statistics for each outbreak event determined by \code{outbreak},
- inluding start and end years, duration, the year with the most number of trees in the outbreak and its
- associated tree count, and the year with the maximum growth suppression with its associated mean_index value.
+ including start and end years, duration, the year with the most number of trees in the outbreak and its
+ associated tree count, and the year with the maximum growth suppression with its associated mean_ngsi value.
 }
 \description{
 Outbreak statistics
