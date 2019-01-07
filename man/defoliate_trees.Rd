@@ -5,7 +5,7 @@
 \title{Identify defoliation events in host trees}
 \usage{
 defoliate_trees(host_tree, nonhost_chron, duration_years = 8,
-  max_reduction = -1.28, end_series_event = FALSE,
+  max_reduction = -1.28, series_end_event = FALSE,
   list_output = FALSE)
 }
 \arguments{
@@ -21,9 +21,12 @@ defolation event}
 \item{max_reduction}{the minimum level of tree growth to be considered in
 defoliation}
 
-\item{end_series_event}{Binary, defaults to FALSE. Whether to consider
-possitive index values at the end of the series as part of an ongoing
-defoliation event}
+\item{series_end_event}{Binary, defaults to \code{FALSE}. This option allows
+the user to identify an event ocuring at the time of sampling as a
+defoliation event, regardless of duration. Including it will help to
+quantify periodicity and extent of an outbreak. This should only be used if
+the user has direct knowledge of an ongoing defoliation event when the
+trees were sampled.}
 
 \item{list_output}{defaults to \code{FALSE}. This option is to output a long
 list object containing a separate data.frame for each series in

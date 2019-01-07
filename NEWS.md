@@ -1,6 +1,6 @@
 # dfoliatR v0.0.3
 * Changed package name
-* Add parameter to allow for events that are ongoing at the time of sampling, called end-series events.
+* Add parameter to allow for events that are ongoing at the time of sampling, called series end events. This is for users who know, with certainty, that they sampling during an outbreak event. The paramter allows for events to be recorded regardless of duration, but only the recent end of the series.
 * Update author list to reflect significant contributions to dfoliatR development by Ann Lynch and Jodi Axelson.
 * Replaced the correct_host_series fucntion with gsi to better capture the process of calculating the growth suppression index.
 

@@ -59,9 +59,17 @@ gsi <- function(input_series){
 #'   event. If a sequence of negative ngsi values does not reach this threshold,
 #'   the potential event is rejected. Defaults to -1.28
 #'
-#' @param end_series_event Binary, defaults to \code{FALSE}. Whether to consider 1-2
-#'   possitive index values at the end of the series as part of an ongoing
-#'   defoliation event
+#' @param bridge_events Binary, defaults to \code{FALSE}. This option allows for
+#'   two successive events divided by a single year to be bridged and called one
+#'   event. It should be used cautiously and closely evaluated to ensure the
+#'   likelihood that the two events are one long event.
+#'
+#' @param series_end_event Binary, defaults to \code{FALSE}. This option allows
+#'   the user to identify an event ocuring at the time of sampling as a
+#'   defoliation event, regardless of duration. Including it will help to
+#'   quantify periodicity and extent of an outbreak. This should only be used if
+#'   the user has direct knowledge of an ongoing defoliation event when the
+#'   trees were sampled.
 #'
 #' @return after performing runs analyses, the function adds a column to the
 #'   input data.frame that distinguishes years of defoliation and the maximum
@@ -69,7 +77,8 @@ gsi <- function(input_series){
 #'   within the event).
 #'
 #' @export
-id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.28, end_series_event = FALSE){
+id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.28,
+                           bridge_events = FALSE, series_end_event = FALSE){
   rns <- rle(as.vector(input_series[, 5] < 0))
   rns.index = cumsum(rns$lengths)
   neg.runs.pos <- which(rns$values == TRUE)
@@ -106,12 +115,14 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
         dep.seq <- c(min(dep.seq) : deps$ends[y + 1])
       }
     }
-    if(end_series_event){
-      if(any((deps[y, 'ends'] - nrow(input_series)) == c(1:2))){
+    if(series_end_event){
+      if(any((deps[y, 'ends'] - nrow(input_series)) == c(0:2))){
         dep.seq <- c(min(dep.seq) : nrow(input_series))
       }
     }
-    if(length(dep.seq) < duration_years) next # Includes setting for min defoliation duration
+    if(! series_end_event){
+      if(length(dep.seq) < duration_years) next # Includes setting for min defoliation duration
+    }
     input_series[dep.seq, 6] <- "defoliated"
     input_series[max.red, 6] <- "max_defoliation"
   }

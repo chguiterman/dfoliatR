@@ -8,9 +8,12 @@
 #'   defolation event
 #' @param max_reduction the minimum level of tree growth to be considered in
 #'   defoliation
-#' @param end_series_event Binary, defaults to FALSE. Whether to consider
-#'   possitive index values at the end of the series as part of an ongoing
-#'   defoliation event
+#' @param series_end_event Binary, defaults to \code{FALSE}. This option allows
+#'   the user to identify an event ocuring at the time of sampling as a
+#'   defoliation event, regardless of duration. Including it will help to
+#'   quantify periodicity and extent of an outbreak. This should only be used if
+#'   the user has direct knowledge of an ongoing defoliation event when the
+#'   trees were sampled.
 #' @param list_output defaults to \code{FALSE}. This option is to output a long
 #'   list object containing a separate data.frame for each series in
 #'   \code{host_tree} that includes the input series and the
@@ -31,7 +34,7 @@
 #'
 #' @export
 defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
-                            max_reduction = -1.28, end_series_event = FALSE,
+                            max_reduction = -1.28, series_end_event = FALSE,
                             list_output = FALSE) {
   if(ncol(nonhost_chron) > 1) stop("nonhost_chron can only contain 1 series")
   if(max_reduction > 0) max_reduction <- max_reduction * -1
@@ -43,7 +46,7 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
     input_series <- stats::na.omit(dplR::combine.rwl(host_tree[, i, drop=FALSE], nonhost_chron))
     corrected_series <- gsi(input_series)
     defoliated_series <- id_defoliation(corrected_series, duration_years = duration_years,
-                                        max_reduction = max_reduction, end_series_event = end_series_event)
+                                        max_reduction = max_reduction, series_end_event = series_end_event)
     return(defoliated_series)
     }
   )
