@@ -60,9 +60,9 @@ gsi <- function(input_series){
 #'   the potential event is rejected. Defaults to -1.28
 #'
 #' @param bridge_events Binary, defaults to \code{FALSE}. This option allows for
-#'   two successive events divided by a single year to be bridged and called one
+#'   two successive events separated by a single year to be bridged and called one
 #'   event. It should be used cautiously and closely evaluated to ensure the
-#'   likelihood that the two events are one long event.
+#'   likelihood that the two events are actually one long event.
 #'
 #' @param series_end_event Binary, defaults to \code{FALSE}. This option allows
 #'   the user to identify an event ocuring at the time of sampling as a
@@ -77,8 +77,7 @@ gsi <- function(input_series){
 #'   within the event).
 #'
 #' @export
-id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.28,
-                           bridge_events = FALSE, series_end_event = FALSE){
+id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.28, bridge_events = FALSE, series_end_event = FALSE){
   rns <- rle(as.vector(input_series[, 5] < 0))
   rns.index = cumsum(rns$lengths)
   neg.runs.pos <- which(rns$values == TRUE)
@@ -125,6 +124,11 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
     }
     input_series[dep.seq, 6] <- "defoliated"
     input_series[max.red, 6] <- "max_defoliation"
+    if(y > 1 & bridge_events){
+      if(input_series[min(dep.seq) - 2, ]$defol_status %in% c("defoliated", "max_defoliation")){
+        input_series[min(dep.seq) - 1, "defol_status"] <- "defoliated"
+      }
+    }
   }
   names(input_series)[6] <- "defol_status"
   return(input_series)

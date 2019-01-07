@@ -8,6 +8,10 @@
 #'   defolation event
 #' @param max_reduction the minimum level of tree growth to be considered in
 #'   defoliation
+#'@param bridge_events Binary, defaults to \code{FALSE}. This option allows for
+#'   two successive events separated by a single year to be bridged and called one
+#'   event. It should be used cautiously and closely evaluated to ensure the
+#'   likelihood that the two events are actually one long event.
 #' @param series_end_event Binary, defaults to \code{FALSE}. This option allows
 #'   the user to identify an event ocuring at the time of sampling as a
 #'   defoliation event, regardless of duration. Including it will help to
@@ -34,8 +38,8 @@
 #'
 #' @export
 defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
-                            max_reduction = -1.28, series_end_event = FALSE,
-                            list_output = FALSE) {
+                            max_reduction = -1.28, bridge_events = FALSE,
+                            series_end_event = FALSE, list_output = FALSE) {
   if(ncol(nonhost_chron) > 1) stop("nonhost_chron can only contain 1 series")
   if(max_reduction > 0) max_reduction <- max_reduction * -1
   # To DO: Add provision that if only host series are given, no correction is made, but series are scanned for defol_status

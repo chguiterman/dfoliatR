@@ -5,8 +5,8 @@
 \title{Identify defoliation events in host trees}
 \usage{
 defoliate_trees(host_tree, nonhost_chron, duration_years = 8,
-  max_reduction = -1.28, series_end_event = FALSE,
-  list_output = FALSE)
+  max_reduction = -1.28, bridge_events = FALSE,
+  series_end_event = FALSE, list_output = FALSE)
 }
 \arguments{
 \item{host_tree}{a data.frame rwl object containing the tree-level growth
@@ -20,6 +20,11 @@ defolation event}
 
 \item{max_reduction}{the minimum level of tree growth to be considered in
 defoliation}
+
+\item{bridge_events}{Binary, defaults to \code{FALSE}. This option allows for
+two successive events separated by a single year to be bridged and called one
+event. It should be used cautiously and closely evaluated to ensure the
+likelihood that the two events are actually one long event.}
 
 \item{series_end_event}{Binary, defaults to \code{FALSE}. This option allows
 the user to identify an event ocuring at the time of sampling as a
