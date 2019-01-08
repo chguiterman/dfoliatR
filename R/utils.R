@@ -122,10 +122,10 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
     if(!(y == nrow(deps) & series_end_event)){
       if(length(dep.seq) < duration_years) next # Includes setting for min defoliation duration
     }
-    input_series[dep.seq, 6] <- "defoliated"
-    input_series[max.red, 6] <- "max_defoliation"
+    input_series[dep.seq, "defol_status"] <- "defoliated"
+    input_series[max.red, "defol_status"] <- "max_defoliation"
     if(y > 1 & bridge_events){
-      if(input_series[min(dep.seq) - 2, ]$defol_status %in% c("defoliated", "max_defoliation")){
+      if(any(input_series[min(dep.seq) - 2, ]$defol_status %in% c("defoliated", "max_defoliation"))){
         input_series[min(dep.seq) - 1, "defol_status"] <- "defoliated"
       }
     }
