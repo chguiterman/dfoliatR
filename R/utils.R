@@ -130,7 +130,6 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
       }
     }
   }
-  names(input_series)[6] <- "defol_status"
   return(input_series)
 }
 
