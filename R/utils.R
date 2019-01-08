@@ -119,7 +119,7 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
         dep.seq <- c(min(dep.seq) : nrow(input_series))
       }
     }
-    if(! series_end_event){
+    if(!(y == nrow(deps) & series_end_event)){
       if(length(dep.seq) < duration_years) next # Includes setting for min defoliation duration
     }
     input_series[dep.seq, 6] <- "defoliated"
