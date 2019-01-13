@@ -28,7 +28,7 @@ sample_depth <- function(x) {
 #'
 #' @param x A defol object after running \code{defoliate_trees}.
 #'
-#' @return A data.frame containing tree/series-level statistics.
+#' @return A data frame containing tree/series-level statistics.
 #'
 #' @export
 defol_stats <- function(x) {
@@ -38,8 +38,8 @@ defol_stats <- function(x) {
     last <- max(df$year)
     years <- length(df$year)
     count <- plyr::count(df, "defol_status")
-    num_defol <- count$freq[2]
-    tot_defol <- sum(count$freq[c(1, 2)])
+    num_defol <- count[count$defol_status == "max_defol", ]$freq
+    tot_defol <- sum(count[count$defol_status != "non_defol", ]$freq)
     avg_defol <- round(tot_defol / num_defol, 0)
     out <- c(first, last, years, num_defol, tot_defol, avg_defol)
     names(out) <- c("first", "last", "years", "num_events", "tot_years", "mean_duration")
