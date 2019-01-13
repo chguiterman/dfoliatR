@@ -7,12 +7,12 @@
 gsi(input_series)
 }
 \arguments{
-\item{input_series}{data.frame rwl object with the host tree series as the
+\item{input_series}{data frame rwl object with the host tree series as the
 first column and the non-host chronology as the second. Years should be
 \code{row.names}.}
 }
 \value{
-data.frame with the two input columns (host and nonhost series) and 3
+data frame with the two input columns (host and nonhost series) and 3
   added columns:
 
   \enumerate{
@@ -24,7 +24,7 @@ data.frame with the two input columns (host and nonhost series) and 3
   }
 }
 \description{
-This function removes the nonhost growth signal from a host series.
+This function removes the nonhost growth signal from a host tree-ring series.
 }
 \details{
 The growth suppression index (GSI) is referred to as the "corrected"
@@ -36,6 +36,6 @@ The growth suppression index (GSI) is referred to as the "corrected"
   index values; i is the year, and the functions \code{mean} and \code{sd}
   are applied to the common period.
 
-  \code{gsi} will be rarely run directly by a user. It is called from
+  \code{gsi} will rarely be run directly by a user. It is called from
   \code{defoliate_trees}.
 }
