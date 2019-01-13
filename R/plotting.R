@@ -16,7 +16,8 @@ plot_defol <- function(x, disp_index = "ngsi", col_defol = 'black') {
   }
   if(disp_index == "ngsi") y_intercept <- 0
   else y_intercept <- 1
-  defol_events <- x[!is.na(x$defol_status), ]
+  events <- c("defol", "max_defol", "defol_bridge", "defol_series_start", "defol_series_end")
+  defol_events <- x[x$deol_status %in% events, ]
   p <- ggplot2::ggplot(data = x, ggplot2::aes_string(x="year", y=disp_index, group="series"))
   p <- (p + ggplot2::geom_hline(yintercept = y_intercept) + ggplot2::geom_line())
   p <- (p + ggplot2::geom_segment(data = defol_events,

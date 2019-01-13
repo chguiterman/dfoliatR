@@ -120,16 +120,29 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
       }
     }
     if(!(y == nrow(deps) & series_end_event)){
-      if(length(dep.seq) < duration_years) next # Includes setting for min defoliation duration
+      if(length(dep.seq) < duration_years) next # Includes setting for min duration
     }
     input_series[dep.seq, "defol_status"] <- "defol"
     input_series[max.red, "defol_status"] <- "max_defol"
+    if(1 %in% dep.seq){
+      input_series$defol_status <- replace(input_series$defol_status,
+                              input_series$defol_status == " defol",
+                              "defol_series_start")
+    }
+    if(nrow(input_series) == max(dep.seq)){
+      input_series[dep.seq, ]$defol_status <- replace(input_series[dep.seq, ]$defol_status,
+                              input_series[dep.seq, ]$defol_status == "defol",
+                              "defol_series_end")
+    }
     if(y > 1 & bridge_events){
       if(any(input_series[min(dep.seq) - 2, ]$defol_status %in% c("defol", "max_defol"))){
         input_series[min(dep.seq) - 1, "defol_status"] <- "defol_bridge"
       }
     }
   }
+  input_series$defol_status <- replace(input_series$defol_status,
+                          is.na(input_series$defol_status),
+                          "non_defol")
   return(input_series)
 }
 

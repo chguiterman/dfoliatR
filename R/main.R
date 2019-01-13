@@ -76,7 +76,7 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
 outbreak <- function(x, comp_name = "COMP", filter_perc = 25, filter_min_series = 3, filter_min_defol = 1){
   if(!is.defol(x)) stop("x must be a defol object")
   series_count <- sample_depth(x)
-  defol_events <- c("defol", "max_defol", "defol_bridge")
+  defol_events <- c("defol", "max_defol", "defol_bridge", "defol_series_start", "defol_series_end")
   event_count <- as.data.frame(table(year = subset(x, x$defol_status %in% defol_events)$year))
   event_count$year <- as.numeric(as.character(event_count$year))
   max_count <- as.data.frame(table(year = subset(x, x$defol_status == "max_defol")$year))
