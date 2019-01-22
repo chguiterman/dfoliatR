@@ -28,7 +28,7 @@ sample_depth <- function(x) {
 #'
 #' @param x A defol object after running \code{defoliate_trees}.
 #'
-#' @return A data.frame containing tree/series-level statistics.
+#' @return A data frame containing tree/series-level statistics.
 #'
 #' @export
 defol_stats <- function(x) {
@@ -38,8 +38,8 @@ defol_stats <- function(x) {
     last <- max(df$year)
     years <- length(df$year)
     count <- plyr::count(df, "defol_status")
-    num_defol <- count$freq[2]
-    tot_defol <- sum(count$freq[c(1, 2)])
+    num_defol <- count[count$defol_status == "max_defol", ]$freq
+    tot_defol <- sum(count[count$defol_status != "non_defol", ]$freq)
     avg_defol <- round(tot_defol / num_defol, 0)
     out <- c(first, last, years, num_defol, tot_defol, avg_defol)
     names(out) <- c("first", "last", "years", "num_events", "tot_years", "mean_duration")
@@ -53,8 +53,8 @@ defol_stats <- function(x) {
 #' @param x An outbreak object after running \code{outbreak}
 #'
 #' @return A data.frame with descriptive statistics for each outbreak event determined by \code{outbreak},
-#'  inluding start and end years, duration, the year with the most number of trees in the outbreak and its
-#'  associated tree count, and the year with the maximum growth suppression with its associated mean_index value.
+#'  including start and end years, duration, the year with the most number of trees in the outbreak and its
+#'  associated tree count, and the year with the maximum growth suppression with its associated mean_ngsi value.
 #'
 #'@export
 outbreak_stats <- function(x){
@@ -72,16 +72,16 @@ outbreak_stats <- function(x){
   duration <- end_years - start_years + 1
   peaks <- data.frame(matrix(NA, ncol=7, nrow=nrow(deps)))
   names(peaks) <- c("num_trees_start", "perc_trees_start", "peak_outbreak_year",
-                    "num_trees_outbreak", "peak_defol_year", "min_cor_index", "mean_norm_index")
+                    "num_trees_outbreak", "peak_defol_year", "min_gsi", "mean_ngsi")
   for(i in 1:nrow(deps)){
     ob <- x[deps$starts[i] : deps$ends[i], ]
     peaks[i, 1] <- ob[1, ]$num_defol
     peaks[i, 2] <- ob[1, ]$perc_defol
     peaks[i, 3] <- ob[which.max(ob$num_defol), ]$year
     peaks[i, 4] <- max(ob$num_defol)
-    peaks[i, 5] <- ob[which.min(ob$mean_norm_index), ]$year
-    peaks[i, 6] <- round(min(ob$mean_cor_index), 3)
-    peaks[i, 7] <- round(min(ob$mean_norm_index), 3)
+    peaks[i, 5] <- ob[which.min(ob$mean_ngsi), ]$year
+    peaks[i, 6] <- round(min(ob$mean_gsi), 3)
+    peaks[i, 7] <- round(min(ob$mean_ngsi), 3)
   }
   out <- data.frame(start = start_years, end = end_years,
                     duration = duration)
