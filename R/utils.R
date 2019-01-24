@@ -86,7 +86,6 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
   starts <- rns.index[newindex] + 1
   if (0 %in% newindex) starts = c(1,starts)
   deps <- data.frame(cbind(starts, ends))
-  deps$length <- deps$ends - deps$starts + 1
   input_series$defol_status = NA
   events <- c("defol", "max_defol", "defol_bridge", "defol_series_start", "defol_series_end")
   for(y in 1:nrow(deps)){
