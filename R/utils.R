@@ -88,16 +88,20 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
   deps <- data.frame(cbind(starts, ends))
   deps$length <- deps$ends - deps$starts + 1
   input_series$defol_status = NA
+  events <- c("defol", "max_defol", "defol_bridge", "defol_series_start", "defol_series_end")
   for(y in 1:nrow(deps)){
-    if(any(input_series[deps$starts[y] : deps$ends[y], ]$defol_status %in% c("defol", "max_defol"))) next
-    bb <- input_series[deps$starts[y] : deps$ends[y], 5]
-    max.red <- deps$starts[y] + which.min(bb) - 1
-    if(input_series[max.red, 5] > max_reduction) next  # Includes setting for max growth reduction
     dep.seq <- deps$starts[y] : deps$ends[y]
+    if(any(input_series[dep.seq, ]$defol_status %in% events)) next
+    if((! bridge_events) & (y > 1)){
+      if(any(input_series[min(dep.seq) - 2, ] %in% events)) next
+    }
+    max.red <- dep.seq[1] + which.min(input_series[dep.seq, 5]) - 1
+    if(input_series[max.red, 5] > max_reduction) next  # Includes setting for max growth reduction
+
     prev.flag <- FALSE
     if(y > 1){
       if(min(dep.seq) - deps$ends[y - 1] == 2) {
-        if(! any(input_series[deps$starts[y - 1] : deps$ends[y - 1], ]$defol_status  %in% c("defoliated", "max_defoliation"))){
+        if(! any(input_series[deps$starts[y - 1] : deps$ends[y - 1], ]$defol_status  %in% events)){
           dep.seq <- c(deps$starts[y - 1] : max(dep.seq))
           prev.flag <- TRUE
         }
@@ -135,7 +139,7 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
                               "defol_series_end")
     }
     if(y > 1 & bridge_events){
-      if(any(input_series[min(dep.seq) - 2, ]$defol_status %in% c("defol", "max_defol"))){
+      if(any(input_series[min(dep.seq) - 2, ]$defol_status %in% events)){
         input_series[min(dep.seq) - 1, "defol_status"] <- "defol_bridge"
       }
     }
