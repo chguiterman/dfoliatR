@@ -10,7 +10,7 @@ defol_stats(x)
 \item{x}{A defol object after running \code{defoliate_trees}.}
 }
 \value{
-A data.frame containing tree/series-level statistics.
+A data frame containing tree/series-level statistics.
 }
 \description{
 Descriptive statistics for defoliation trees
