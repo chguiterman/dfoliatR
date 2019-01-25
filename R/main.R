@@ -65,10 +65,18 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
 #' Composite defoliation series to determine outbreak events
 #'
 #' @param x a defol object
-#' @param comp_name the desired series name for the outbreak composite. Defaults to "COMP"
-#' @param filter_perc the minimum percentage of defoliated trees to be considered an outbreak. Default is 25 percent.
-#' @param filter_min_series The minimum number of trees required for an outbreak event. Default is 3 trees.
-#' @param filter_min_defol The minimum number of trees recording a defoliation event. Default is 1 tree.
+#'
+#' @param comp_name the desired series name for the outbreak composite. Defaults
+#'   to "COMP"
+#'
+#' @param filter_perc the minimum percentage of defoliated trees to be
+#'   considered an outbreak. Default is 25 percent.
+#'
+#' @param filter_min_series The minimum number of trees required for an outbreak
+#'   event. Default is 3 trees.
+#'
+#' @param filter_min_defol The minimum number of trees recording a defoliation
+#'   event. Default is 1 tree.
 #'
 #' @importFrom rlang .data
 #'
