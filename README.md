@@ -2,6 +2,9 @@
 
 **Please note** This R package is under development. All functions are preliminary. Output results should be (and are being) validated with other software and analyses. Anyone applying the software does so at their own risk. However, we are open to further colaboration and contributions. Please contact the lead developer, Chris Guiterman, and fork the software to continue with development. Thank you.
 
+[![Build Status](https://travis-ci.org/chguiterman/dfoliatR.svg?branch=master)](https://travis-ci.org/chguiterman/dfoliatR)
+[![Coverage Status](https://coveralls.io/repos/github/chguiterman/dfoliatR/badge.svg?branch=master)](https://coveralls.io/github/chguiterman/dfoliatR?branch=master)
+
 ### Installation
 
 `dfoliatR` is not currently on CRAN. To install `dfoliatR` use the `devtools` package:
