@@ -27,4 +27,4 @@
 #' Non-host pair to Demi John Douglas-fir `dmj_h`
 #'
 #' @format An `rwl` object with 1 series, 1675-1997.
-"dmj_h"
+"dmj_nh"
