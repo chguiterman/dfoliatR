@@ -10,13 +10,17 @@ outbreak(x, comp_name = "COMP", filter_perc = 25,
 \arguments{
 \item{x}{a defol object}
 
-\item{comp_name}{the desired series name for the outbreak composite. Defaults to "COMP"}
+\item{comp_name}{the desired series name for the outbreak composite. Defaults
+to "COMP"}
 
-\item{filter_perc}{the minimum percentage of defoliated trees to be considered an outbreak. Default is 25 percent.}
+\item{filter_perc}{the minimum percentage of defoliated trees to be
+considered an outbreak. Default is 25 percent.}
 
-\item{filter_min_series}{The minimum number of trees required for an outbreak event. Default is 3 trees.}
+\item{filter_min_series}{The minimum number of trees required for an outbreak
+event. Default is 3 trees.}
 
-\item{filter_min_defol}{The minimum number of trees recording a defoliation event. Default is 1 tree.}
+\item{filter_min_defol}{The minimum number of trees recording a defoliation
+event. Default is 1 tree.}
 }
 \description{
 Composite defoliation series to determine outbreak events
