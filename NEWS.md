@@ -1,4 +1,5 @@
-# dfoliatR v0.0.4
+# dfoliatR v0.0.39999
+* Add data from Demi John; change built-in data naming scheme to help differentiate host series from nonhosr chronologies
 * Added provision to prevent defoliation events two years following one, unless bridge_events is set to true.
 
 # dfoliatR v0.0.3
