@@ -30,14 +30,14 @@ Data are provided in this package to demonstrate some of the utilities of `dfoli
 Here, we can read in Douglas-fir host series from the East Fork site in the Jemez Mountains, `ef`. These are standardized tree-ring index for individual trees.
 
 ```R
-data(ef)
+data(ef_h)
 
-head(ef)[1:8] # note the formatting of this rwl object
+head(ef_h)[1:8] # note the formatting of this rwl object
 ```
 We compared these trees against a non-host chronology from a nearby site. The BAC chronology is from ponderosa pine at the Baca site in the Jemez Mountains.
 
 ```R
-data(bac_crn)
+data(ef_nh)
 ```
 
 ### Operation
@@ -51,7 +51,7 @@ Once corrected, `defoliate_trees` will employ runs analyses to identify defoliat
 To run the function, follow the script below, making a new object with the results. This output dataset is termed by `dfoliatR` as a "defol" object to aid the functions in seeing that it represents individual trees as opposed to a composited site-level dataset.
 
 ```R
-ef_defol <- defoliate_trees(host_tree = ef, nonhost_chron = bac_crn, 
+ef_defol <- defoliate_trees(host_tree = ef_h, nonhost_chron = ef_nh, 
       duration_years = 8, max_reduction = -1.28, list_output = FALSE)
 ```
 
