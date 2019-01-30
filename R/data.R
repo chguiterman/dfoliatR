@@ -14,6 +14,20 @@
 #'   ARSTAN.
 "ef_nh"
 
+#' East Fork defol object
+#'
+#'  Produced by running `defoliate_trees(ef_h, ef_nh, series_end_event = TRUE)`
+#'
+#' @format A `defol` object with 2500 rows and 5 columns
+"ef_defol"
+
+#' East Fork outbreak object
+#'
+#' Produced by running `outbreak(ef_defol)`
+#'
+#' @format An `outbreak` object with 221 rows and 9 columns
+"ef_obr"
+
 #' Demi John Douglas-fir
 #'
 #' Western spruce budworm host series
