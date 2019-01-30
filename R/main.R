@@ -92,17 +92,17 @@ outbreak <- function(x, filter_perc = 25, filter_min_series = 3, filter_min_defo
   counts <- dplyr::mutate(counts,
                           num_defol = replace(.data$num_defol, is.na(.data$num_defol), 0),
                           num_max_defol = replace(.data$num_max_defol, is.na(.data$num_max_defol), 0),
-                          perc_defol = .data$num_defol / .data$samp_depth * 100,
-                          perc_max_defol = .data$num_max_defol / .data$samp_depth *100)
+                          perc_defol = round(.data$num_defol / .data$samp_depth * 100, 1),
+                          perc_max_defol = round(.data$num_max_defol / .data$samp_depth *100, 1))
   filter_mask <- (counts$perc_defol >= filter_perc) & (counts$samp_depth >= filter_min_series) & (counts$num_defol >= filter_min_defol)
   comp_years <- subset(counts, filter_mask)$year
   event_years <- data.frame(year = comp_years,
                             outbreak_status = "outbreak")
   comp <- merge(counts, event_years, by = "year", all = TRUE)
   series_cast_gsi <- reshape2::dcast(x, year ~ series, value.var = "gsi")
-  series_cast_gsi$mean_gsi <- rowMeans(series_cast_gsi[, -1], na.rm=TRUE)
+  series_cast_gsi$mean_gsi <- round(rowMeans(series_cast_gsi[, -1], na.rm=TRUE), 4)
   series_cast_norm <- reshape2::dcast(x, year ~ series, value.var = "ngsi")
-  series_cast_norm$mean_ngsi <- rowMeans(series_cast_norm[, -1], na.rm=TRUE)
+  series_cast_norm$mean_ngsi <- round(rowMeans(series_cast_norm[, -1], na.rm=TRUE), 4)
   mean_series <- merge(series_cast_gsi[, c("year", "mean_gsi")],
                        series_cast_norm[, c("year", "mean_ngsi")])
   out <- merge(comp, mean_series, by = "year")
