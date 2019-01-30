@@ -44,6 +44,7 @@ gsi <- function(input_series){
   input_series[, 4] <- input_series[, 1] - input_series[, 3]
   # input_series[, 4] <- replace(input_series[, 4], input_series[, 4] < 0, 0) # set negative #s to zero
   input_series[, 5] <- as.numeric(scale(input_series[, 4]))
+  input_series <- round(input_series, 4)
   names(input_series) <- c(nms, nam1, nam2, nam3)
   return(input_series)
 }
