@@ -87,7 +87,7 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
   if (0 %in% newindex) starts = c(1,starts)
   deps <- data.frame(cbind(starts, ends))
   input_series$defol_status = NA
-  events <- c("defol", "max_defol", "defol_bridge", "defol_series_start", "defol_series_end")
+  events <- c("defol", "max_defol", "bridge_defol", "series_end_defol")
   for(y in 1:nrow(deps)){
     dep.seq <- deps$starts[y] : deps$ends[y]
     if(any(input_series[dep.seq, ]$defol_status %in% events)) next
@@ -127,25 +127,20 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
     }
     input_series[dep.seq, "defol_status"] <- "defol"
     input_series[max.red, "defol_status"] <- "max_defol"
-    if(1 %in% dep.seq){
-      input_series$defol_status <- replace(input_series$defol_status,
-                              input_series$defol_status == " defol",
-                              "defol_series_start")
-    }
     if(nrow(input_series) == max(dep.seq)){
       input_series[dep.seq, ]$defol_status <- replace(input_series[dep.seq, ]$defol_status,
                               input_series[dep.seq, ]$defol_status == "defol",
-                              "defol_series_end")
+                              "series_end_defol")
     }
     if(y > 1 & bridge_events){
       if(any(input_series[min(dep.seq) - 2, ]$defol_status %in% events)){
-        input_series[min(dep.seq) - 1, "defol_status"] <- "defol_bridge"
+        input_series[min(dep.seq) - 1, "defol_status"] <- "bridge_defol"
       }
     }
   }
   input_series$defol_status <- replace(input_series$defol_status,
                           is.na(input_series$defol_status),
-                          "non_defol")
+                          "nd")
   return(input_series)
 }
 
