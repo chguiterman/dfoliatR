@@ -39,7 +39,7 @@ defol_stats <- function(x) {
     years <- length(df$year)
     count <- plyr::count(df, "defol_status")
     num_defol <- count[count$defol_status == "max_defol", ]$freq
-    tot_defol <- sum(count[count$defol_status != "non_defol", ]$freq)
+    tot_defol <- sum(count[count$defol_status != "nd", ]$freq)
     avg_defol <- round(tot_defol / num_defol, 0)
     out <- c(first, last, years, num_defol, tot_defol, avg_defol)
     names(out) <- c("first", "last", "years", "num_events", "tot_years", "mean_duration")
