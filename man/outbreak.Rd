@@ -4,14 +4,11 @@
 \alias{outbreak}
 \title{Composite defoliation series to determine outbreak events}
 \usage{
-outbreak(x, comp_name = "COMP", filter_perc = 25,
-  filter_min_series = 3, filter_min_defol = 1)
+outbreak(x, filter_perc = 25, filter_min_series = 3,
+  filter_min_defol = 1)
 }
 \arguments{
 \item{x}{a defol object}
-
-\item{comp_name}{the desired series name for the outbreak composite. Defaults
-to "COMP"}
 
 \item{filter_perc}{the minimum percentage of defoliated trees to be
 considered an outbreak. Default is 25 percent.}
