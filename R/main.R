@@ -66,9 +66,6 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
 #'
 #' @param x a defol object
 #'
-#' @param comp_name the desired series name for the outbreak composite. Defaults
-#'   to "COMP"
-#'
 #' @param filter_perc the minimum percentage of defoliated trees to be
 #'   considered an outbreak. Default is 25 percent.
 #'
@@ -81,7 +78,7 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
 #' @importFrom rlang .data
 #'
 #' @export
-outbreak <- function(x, comp_name = "COMP", filter_perc = 25, filter_min_series = 3, filter_min_defol = 1){
+outbreak <- function(x, filter_perc = 25, filter_min_series = 3, filter_min_defol = 1){
   if(!is.defol(x)) stop("x must be a defol object")
   series_count <- sample_depth(x)
   defol_events <- c("defol", "max_defol", "defol_bridge", "defol_series_start", "defol_series_end")
