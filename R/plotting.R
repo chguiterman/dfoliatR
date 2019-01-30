@@ -11,12 +11,12 @@
 plot_defol <- function(x, disp_index = "ngsi", col_defol = 'black') {
   if(!is.defol(x)) stop("'x' must be a 'defol' object")
   if(! (disp_index == "gsi" | disp_index == "norm_index")) {
-    warning("Displaying the 'ngsi'")
+    # warning("Displaying the 'ngsi'")
     disp_index <- "ngsi"
   }
   if(disp_index == "ngsi") y_intercept <- 0
   else y_intercept <- 1
-  events <- c("defol", "max_defol", "defol_bridge", "defol_series_start", "defol_series_end")
+  events <- c("defol", "max_defol", "bridge_defol", "series_end_defol")
   defol_events <- x[x$deol_status %in% events, ]
   p <- ggplot2::ggplot(data = x, ggplot2::aes_string(x="year", y=disp_index, group="series"))
   p <- (p + ggplot2::geom_hline(yintercept = y_intercept) + ggplot2::geom_line())
@@ -42,7 +42,7 @@ plot_defol <- function(x, disp_index = "ngsi", col_defol = 'black') {
 plot_outbreak <- function(x, disp_index = "mean_ngsi"){
   if(!is.outbreak(x)) stop("'x' must be an 'outbreak' object")
   if(! (disp_index == "mean_gsi" | disp_index == "mean_ngsi")) {
-    warning("Displaying the 'mean_ngsi'")
+    # warning("Displaying the 'mean_ngsi'")
     disp_index <- "mean_ngsi"
   }
   if(disp_index == "mean_ngsi") y_intercept <- 0
