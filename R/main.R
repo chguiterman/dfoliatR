@@ -75,11 +75,17 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
 #' @param filter_min_defol The minimum number of trees recording a defoliation
 #'   event. Default is 1 tree.
 #'
+#' @param force Ignores the class structure if the data frame, to aid in  batch
+#'   processing. Defaults to FALSE. Use cautiously.
+#'
 #' @importFrom rlang .data
 #'
 #' @export
-outbreak <- function(x, filter_perc = 25, filter_min_series = 3, filter_min_defol = 1){
-  if(!is.defol(x)) stop("x must be a defol object")
+outbreak <- function(x, filter_perc = 25, filter_min_series = 3, filter_min_defol = 1,
+                     force = FALSE){
+  if(! force){
+    if(!is.defol(x)) stop("x must be a defol object")
+  }
   series_count <- sample_depth(x)
   defol_events <- c("defol", "max_defol", "bridge_defol", "series_end_defol")
   event_count <- as.data.frame(table(year = subset(x, x$defol_status %in% defol_events)$year))
