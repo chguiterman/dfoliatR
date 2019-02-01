@@ -40,7 +40,7 @@ list object containing a separate data.frame for each series in
 identifying the defoliation events.}
 }
 \value{
-By default this returns a long-form data.frame of tree-level growth
+By default this returns a long-form data frame of tree-level growth
   suppression indices and identified defoliation events. If \code{list_output
   = TRUE}, it returns a list object with each element containing a data.frame
   rwl object of the host and non-host series, plus the outputs from
@@ -52,7 +52,7 @@ Identify defoliation events in host trees
 }
 \note{
 Other functions in \code{dfoliatR}, like \code{outbreak} and
-  \code{plot_defol}, require a long-form data.frame identifiable as a
+  \code{plot_defol}, require a long-form data frame identifiable as a
   \code{defol} object. Selecting \code{list_output = TRUE} will trigger
   errors in running other functions.
 }

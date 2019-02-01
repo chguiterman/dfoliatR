@@ -24,7 +24,7 @@
 #'   \code{nonhost_chron}, the corrected series, and the character string
 #'   identifying the defoliation events.
 #'
-#' @return By default this returns a long-form data.frame of tree-level growth
+#' @return By default this returns a long-form data frame of tree-level growth
 #'   suppression indices and identified defoliation events. If \code{list_output
 #'   = TRUE}, it returns a list object with each element containing a data.frame
 #'   rwl object of the host and non-host series, plus the outputs from
@@ -32,7 +32,7 @@
 #'   \code{gsi} on the host and nonhost data.
 #'
 #' @note Other functions in \code{dfoliatR}, like \code{outbreak} and
-#'   \code{plot_defol}, require a long-form data.frame identifiable as a
+#'   \code{plot_defol}, require a long-form data frame identifiable as a
 #'   \code{defol} object. Selecting \code{list_output = TRUE} will trigger
 #'   errors in running other functions.
 #'
@@ -47,7 +47,8 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
   nonhost_chron <- data.frame(nonhost_chron)
   nseries <- ncol(host_tree)
   tree_list <- lapply(seq_len(nseries), function(i){
-    input_series <- stats::na.omit(dplR::combine.rwl(host_tree[, i, drop=FALSE], nonhost_chron))
+    input_series <- stats::na.omit(dplR::combine.rwl(host_tree[, i, drop=FALSE],
+                                                     nonhost_chron))
     corrected_series <- gsi(input_series)
     defoliated_series <- id_defoliation(corrected_series,
                                         duration_years = duration_years,

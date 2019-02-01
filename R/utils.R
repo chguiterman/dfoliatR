@@ -145,6 +145,32 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
   return(input_series)
 }
 
+#' Constructor for S3 defol class
+#'
+#'@param year An integer vector of measured years for each \code{series}
+#'@param series A factor of series names for each \code{year}
+#'@param gsi A numeric vector of growth suppression index from \code{gsi()}
+#'@param ngsi A numeric vector of normalized gsi from \code{gsi()}
+#'
+#'@return a tree-level `defol` object
+#'
+#'@export
+new_defol <- function(year, series, gsi, ngsi, defol_status){
+  # stopifnot(is.numeric(year))
+  stopifnot(is.factor(series))
+  stopifnot(is.numeric(gsi))
+  stopifnot(is.numeric(ngsi))
+  stopifnot(is.factor(defol_status))
+
+  df <- data.frame(year = year,
+                   series = series,
+                   gsi = gsi,
+                   ngsi = ngsi,
+                   defol_status = defol_status)
+  class(df) <- c("defol", "data.frame")
+  df
+}
+
 
 #' Stack a defoliation list
 #'
@@ -155,12 +181,12 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
 stack_defoliation <- function(x){
   out <- plyr::ldply(x, function(i){
     inout <- range(as.numeric(rownames(i)))
-    yrs <- as.integer(c(inout[1]:inout[2]))
-    out <- data.frame(year = yrs, series = colnames(i)[1],
+    df <- data.frame(year = inout[1]:inout[2],
+                      series = colnames(i)[1],
                       gsi = i[, 4],
                       ngsi = i[, 5],
                       defol_status = i[, 6])
-    return(out)
+    return(df)
     }
   )
   class(out) <- c('defol', 'data.frame')
