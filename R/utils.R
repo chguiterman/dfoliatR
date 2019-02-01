@@ -145,6 +145,22 @@ id_defoliation <- function(input_series, duration_years = 8, max_reduction = -1.
   return(input_series)
 }
 
+#' Create factor for `defol_status`
+#'
+#' @param x a vector of defol types
+#'
+#' @return A factor with appropriate defol levels
+#'
+#' @export
+make_defol_status <- function(x){
+  defol_types <- c("nd", "defol",
+                   "max_defol",
+                   "series_end_defol",
+                   "bridge_defol")
+  stopifnot(x %in% defol_types)
+  factor(x, levels = defol_types)
+}
+
 #' Constructor for S3 defol class
 #'
 #'@param year An integer vector of measured years for each \code{series}
@@ -160,7 +176,8 @@ new_defol <- function(year, series, gsi, ngsi, defol_status){
   stopifnot(is.factor(series))
   stopifnot(is.numeric(gsi))
   stopifnot(is.numeric(ngsi))
-  stopifnot(is.factor(defol_status))
+  # stopifnot(is.factor(defol_status))
+  defol_status <- make_defol_status(defol_status)
 
   df <- data.frame(year = year,
                    series = series,
