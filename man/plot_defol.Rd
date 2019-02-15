@@ -13,7 +13,7 @@ plot_defol(x, disp_index = "ngsi", col_defol = "black")
 \code{ngsi}, the normalized growth suppression index. The only other option
 is \code{gsi}, the growth suppression index.}
 
-\item{col_defol}{the color of verticle bars indicating defoliation years}
+\item{col_defol}{the color of vertical bars indicating defoliation years}
 }
 \description{
 Graph individual tree-ring series from a 'defol' object
