@@ -14,6 +14,8 @@ new_defol(year, series, gsi, ngsi, defol_status)
 \item{gsi}{A numeric vector of growth suppression index from \code{gsi()}}
 
 \item{ngsi}{A numeric vector of normalized gsi from \code{gsi()}}
+
+\item{defol_status}{A factor vector of defoliation event status}
 }
 \value{
 a tree-level `defol` object
