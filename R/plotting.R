@@ -4,7 +4,7 @@
 #' @param disp_index Identify the timeseries index to plot. Defaults to
 #'   \code{ngsi}, the normalized growth suppression index. The only other option
 #'   is \code{gsi}, the growth suppression index.
-#' @param col_defol the color of verticle bars indicating defoliation years
+#' @param col_defol the color of vertical bars indicating defoliation years
 #'
 #' @export
 
@@ -17,7 +17,7 @@ plot_defol <- function(x, disp_index = "ngsi", col_defol = 'black') {
   if(disp_index == "ngsi") y_intercept <- 0
   else y_intercept <- 1
   events <- c("defol", "max_defol", "bridge_defol", "series_end_defol")
-  defol_events <- x[x$deol_status %in% events, ]
+  defol_events <- x[x$defol_status %in% events, ]
   p <- ggplot2::ggplot(data = x, ggplot2::aes_string(x="year", y=disp_index, group="series"))
   p <- (p + ggplot2::geom_hline(yintercept = y_intercept) + ggplot2::geom_line())
   p <- (p + ggplot2::geom_segment(data = defol_events,
