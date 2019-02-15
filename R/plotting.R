@@ -61,7 +61,6 @@ gantt_plot <- function(x){
                    axis.title.y = ggplot2::element_blank(),
                    legend.title = ggplot2::element_blank(),
                    legend.position = "bottom")
-  p
 }
 
 
