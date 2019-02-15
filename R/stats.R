@@ -48,6 +48,29 @@ defol_stats <- function(x) {
   )
 }
 
+#' Defoliation event list
+#'
+#' @param x a defol object
+#'
+#' #' @importFrom rlang .data
+#'
+#' @export
+get_defol_events <- function(x){
+  if(!is.defol(x)) stop("x must be a defol object")
+  defol_events <- c("defol", "max_defol", "bridge_defol", "series_end_defol")
+  series <- series_names(x)
+  event_list <- lapply(series, function(i){
+    dat <- dplyr::filter(x, series == i)
+    event_tbl <- dplyr::mutate(events_table(dat$defol_status, defol_events),
+                               series = i,
+                               start_year = dat$year[.data$starts],
+                               end_year = dat$year[.data$ends])
+    return(event_tbl)
+  })
+  defol_table <- do.call(rbind, event_list)
+  return(subset(defol_table, select=c("series", "start_year", "end_year")))
+}
+
 #' Outbreak statistics
 #'
 #' @param x An outbreak object after running \code{outbreak}
