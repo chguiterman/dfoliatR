@@ -42,3 +42,17 @@
 #'
 #' @format An `rwl` object with 1 series, 1675-1997.
 "dmj_nh"
+
+#' Demi John dfol object
+#'
+#'  Produced by running `defoliate_trees(dmj_h, dmj_nh, series_end_events=TRUE)`
+#'
+#'  @format A 'defol' object with 4267 rows and 5 columns
+"dmj_defol"
+
+#' Demi John outbreak object
+#'
+#'  Produced by running `outbreak(dmj_defol)`
+#'
+#'  @format An `outbreak` object with 323 rows and 9 columns
+"dmj_obr"
