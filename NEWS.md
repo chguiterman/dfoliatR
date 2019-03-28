@@ -2,7 +2,9 @@
 * Add data from Demi John; change built-in data naming scheme to help differentiate host series from nonhosr chronologies
 * Added provision to prevent defoliation events two years following one, unless bridge_events is set to true.
 * Reduced event levels for more meaningful interpretation
+* Added Gantt plot to plotting options. This required adding several new helper functions, including the useful get_defol_events function
 * Revised `defol_stats` to catch series with no defol events
+
 
 # dfoliatR v0.0.3
 * Changed package name

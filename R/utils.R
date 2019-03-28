@@ -167,6 +167,7 @@ make_defol_status <- function(x){
 #'@param series A factor of series names for each \code{year}
 #'@param gsi A numeric vector of growth suppression index from \code{gsi()}
 #'@param ngsi A numeric vector of normalized gsi from \code{gsi()}
+#'@param defol_status A factor vector of defoliation event status
 #'
 #'@return a tree-level `defol` object
 #'
@@ -209,6 +210,33 @@ stack_defoliation <- function(x){
   class(out) <- c('defol', 'data.frame')
   return(out)
 }
+
+#' Create a runs table of events
+#'
+#' @param status vector of defoliation or outbreak status
+#' @param events vector of events types to include in the table
+#'
+#' @export
+events_table <- function(status, events){
+  rlx <- rle(status %in% events)
+  index <- cumsum(rlx$lengths)
+  pos <- which(rlx$values == TRUE)
+  ends <- index[pos]
+  newindex = ifelse(pos > 1, pos - 1, 0)
+  starts <- index[newindex] + 1
+  if (0 %in% newindex) starts = c(1,starts)
+  deps <- data.frame(cbind(starts, ends))
+  return(deps)
+}
+
+#' Extract series names from a defol object
+#' @param x a defol object
+#' @export
+series_names <- function(x){
+  stopifnot(is.defol(x))
+  as.character(unique(x$series))
+}
+
 
 #' Check if object is defol, indicating tree-level defoliation object
 #'
