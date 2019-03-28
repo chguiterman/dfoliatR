@@ -1,4 +1,5 @@
 library(dplR)
+library(dfoliatR)
 
 # East fork host series
 ef_h <- read.compact('inst/extdata/EFKDF2.TRE')
