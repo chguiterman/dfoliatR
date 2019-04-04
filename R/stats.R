@@ -70,10 +70,15 @@ get_defol_events <- function(x){
                                series = i,
                                start_year = dat$year[.data$starts],
                                end_year = dat$year[.data$ends])
+    event_tbl$ngsi_mean <- unlist(lapply(seq(nrow(event_tbl)), function(j){
+      period <- event_tbl[j, ]$start_year : event_tbl[j, ]$end_year
+      ngsi <- dat[dat$year %in% period, ]$ngsi
+      mean(ngsi, na.rm=TRUE)
+    }))
     return(event_tbl)
   })
   defol_table <- do.call(rbind, event_list)
-  return(subset(defol_table, select=c("series", "start_year", "end_year")))
+  return(subset(defol_table, select=c("series", "start_year", "end_year", "ngsi_mean")))
 }
 
 #' Outbreak statistics
