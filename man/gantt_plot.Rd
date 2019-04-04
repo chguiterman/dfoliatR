@@ -4,10 +4,14 @@
 \alias{gantt_plot}
 \title{Gantt plot of defoliation events}
 \usage{
-gantt_plot(x)
+gantt_plot(x, breaks)
 }
 \arguments{
 \item{x}{a defol object}
+
+\item{breaks}{a vector length two providing threshold (negative) `ngsi`
+values to separate minor, moderate, and severe defoliation events. If
+blank, the mean and 1st quartile are used.}
 }
 \description{
 Gantt plot of defoliation events

@@ -33,13 +33,24 @@ plot_defol <- function(x, disp_index = "ngsi", col_defol = 'black') {
 #' Gantt plot of defoliation events
 #'
 #' @param x a defol object
+#' @param breaks a vector length two providing threshold (negative) `ngsi`
+#'   values to separate minor, moderate, and severe defoliation events. If
+#'   blank, the mean and 1st quartile are used.
 #'
 #' @export
-gantt_plot <- function(x){
+gantt_plot <- function(x, breaks){
   stopifnot(is.defol(x))
   s.stats <- defol_stats(x)
   e.stats <- get_defol_events(x)
-  p <- ggplot2::ggplot(x, ggplot2::aes_string(x="year", y="series"))
+  if(! missing(breaks)){
+    break_vals <- breaks
+  }
+  else break_vals <- summary(e.stats$ngsi_mean)[c(2, 4)]
+  e.stats$Severity <- cut(e.stats$ngsi_mean,
+                          breaks = c(-Inf, break_vals[[1]], break_vals[[2]], Inf),
+                          right = FALSE,
+                          labels = c("Severe", "Moderate", "Minor"))
+    p <- ggplot2::ggplot(x, ggplot2::aes_string(x="year", y="series"))
   p <- p + ggplot2::geom_segment(data = s.stats,
                                  ggplot2::aes_string(x = "first",
                                                      xend = "last",
@@ -50,9 +61,9 @@ gantt_plot <- function(x){
                                  ggplot2::aes_string(x = "start_year",
                                                      xend = "end_year",
                                                      y = "series",
-                                                     yend = "series"),
+                                                     yend = "series",
+                                                     colour = "Severity"),
                                  linetype = 'solid',
-                                 colour = "red",
                                  size=1.25)
   p <- p + ggplot2::theme_bw() +
     ggplot2::theme(panel.grid.major.y = ggplot2::element_blank(),
