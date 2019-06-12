@@ -1,35 +1,3 @@
-#' Graph individual tree-ring series from a 'defol' object
-#'
-#' @param x a 'defol' object
-#' @param disp_index Identify the timeseries index to plot. Defaults to
-#'   \code{ngsi}, the normalized growth suppression index. The only other option
-#'   is \code{gsi}, the growth suppression index.
-#' @param col_defol the color of vertical bars indicating defoliation years
-#'
-#' @export
-
-plot_defol <- function(x, disp_index = "ngsi", col_defol = 'black') {
-  if(!is.defol(x)) stop("'x' must be a 'defol' object")
-  if(! (disp_index == "gsi" | disp_index == "norm_index")) {
-    # warning("Displaying the 'ngsi'")
-    disp_index <- "ngsi"
-  }
-  if(disp_index == "ngsi") y_intercept <- 0
-  else y_intercept <- 1
-  events <- c("defol", "max_defol", "bridge_defol", "series_end_defol")
-  defol_events <- x[x$defol_status %in% events, ]
-  p <- ggplot2::ggplot(data = x, ggplot2::aes_string(x="year", y=disp_index, group="series"))
-  p <- (p + ggplot2::geom_hline(yintercept = y_intercept) + ggplot2::geom_line())
-  p <- (p + ggplot2::geom_segment(data = defol_events,
-                              ggplot2::aes_string(x="year", xend="year",
-                                                  y=y_intercept, yend=disp_index),
-                              colour = col_defol,
-                              size=2))
-  p <- (p + ggplot2::facet_grid(series ~ .))
-  p <- (p + ggplot2::theme_bw())
-  p
-}
-
 #' Gantt plot of defoliation events
 #'
 #' @param x a defol object
@@ -38,7 +6,7 @@ plot_defol <- function(x, disp_index = "ngsi", col_defol = 'black') {
 #'   blank, the mean and 1st quartile are used.
 #'
 #' @export
-gantt_plot <- function(x, breaks){
+plot_defol <- function(x, breaks){
   stopifnot(is.defol(x))
   s.stats <- defol_stats(x)
   e.stats <- get_defol_events(x)
@@ -134,4 +102,13 @@ plot_outbreak <- function(x, disp_index = "mean_ngsi"){
     ggplot2::theme(plot.margin = ggplot2::unit(c(0.1, 0, 0, 0), "cm"))
   # combine
   ggpubr::ggarrange(index, prop, line, nrow=3, align = "v")
+}
+
+#' Plot a \code{defol} object
+#'
+#' @param ... arguments passed to \code{plot_defol}
+#'
+#' @export
+plot.defol <- function(...){
+  print(plot_defol(...))
 }
