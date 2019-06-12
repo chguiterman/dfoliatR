@@ -1,6 +1,7 @@
-#' Gantt plot of defoliation events
+#' Produce a Gantt plot of individual tree-ring series to show defoliation
+#' events in time
 #'
-#' @param x a defol object
+#' @param x a \code{defol} object produced by \code{defoliate_trees}.
 #' @param breaks a vector length two providing threshold (negative) `ngsi`
 #'   values to separate minor, moderate, and severe defoliation events. If
 #'   blank, the mean and 1st quartile are used.
