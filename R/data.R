@@ -16,7 +16,7 @@
 
 #' East Fork defol object
 #'
-#'  Produced by running `defoliate_trees(ef_h, ef_nh, series_end_event = TRUE)`
+#' Produced by running `defoliate_trees(ef_h, ef_nh, series_end_event = TRUE)`
 #'
 #' @format A `defol` object with 2500 rows and 5 columns
 "ef_defol"
@@ -47,7 +47,7 @@
 #'
 #'  Produced by running `defoliate_trees(dmj_h, dmj_nh, series_end_events=TRUE)`
 #'
-#'  @format A 'defol' object with 4267 rows and 5 columns
+#'  @format A `defol` object with 4267 rows and 5 columns
 "dmj_defol"
 
 #' Demi John outbreak object
