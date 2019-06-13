@@ -1,5 +1,3 @@
-
-
 # East fork host series
 ef_h <- dplR::read.compact('inst/extdata/EFKDF2.TRE')
 

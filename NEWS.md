@@ -3,6 +3,10 @@
 * Added provision to prevent defoliation events two years following one, unless bridge_events is set to true.
 * Reduced event levels for more meaningful interpretation
 * Added Gantt plot to plotting options. This required adding several new helper functions, including the useful get_defol_events function
+* Revised `defol_stats` to catch series with no defol events
+* Gantt plot is now the default tree-level plotting option
+* Added some unit tests
+
 
 # dfoliatR v0.0.3
 * Changed package name

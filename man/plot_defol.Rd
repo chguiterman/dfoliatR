@@ -2,19 +2,19 @@
 % Please edit documentation in R/plotting.R
 \name{plot_defol}
 \alias{plot_defol}
-\title{Graph individual tree-ring series from a 'defol' object}
+\title{Produce a Gantt plot of individual tree-ring series to show defoliation
+events in time}
 \usage{
-plot_defol(x, disp_index = "ngsi", col_defol = "black")
+plot_defol(x, breaks)
 }
 \arguments{
-\item{x}{a 'defol' object}
+\item{x}{a \code{defol} object produced by \code{defoliate_trees}.}
 
-\item{disp_index}{Identify the timeseries index to plot. Defaults to
-\code{ngsi}, the normalized growth suppression index. The only other option
-is \code{gsi}, the growth suppression index.}
-
-\item{col_defol}{the color of vertical bars indicating defoliation years}
+\item{breaks}{a vector length two providing threshold (negative) `ngsi`
+values to separate minor, moderate, and severe defoliation events. If
+blank, the mean and 1st quartile are used.}
 }
 \description{
-Graph individual tree-ring series from a 'defol' object
+Produce a Gantt plot of individual tree-ring series to show defoliation
+events in time
 }

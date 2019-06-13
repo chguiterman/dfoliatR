@@ -33,19 +33,24 @@ sample_depth <- function(x) {
 #' @export
 defol_stats <- function(x) {
   if(!is.defol(x)) stop("x must be a defol object")
-  plyr::ddply(x, c('series'), function(df) {
+  out <- plyr::ddply(x, c('series'), function(df) {
     first <- min(df$year)
     last <- max(df$year)
     years <- length(df$year)
     count <- plyr::count(df, "defol_status")
-    num_defol <- count[count$defol_status == "max_defol", ]$freq
-    tot_defol <- sum(count[count$defol_status != "nd", ]$freq)
-    avg_defol <- round(tot_defol / num_defol, 0)
-    out <- c(first, last, years, num_defol, tot_defol, avg_defol)
-    names(out) <- c("first", "last", "years", "num_events", "tot_years", "mean_duration")
-    return(out)
+    if(nrow(count) == 1){ # No defols
+      sts <- c(first, last, years, 0, 0, 0)
     }
-  )
+    else {
+      num_defol <- count[count$defol_status == "max_defol", ]$freq
+      tot_defol <- sum(count[count$defol_status != "nd", ]$freq)
+      avg_defol <- round(tot_defol / num_defol, 0)
+      sts <- c(first, last, years, num_defol, tot_defol, avg_defol)
+    }
+    return(sts)
+  })
+  names(out) <- c("series", "first", "last", "years", "num_events", "tot_years", "mean_duration")
+  return(out)
 }
 
 #' Defoliation event list
@@ -65,10 +70,15 @@ get_defol_events <- function(x){
                                series = i,
                                start_year = dat$year[.data$starts],
                                end_year = dat$year[.data$ends])
+    event_tbl$ngsi_mean <- unlist(lapply(seq(nrow(event_tbl)), function(j){
+      period <- event_tbl[j, ]$start_year : event_tbl[j, ]$end_year
+      ngsi <- dat[dat$year %in% period, ]$ngsi
+      mean(ngsi, na.rm=TRUE)
+    }))
     return(event_tbl)
   })
   defol_table <- do.call(rbind, event_list)
-  return(subset(defol_table, select=c("series", "start_year", "end_year")))
+  return(subset(defol_table, select=c("series", "start_year", "end_year", "ngsi_mean")))
 }
 
 #' Outbreak statistics
