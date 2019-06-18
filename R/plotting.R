@@ -6,6 +6,9 @@
 #'   values to separate minor, moderate, and severe defoliation events. If
 #'   blank, the mean and 1st quartile are used.
 #'
+#' @importFrom rlang .data
+#' @importFrom ggplot2 ggplot aes geom_segment theme_bw theme element_blank
+#'
 #' @export
 plot_defol <- function(x, breaks){
   stopifnot(is.defol(x))
@@ -19,27 +22,28 @@ plot_defol <- function(x, breaks){
                           breaks = c(-Inf, break_vals[[1]], break_vals[[2]], Inf),
                           right = FALSE,
                           labels = c("Severe", "Moderate", "Minor"))
-    p <- ggplot2::ggplot(x, ggplot2::aes_string(x="year", y="series"))
-  p <- p + ggplot2::geom_segment(data = s.stats,
-                                 ggplot2::aes_string(x = "first",
-                                                     xend = "last",
-                                                     y = "series",
-                                                     yend = "series"),
+  # plot object formation
+  p <- ggplot(x, aes(x = .data[[year]], y = .data[[series]]))
+  p <- p + geom_segment(data = s.stats,
+                                 aes(x = .data[[first]],
+                                     xend = .data[[last]],
+                                     y = .data[[series]],
+                                     yend = .data[[series]]),
                                  linetype = 'dotted')
-  p <- p + ggplot2::geom_segment(data = e.stats,
-                                 ggplot2::aes_string(x = "start_year",
-                                                     xend = "end_year",
-                                                     y = "series",
-                                                     yend = "series",
-                                                     colour = "Severity"),
+  p <- p + geom_segment(data = e.stats,
+                                 aes(x = .data[[start_year]],
+                                     xend = .data[[end_year]],
+                                     y = .data[[series]],
+                                     yend = .data[[series]],
+                                     colour = .data[[Severity]]),
                                  linetype = 'solid',
                                  size=1.25)
-  p <- p + ggplot2::theme_bw() +
-    ggplot2::theme(panel.grid.major.y = ggplot2::element_blank(),
-                   panel.grid.minor.y = ggplot2::element_blank(),
-                   axis.title.x = ggplot2::element_blank(),
-                   axis.title.y = ggplot2::element_blank(),
-                   legend.title = ggplot2::element_blank(),
+  p <- p + theme_bw() +
+    theme(panel.grid.major.y = element_blank(),
+                   panel.grid.minor.y = element_blank(),
+                   axis.title.x = element_blank(),
+                   axis.title.y = element_blank(),
+                   legend.title = element_blank(),
                    legend.position = "bottom")
   p
 }
