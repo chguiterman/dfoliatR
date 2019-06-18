@@ -54,8 +54,13 @@ plot_defol <- function(x, breaks){
 #'
 #' @param x an 'outbreak' object produced by \code{outbreak}
 #' @param disp_index Identify the timeseries index to plot. Defaults to
-#'   \code{mean_ngsi}, the average normalized growth suppression index for the
-#'   site. The only other option is \code{mean_gsi}, the average growth suppression index.
+#'  \code{mean_ngsi}, the average normalized growth suppression index for the
+#'  site. The only other option is \code{mean_gsi}, the average growth
+#'  suppression index.
+#'
+#' @importFrom rlang .data
+#' @importFrom ggplot2 ggplot aes geom_segment geom_vline theme_bw theme
+#'  element_blank geom_line geom_hline scale_y_continuous scale_x_continuous geom_ribbon
 #'
 #' @export
 plot_outbreak <- function(x, disp_index = "mean_ngsi"){
@@ -68,43 +73,45 @@ plot_outbreak <- function(x, disp_index = "mean_ngsi"){
   else y_intercept <- 1
   outbrk_events <- x[! is.na(x$outbreak_status), ]
   # setup plot
-  p <- ggplot2::ggplot(data = x, ggplot2::aes_string(x="year"))
+  p <- ggplot(data = x, aes(x = .data[[year]]))
   # extract minor axes
-  foo <- p + ggplot2::geom_line(ggplot2::aes_string(y=disp_index))
+  foo <- p + geom_line(aes(y= {{ disp_index }}))
   minor_labs <- ggplot2::ggplot_build(foo)$layout$panel_params[[1]]$x.minor_source
   # top plot
   index <- p +
-    ggplot2::geom_vline(xintercept = minor_labs, colour="grey50") +
-    ggplot2::geom_hline(yintercept = y_intercept, colour = "grey80") +
-    ggplot2::geom_line(ggplot2::aes_string(y=disp_index)) +
-    ggplot2::geom_segment(data = outbrk_events,
-                          ggplot2::aes_string(x="year", xend="year",
-                                              y=y_intercept, yend=disp_index),
+    geom_vline(xintercept = minor_labs, colour="grey50") +
+    geom_hline(yintercept = y_intercept, colour = "grey80") +
+    geom_line(aes(y = {{ disp_index }})) +
+    geom_segment(data = outbrk_events,
+                          aes(x = .data[[year]],
+                              xend = .data[[year]],
+                              y = {{ y_intercept }},
+                              yend = {{ disp_index }}),
                           size=2) +
-    ggplot2::scale_y_continuous(name = "Growth suppression index") +
+    scale_y_continuous(name = "Growth suppression index") +
     ggpubr::theme_pubr() +
-    ggplot2::theme(plot.margin = ggplot2::unit(c(0.1, 0, 0, 0), "cm"),
-                   axis.title.x=ggplot2::element_blank(),
-                   axis.text.x=ggplot2::element_blank(),
-                   axis.ticks.x=ggplot2::element_blank())
+    theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"),
+                   axis.title.x=element_blank(),
+                   axis.text.x=element_blank(),
+                   axis.ticks.x=element_blank())
   # mid plot
   prop <- p +
-    ggplot2::geom_vline(xintercept = minor_labs, colour="grey50") +
-    ggplot2::geom_ribbon(ggplot2::aes_string(ymax="perc_defol", ymin=0)) +
-    ggplot2::scale_y_continuous(name = "% defoliated") +
+    geom_vline(xintercept = minor_labs, colour="grey50") +
+    geom_ribbon(aes_string(ymax="perc_defol", ymin=0)) +
+    scale_y_continuous(name = "% defoliated") +
     ggpubr::theme_pubr() +
-    ggplot2::theme(plot.margin = ggplot2::unit(c(0.1, 0, 0, 0), "cm"),
-                   axis.title.x=ggplot2::element_blank(),
-                   axis.text.x=ggplot2::element_blank(),
-                   axis.ticks.x=ggplot2::element_blank())
+    theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"),
+                   axis.title.x=element_blank(),
+                   axis.text.x=element_blank(),
+                   axis.ticks.x=element_blank())
   # bottom plot
   line <- p +
-    ggplot2::geom_vline(xintercept = minor_labs, colour="grey50") +
-    ggplot2::geom_line(ggplot2::aes_string(y="samp_depth")) +
-    ggplot2::scale_y_continuous(name = "Sample depth") +
-    ggplot2::scale_x_continuous(name = "Year") +
+    geom_vline(xintercept = minor_labs, colour="grey50") +
+    geom_line(aes_string(y="samp_depth")) +
+    scale_y_continuous(name = "Sample depth") +
+    scale_x_continuous(name = "Year") +
     ggpubr::theme_pubr() +
-    ggplot2::theme(plot.margin = ggplot2::unit(c(0.1, 0, 0, 0), "cm"))
+    theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
   # combine
   ggpubr::ggarrange(index, prop, line, nrow=3, align = "v")
 }
