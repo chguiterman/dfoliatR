@@ -23,28 +23,30 @@ plot_defol <- function(x, breaks){
                           right = FALSE,
                           labels = c("Severe", "Moderate", "Minor"))
   # plot object formation
-  p <- ggplot(x, aes(x = .data[[year]], y = .data[[series]]))
+  p <- ggplot(x, aes(x = .data$year, y = .data$series))
   p <- p + geom_segment(data = s.stats,
-                                 aes(x = .data[[first]],
-                                     xend = .data[[last]],
-                                     y = .data[[series]],
-                                     yend = .data[[series]]),
-                                 linetype = 'dotted')
+                         aes(x = .data$first,
+                             xend = .data$last,
+                             y = .data$series,
+                             yend = .data$series),
+                         linetype = 'dotted')
   p <- p + geom_segment(data = e.stats,
-                                 aes(x = .data[[start_year]],
-                                     xend = .data[[end_year]],
-                                     y = .data[[series]],
-                                     yend = .data[[series]],
-                                     colour = .data[[Severity]]),
-                                 linetype = 'solid',
-                                 size=1.25)
+                         aes(x = .data$start_year,
+                             xend = .data$end_year,
+                             y = .data$series,
+                             yend = .data$series,
+                             colour = .data$Severity),
+                         linetype = 'solid',
+                         size=1.25)
   p <- p + theme_bw() +
-    theme(panel.grid.major.y = element_blank(),
-                   panel.grid.minor.y = element_blank(),
-                   axis.title.x = element_blank(),
-                   axis.title.y = element_blank(),
-                   legend.title = element_blank(),
-                   legend.position = "bottom")
+    theme(
+      panel.grid.major.y = element_blank(),
+      panel.grid.minor.y = element_blank(),
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      legend.title = element_blank(),
+      legend.position = "bottom"
+    )
   p
 }
 
