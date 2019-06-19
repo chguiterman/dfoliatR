@@ -56,13 +56,14 @@ plot_defol <- function(x, breaks){
 #'
 #' @param x an 'outbreak' object produced by \code{outbreak}
 #' @param disp_index Identify the timeseries index to plot. Defaults to
-#'  \code{mean_ngsi}, the average normalized growth suppression index for the
-#'  site. The only other option is \code{mean_gsi}, the average growth
-#'  suppression index.
+#'   \code{mean_ngsi}, the average normalized growth suppression index for the
+#'   site. The only other option is \code{mean_gsi}, the average growth
+#'   suppression index.
 #'
 #' @importFrom rlang .data
 #' @importFrom ggplot2 ggplot aes geom_segment geom_vline theme_bw theme
-#'  element_blank geom_line geom_hline scale_y_continuous scale_x_continuous geom_ribbon
+#'   element_blank geom_line geom_hline scale_y_continuous scale_x_continuous
+#'   geom_ribbon unit
 #'
 #' @export
 plot_outbreak <- function(x, disp_index = "mean_ngsi"){

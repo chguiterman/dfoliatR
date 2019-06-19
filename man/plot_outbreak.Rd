@@ -12,7 +12,8 @@ plot_outbreak(x, disp_index = "mean_ngsi")
 
 \item{disp_index}{Identify the timeseries index to plot. Defaults to
 \code{mean_ngsi}, the average normalized growth suppression index for the
-site. The only other option is \code{mean_gsi}, the average growth suppression index.}
+site. The only other option is \code{mean_gsi}, the average growth
+suppression index.}
 }
 \description{
 Produce a stacked plot to present composited, site-level insect outbreak

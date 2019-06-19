@@ -5,7 +5,9 @@
 * Added Gantt plot to plotting options. This required adding several new helper functions, including the useful get_defol_events function
 * Revised `defol_stats` to catch series with no defol events
 * Gantt plot is now the default tree-level plotting option
-* Added some unit tests
+* Added unit tests to defoliate and outbreak functions
+* plotting is now stable to ggplot2 v3.2.0
+* testing of plots via vdiffr
 
 
 # dfoliatR v0.0.3
