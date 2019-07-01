@@ -197,16 +197,16 @@ new_defol <- function(year, series, gsi, ngsi, defol_status){
 #' @return a defol object (long-format data frame)
 #' @export
 stack_defoliation <- function(x){
-  out <- plyr::ldply(x, function(i){
+  out_list <- lapply(x, function(i){
     inout <- range(as.numeric(rownames(i)))
     df <- data.frame(year = inout[1]:inout[2],
-                      series = colnames(i)[1],
-                      gsi = i[, 4],
-                      ngsi = i[, 5],
-                      defol_status = i[, 6])
+                     series = colnames(i)[1],
+                     gsi = i[, 4],
+                     ngsi = i[, 5],
+                     defol_status = i[, 6])
     return(df)
-    }
-  )
+  })
+  out <- do.call(rbind, out_list)
   class(out) <- c('defol', 'data.frame')
   return(out)
 }
