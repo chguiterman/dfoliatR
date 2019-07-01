@@ -8,6 +8,7 @@
 * Added unit tests to defoliate and outbreak functions
 * plotting is now stable to ggplot2 v3.2.0
 * testing of plots via vdiffr
+* Add "Maturing" as a lifecycle badge
 
 
 # dfoliatR v0.0.3
