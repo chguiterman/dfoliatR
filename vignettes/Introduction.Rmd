@@ -4,7 +4,7 @@ author: "Chris Guiterman"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Introduction to dfoliatR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,54 +12,158 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 8,
+  fig.height = 6,
+  fig.align = "center"
 )
+
 ```
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+### Installation
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+`dfoliatR` is not currently on CRAN. To install `dfoliatR` use the `devtools` package:
 
-## Vignette Info
+```R
+library(devtools)
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+install_github("chguiterman/dfoliatR")
+```
+Once installed, `dfoliatR` can be called like any other R package
 
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r, echo=TRUE}
+library(dfoliatR)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+### Data
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+`dfoliatR` requires two independent datasets: 
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+* Host-tree series, of one or more individual trees (not cores), as standardized ring widths. To average cores and obtain individual tree series, see `dplr::treeMean`. 
 
-## More Examples
+* A non-host standardized tree-ring chronology.
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+These datasets can be created in ARSTAN or by with the `detrend()` function in the `dplR` library. A chronology can be created in `dplR` with the `chron()` function. Once read into R, the data can be passed to `dfoliatR` functions. They must share the formatting of `rwl` objects in `dplR`.
+
+Data are provided in this package to demonstrate some of the utilities of `dfoliatR`, courtesy of Dr. Ann Lynch. 
+
+The first is a collection of Douglas-fir trees sampled for a reconstruction of western spruce budworm. It is paired with a ponderosa pine non-host chronology from a nearby site.
+
+```{R, echo=TRUE, eval=FALSE}
+data(dmj_h)
+
+```
+
+The host and non-host objects are directly from `dplR` in the form of `rwl` objects:
 
 ```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+knitr::kable(dmj_h[1:10, 1:10])
 ```
 
-Also a quote using `>`:
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+```{R, echo=TRUE, eval=FALSE}
+data(dmj_nh)
+```
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(dmj_nh, 10))
+```
+
+
+The `dfoliatR` package also includes a second site for users to explore: 
+
+```R
+data(ef_h)
+
+data(ef_nh)
+```
+
+All data created and presented in this vignette is available through the package by the object names used here.
+
+### Performance
+
+Analyzing insect outbreak signals from tree rings in `dfoliatR` requires a two-step process.
+
+1. Identify *defoliation events* on host trees by removing the growth pattern of non-host trees. 
+
+2. Composite host tree series for the site to assess the scale of defoliation. Events recorded on more than a threshold percentage of trees (e.g., 25%) are considered *outbreaks*.
+
+To identify defoliation events, input the set of host tree series and the non-host chronology into the `defoliate_trees()` function. Some parameters regarding the length and severity of growth departure can be changed by the user. The parameter defaults follow those in OUTBREAK. Definitions of the function parameters are provided with `?defoliate_trees`
+
+```{r, echo=TRUE}
+dmj_defol <- defoliate_trees(host_tree = dmj_h, nonhost_chron = dmj_nh, 
+      duration_years = 8, max_reduction = -1.28, list_output = FALSE)
+```
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(dmj_defol, 10))
+```
+
+The best way to evaluate the results of the call to `defoliate_trees` is to graph the resulting "defol" object:
+
+```{r, echo=TRUE}
+plot(dmj_defol)
+```
+
+Each horizontal line in the plot provides the measured time sequence for each tree. Defoliation events are shown as thicker line segments, with colors to indicate the relative severity of each event. Breakpoints to distinguish between severe, moderate, and minor defoliation levels can be set via the `breaks` parameter in `plot` or `plot_defol`. 
+
+Basic and informative tree-level statistics regarding the sample data and defoliation events are provided.
+
+```{r, echo=TRUE, eval=FALSE}
+defol_stats(dmj_defol)
+
+```
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(defol_stats(dmj_defol), 10))
+```
+
+It is important to note that`dfoliatR` distinguishes between a "defoliation event" that is recorded on individual trees and an "outbreak" that synchronously effected a proportion of trees. 
+
+Outbreak periods can be identified with the function `outbreak()`. In essence, this is a composte function that combines all trees provided in the "defol" object to assess the synchrony and scale of defoliation. Should enough trees record defoliation (regardless of the duration), it will be termed an "outbreak". Filter parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak. 
+
+```{r, echo=TRUE}
+dmj_obr <- outbreak(dmj_defol, filter_perc = 25, filter_min_series = 3)
+```
+
+Running `outbreak` produces a new class of data frame, an "outbreak" object. 
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(defol_stats(dmj_defol), 10))
+```
+
+As with "defol" objects, it can be plotted directly, and summary statistics are available.
+
+```{r, echo=TRUE}
+plot_outbreak(dmj_obr)
+```
+
+```{r, echo=TRUE}
+dmj_obr_stats <- outbreak_stats(dmj_obr)
+```
+```{r, echo=TRUE, eval=FALSE}
+head(dmj_obr_stats)
+```
+```{r, echo=FALSE, results='asis'}
+knitr::kable(dmj_obr_stats)
+```
+
+
+The summary statistics for "outbreak" objects include each identified outbreak event as a row, with start/end years, duration, and other metrics used for analyses.
+
+One important metric to analyze is the return interval of outbreaks. Many researchers use the first year of the event as the point of reference. One can calculate return intervals for our DMJ site in this way via
+
+```{r, echo=TRUE}
+
+dmj_interv <- diff(dmj_obr_stats$start)
+
+# All intervals
+dmj_interv
+
+# Mean interval
+mean(dmj_interv)
+
+# MEdian interval
+median(dmj_interv)
+
+```
+
+
