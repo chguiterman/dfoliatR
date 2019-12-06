@@ -1,0 +1,30 @@
+title: dfoliatR
+url: https://chguiterman.github.io/dfoliatR/
+template:
+  params:
+    bootswatch: flatly
+reference:
+  - title: "Performance"
+    desc: >
+      Identifying insect defoliation and outbreak events in tree-ing growth patterns is the goal of dfoliatR.
+      Two functions perform the majority of the workload. They take indexed tree-ring data and find tree-level
+      defoliation events [defoliate_trees()] and then composite all trees [outbreak()] to identify
+      outbreak events.
+    contents:
+      - defoliate_trees
+      - outbreak
+  - title: "Graphics"
+    desc: >
+      Objects created by the two functions above can be plotted via:
+    contents:
+      - plot_defol
+      - plot_outbreak
+  - title: "Summary statistics"
+    contents:
+      - defol_stats
+      - outbreak_stats
+  - title: "Helper functions"
+    contents:
+      - sample_depth
+      - series_names
+      - get_defol_events
