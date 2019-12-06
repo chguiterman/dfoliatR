@@ -23,8 +23,29 @@ reference:
     contents:
       - defol_stats
       - outbreak_stats
-  - title: "Helper functions"
+  - title: "Helpful functions"
     contents:
       - sample_depth
       - series_names
       - get_defol_events
+  - title: "Data"
+    desc: >
+      Tree-ring data from four sites in New Mexico are available for users to explore and test functions.
+      These include two sets of Douglas-fir host series and two separate ponderosa pine non-host chronologies.
+      The samples were collected to reconstruct western spruce budwork outbreak dynamics.
+    contents:
+      - starts_with("dmj")
+      - starts_with("ef")
+  - title: "Background functions"
+    desc: >
+      These functions are mainly used inside of other dfoliatR functions
+    contents:
+      - events_table
+      - gsi
+      - id_defoliation
+      - is.defol
+      - is.outbreak
+      - make_defol_status
+      - new_defol
+      - plot.defol
+      - stack_defoliation

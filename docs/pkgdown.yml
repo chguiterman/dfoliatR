@@ -3,4 +3,7 @@ pkgdown: 1.4.1.9000
 pkgdown_sha: 24ef1bbdec0de44fe11eb1d58b40dba961525d43
 articles:
   Introduction: Introduction.html
+urls:
+  reference: https://chguiterman.github.io/dfoliatR//reference
+  article: https://chguiterman.github.io/dfoliatR//articles
 
