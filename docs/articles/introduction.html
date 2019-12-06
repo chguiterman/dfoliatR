@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Introduction to dfoliatR • dfoliatR</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to dfoliatR">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -53,7 +54,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/introduction.html">Introduction to dfoliatR</a>
+      <a href="../articles/Introduction.html">Introduction to dfoliatR</a>
     </li>
   </ul>
 </li>
@@ -64,7 +65,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/chguiterman/dfoliatR">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -77,255 +78,702 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Introduction to dfoliatR</h1>
                         <h4 class="author">Chris Guiterman</h4>
             
-            <h4 class="date">2019-01-29</h4>
+            <h4 class="date">2019-12-06</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/chguiterman/dfoliatR/blob/master/vignettes/introduction.Rmd"><code>vignettes/introduction.Rmd</code></a></small>
-      <div class="hidden name"><code>introduction.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/chguiterman/dfoliatR/blob/master/vignettes/Introduction.Rmd"><code>vignettes/Introduction.Rmd</code></a></small>
+      <div class="hidden name"><code>Introduction.Rmd</code></div>
 
     </div>
 
     
     
-<p>Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The <code>html_vignette</code> output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The <code>html_vignette</code> format:</p>
+<div id="installation" class="section level3">
+<h3 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h3>
+<p><code>dfoliatR</code> is not currently on CRAN. To install <code>dfoliatR</code> use the <code>devtools</code> package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)
+
+<span class="kw">install_github</span>(<span class="st">"chguiterman/dfoliatR"</span>)</code></pre></div>
+<p>Once installed, <code>dfoliatR</code> can be called like any other R package</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dfoliatR)</code></pre></div>
+</div>
+<div id="data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#data" class="anchor"></a>Data</h3>
+<p><code>dfoliatR</code> requires two independent datasets:</p>
 <ul>
-<li>Never uses retina figures</li>
-<li>Has a smaller default figure size</li>
-<li>Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style</li>
+<li><p>Host-tree series, of one or more individual trees (not cores), as standardized ring widths. To average cores and obtain individual tree series, see <code>dplr::treeMean</code>.</p></li>
+<li><p>A non-host standardized tree-ring chronology.</p></li>
 </ul>
-<div id="vignette-info" class="section level2">
-<h2 class="hasAnchor">
-<a href="#vignette-info" class="anchor"></a>Vignette Info</h2>
-<p>Note the various macros within the <code>vignette</code> section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the <code>title</code> field and the <code>\VignetteIndexEntry</code> to match the title of your vignette.</p>
-</div>
-<div id="styles" class="section level2">
-<h2 class="hasAnchor">
-<a href="#styles" class="anchor"></a>Styles</h2>
-<p>The <code>html_vignette</code> template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:</p>
-<pre><code>output: 
-  rmarkdown::html_vignette:
-    css: mystyles.css</code></pre>
-</div>
-<div id="figures" class="section level2">
-<h2 class="hasAnchor">
-<a href="#figures" class="anchor"></a>Figures</h2>
-<p>The figure sizes have been customised so that you can easily put two images side-by-side.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="dv">10</span><span class="op">:</span><span class="dv">1</span>)</code></pre></div>
-<p><img src="introduction_files/figure-html/unnamed-chunk-1-1.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-1-2.png" width="700"></p>
-<p>You can enable figure captions by <code>fig_caption: yes</code> in YAML:</p>
-<pre><code>output:
-  rmarkdown::html_vignette:
-    fig_caption: yes</code></pre>
-<p>Then you can use the chunk option <code>fig.cap = "Your figure caption."</code> in <strong>knitr</strong>.</p>
-</div>
-<div id="more-examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#more-examples" class="anchor"></a>More Examples</h2>
-<p>You can write math expressions, e.g. <span class="math inline">\(Y = X\beta + \epsilon\)</span>, footnotes<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, and tables, e.g. using <code><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">knitr::kable()</a></code>.</p>
+<p>These datasets can be created in ARSTAN or by with the <code>detrend()</code> function in the <code>dplR</code> library. A chronology can be created in <code>dplR</code> with the <code>chron()</code> function. Once read into R, the data can be passed to <code>dfoliatR</code> functions. They must share the formatting of <code>rwl</code> objects in <code>dplR</code>.</p>
+<p>Data are provided in this package to demonstrate some of the utilities of <code>dfoliatR</code>, courtesy of Dr. Ann Lynch.</p>
+<p>The first is a collection of Douglas-fir trees sampled for a reconstruction of western spruce budworm. It is paired with a ponderosa pine non-host chronology from a nearby site.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(dmj_h)</code></pre></div>
+<p>The host and non-host objects are directly from <code>dplR</code> in the form of <code>rwl</code> objects:</p>
 <table class="table">
 <thead><tr class="header">
 <th></th>
-<th align="right">mpg</th>
-<th align="right">cyl</th>
-<th align="right">disp</th>
-<th align="right">hp</th>
-<th align="right">drat</th>
-<th align="right">wt</th>
-<th align="right">qsec</th>
-<th align="right">vs</th>
-<th align="right">am</th>
-<th align="right">gear</th>
-<th align="right">carb</th>
+<th align="right">DMJ01</th>
+<th align="right">DMJ02</th>
+<th align="right">DMJ03</th>
+<th align="right">DMJ04</th>
+<th align="right">DMJ06</th>
+<th align="right">DMJ07</th>
+<th align="right">DMJ11</th>
+<th align="right">DMJ14</th>
+<th align="right">DMJ15</th>
+<th align="right">DMJ16</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>Mazda RX4</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.620</td>
-<td align="right">16.46</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
+<td>1620</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1.14221</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
-<td>Mazda RX4 Wag</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.875</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
+<td>1621</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0.84523</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td>Datsun 710</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">108.0</td>
-<td align="right">93</td>
-<td align="right">3.85</td>
-<td align="right">2.320</td>
-<td align="right">18.61</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">1</td>
+<td>1622</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0.39534</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
-<td>Hornet 4 Drive</td>
-<td align="right">21.4</td>
-<td align="right">6</td>
-<td align="right">258.0</td>
-<td align="right">110</td>
-<td align="right">3.08</td>
-<td align="right">3.215</td>
-<td align="right">19.44</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
+<td>1623</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0.64625</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td>Hornet Sportabout</td>
-<td align="right">18.7</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">175</td>
-<td align="right">3.15</td>
-<td align="right">3.440</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">2</td>
+<td>1624</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0.67192</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
-<td>Valiant</td>
-<td align="right">18.1</td>
-<td align="right">6</td>
-<td align="right">225.0</td>
-<td align="right">105</td>
-<td align="right">2.76</td>
-<td align="right">3.460</td>
-<td align="right">20.22</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
+<td>1625</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0.61729</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td>Duster 360</td>
-<td align="right">14.3</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">245</td>
-<td align="right">3.21</td>
-<td align="right">3.570</td>
-<td align="right">15.84</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">4</td>
+<td>1626</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0.94704</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
-<td>Merc 240D</td>
-<td align="right">24.4</td>
-<td align="right">4</td>
-<td align="right">146.7</td>
-<td align="right">62</td>
-<td align="right">3.69</td>
-<td align="right">3.190</td>
-<td align="right">20.00</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
+<td>1627</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1.21904</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td>Merc 230</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">140.8</td>
-<td align="right">95</td>
-<td align="right">3.92</td>
-<td align="right">3.150</td>
-<td align="right">22.90</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
+<td>1628</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0.99266</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
-<td>Merc 280</td>
-<td align="right">19.2</td>
-<td align="right">6</td>
-<td align="right">167.6</td>
-<td align="right">123</td>
-<td align="right">3.92</td>
-<td align="right">3.440</td>
-<td align="right">18.30</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">4</td>
+<td>1629</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1.29200</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 </tbody>
 </table>
-<p>Also a quote using <code>&gt;</code>:</p>
-<blockquote>
-<p>“He who gives up [code] safety for [code] speed deserves neither.” (<a href="https://twitter.com/hadleywickham/status/504368538874703872">via</a>)</p>
-</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(dmj_nh)</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th></th>
+<th align="right">WIR S</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1675</td>
+<td align="right">0.537</td>
+</tr>
+<tr class="even">
+<td>1676</td>
+<td align="right">0.780</td>
+</tr>
+<tr class="odd">
+<td>1677</td>
+<td align="right">1.188</td>
+</tr>
+<tr class="even">
+<td>1678</td>
+<td align="right">1.496</td>
+</tr>
+<tr class="odd">
+<td>1679</td>
+<td align="right">0.781</td>
+</tr>
+<tr class="even">
+<td>1680</td>
+<td align="right">1.292</td>
+</tr>
+<tr class="odd">
+<td>1681</td>
+<td align="right">1.256</td>
+</tr>
+<tr class="even">
+<td>1682</td>
+<td align="right">1.117</td>
+</tr>
+<tr class="odd">
+<td>1683</td>
+<td align="right">1.840</td>
+</tr>
+<tr class="even">
+<td>1684</td>
+<td align="right">0.989</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>dfoliatR</code> package also includes a second site for users to explore:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(ef_h)
+
+<span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(ef_nh)</code></pre></div>
+<p>All data created and presented in this vignette is available through the package by the object names used here.</p>
 </div>
-<div class="footnotes">
-<hr>
-<ol>
-<li id="fn1"><p>A footnote here.<a href="#fnref1">↩</a></p></li>
+<div id="performance" class="section level3">
+<h3 class="hasAnchor">
+<a href="#performance" class="anchor"></a>Performance</h3>
+<p>Analyzing insect outbreak signals from tree rings in <code>dfoliatR</code> requires a two-step process.</p>
+<ol style="list-style-type: decimal">
+<li><p>Identify <em>defoliation events</em> on host trees by removing the growth pattern of non-host trees.</p></li>
+<li><p>Composite host tree series for the site to assess the scale of defoliation. Events recorded on more than a threshold percentage of trees (e.g., 25%) are considered <em>outbreaks</em>.</p></li>
 </ol>
+<p>To identify defoliation events, input the set of host tree series and the non-host chronology into the <code><a href="../reference/defoliate_trees.html">defoliate_trees()</a></code> function. Some parameters regarding the length and severity of growth departure can be changed by the user. The parameter defaults follow those in OUTBREAK. Definitions of the function parameters are provided with <code><a href="../reference/defoliate_trees.html">?defoliate_trees</a></code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dmj_defol &lt;-<span class="st"> </span><span class="kw"><a href="../reference/defoliate_trees.html">defoliate_trees</a></span>(<span class="dt">host_tree =</span> dmj_h, <span class="dt">nonhost_chron =</span> dmj_nh, 
+      <span class="dt">duration_years =</span> <span class="dv">8</span>, <span class="dt">max_reduction =</span> <span class="op">-</span><span class="fl">1.28</span>, <span class="dt">list_output =</span> <span class="ot">FALSE</span>)
+<span class="co">#&gt; Registered S3 method overwritten by 'R.oo':</span>
+<span class="co">#&gt;   method        from       </span>
+<span class="co">#&gt;   throw.default R.methodsS3</span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">year</th>
+<th align="left">series</th>
+<th align="right">gsi</th>
+<th align="right">ngsi</th>
+<th align="left">defol_status</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1810</td>
+<td align="left">DMJ01</td>
+<td align="right">1.0830</td>
+<td align="right">0.3084</td>
+<td align="left">nd</td>
+</tr>
+<tr class="even">
+<td align="right">1811</td>
+<td align="left">DMJ01</td>
+<td align="right">1.0261</td>
+<td align="right">0.1024</td>
+<td align="left">nd</td>
+</tr>
+<tr class="odd">
+<td align="right">1812</td>
+<td align="left">DMJ01</td>
+<td align="right">1.0971</td>
+<td align="right">0.3595</td>
+<td align="left">nd</td>
+</tr>
+<tr class="even">
+<td align="right">1813</td>
+<td align="left">DMJ01</td>
+<td align="right">0.9828</td>
+<td align="right">-0.0546</td>
+<td align="left">nd</td>
+</tr>
+<tr class="odd">
+<td align="right">1814</td>
+<td align="left">DMJ01</td>
+<td align="right">1.0339</td>
+<td align="right">0.1307</td>
+<td align="left">nd</td>
+</tr>
+<tr class="even">
+<td align="right">1815</td>
+<td align="left">DMJ01</td>
+<td align="right">1.3461</td>
+<td align="right">1.2616</td>
+<td align="left">nd</td>
+</tr>
+<tr class="odd">
+<td align="right">1816</td>
+<td align="left">DMJ01</td>
+<td align="right">1.4440</td>
+<td align="right">1.6166</td>
+<td align="left">nd</td>
+</tr>
+<tr class="even">
+<td align="right">1817</td>
+<td align="left">DMJ01</td>
+<td align="right">0.9790</td>
+<td align="right">-0.0682</td>
+<td align="left">nd</td>
+</tr>
+<tr class="odd">
+<td align="right">1818</td>
+<td align="left">DMJ01</td>
+<td align="right">0.7929</td>
+<td align="right">-0.7424</td>
+<td align="left">nd</td>
+</tr>
+<tr class="even">
+<td align="right">1819</td>
+<td align="left">DMJ01</td>
+<td align="right">0.9078</td>
+<td align="right">-0.3264</td>
+<td align="left">nd</td>
+</tr>
+</tbody>
+</table>
+<p>The best way to evaluate the results of the call to <code>defoliate_trees</code> is to graph the resulting “defol” object:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(dmj_defol)</code></pre></div>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-8-1.png" width="768" style="display: block; margin: auto;"></p>
+<p>Each horizontal line in the plot provides the measured time sequence for each tree. Defoliation events are shown as thicker line segments, with colors to indicate the relative severity of each event. Breakpoints to distinguish between severe, moderate, and minor defoliation levels can be set via the <code>breaks</code> parameter in <code>plot</code> or <code>plot_defol</code>.</p>
+<p>Basic and informative tree-level statistics regarding the sample data and defoliation events are provided.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/defol_stats.html">defol_stats</a></span>(dmj_defol)</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">series</th>
+<th align="right">first</th>
+<th align="right">last</th>
+<th align="right">years</th>
+<th align="right">num_events</th>
+<th align="right">tot_years</th>
+<th align="right">mean_duration</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">DMJ01</td>
+<td align="right">1810</td>
+<td align="right">1996</td>
+<td align="right">187</td>
+<td align="right">4</td>
+<td align="right">50</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">DMJ02</td>
+<td align="right">1750</td>
+<td align="right">1996</td>
+<td align="right">247</td>
+<td align="right">6</td>
+<td align="right">75</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">DMJ03</td>
+<td align="right">1830</td>
+<td align="right">1996</td>
+<td align="right">167</td>
+<td align="right">4</td>
+<td align="right">42</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">DMJ04</td>
+<td align="right">1720</td>
+<td align="right">1996</td>
+<td align="right">277</td>
+<td align="right">8</td>
+<td align="right">90</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">DMJ06</td>
+<td align="right">1700</td>
+<td align="right">1996</td>
+<td align="right">297</td>
+<td align="right">6</td>
+<td align="right">81</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">DMJ07</td>
+<td align="right">1710</td>
+<td align="right">1996</td>
+<td align="right">287</td>
+<td align="right">7</td>
+<td align="right">96</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left">DMJ11</td>
+<td align="right">1900</td>
+<td align="right">1997</td>
+<td align="right">98</td>
+<td align="right">2</td>
+<td align="right">19</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">DMJ14</td>
+<td align="right">1675</td>
+<td align="right">1996</td>
+<td align="right">322</td>
+<td align="right">9</td>
+<td align="right">112</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">DMJ15</td>
+<td align="right">1730</td>
+<td align="right">1996</td>
+<td align="right">267</td>
+<td align="right">4</td>
+<td align="right">64</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">DMJ16</td>
+<td align="right">1746</td>
+<td align="right">1996</td>
+<td align="right">251</td>
+<td align="right">7</td>
+<td align="right">86</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+<p>It is important to note that<code>dfoliatR</code> distinguishes between a “defoliation event” that is recorded on individual trees and an “outbreak” that synchronously effected a proportion of trees.</p>
+<p>Outbreak periods can be identified with the function <code><a href="../reference/outbreak.html">outbreak()</a></code>. In essence, this is a composte function that combines all trees provided in the “defol” object to assess the synchrony and scale of defoliation. Should enough trees record defoliation (regardless of the duration), it will be termed an “outbreak”. Filter parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dmj_obr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/outbreak.html">outbreak</a></span>(dmj_defol, <span class="dt">filter_perc =</span> <span class="dv">25</span>, <span class="dt">filter_min_series =</span> <span class="dv">3</span>)</code></pre></div>
+<p>Running <code>outbreak</code> produces a new class of data frame, an “outbreak” object.</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left">series</th>
+<th align="right">first</th>
+<th align="right">last</th>
+<th align="right">years</th>
+<th align="right">num_events</th>
+<th align="right">tot_years</th>
+<th align="right">mean_duration</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">DMJ01</td>
+<td align="right">1810</td>
+<td align="right">1996</td>
+<td align="right">187</td>
+<td align="right">4</td>
+<td align="right">50</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">DMJ02</td>
+<td align="right">1750</td>
+<td align="right">1996</td>
+<td align="right">247</td>
+<td align="right">6</td>
+<td align="right">75</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">DMJ03</td>
+<td align="right">1830</td>
+<td align="right">1996</td>
+<td align="right">167</td>
+<td align="right">4</td>
+<td align="right">42</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">DMJ04</td>
+<td align="right">1720</td>
+<td align="right">1996</td>
+<td align="right">277</td>
+<td align="right">8</td>
+<td align="right">90</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">DMJ06</td>
+<td align="right">1700</td>
+<td align="right">1996</td>
+<td align="right">297</td>
+<td align="right">6</td>
+<td align="right">81</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">DMJ07</td>
+<td align="right">1710</td>
+<td align="right">1996</td>
+<td align="right">287</td>
+<td align="right">7</td>
+<td align="right">96</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left">DMJ11</td>
+<td align="right">1900</td>
+<td align="right">1997</td>
+<td align="right">98</td>
+<td align="right">2</td>
+<td align="right">19</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">DMJ14</td>
+<td align="right">1675</td>
+<td align="right">1996</td>
+<td align="right">322</td>
+<td align="right">9</td>
+<td align="right">112</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">DMJ15</td>
+<td align="right">1730</td>
+<td align="right">1996</td>
+<td align="right">267</td>
+<td align="right">4</td>
+<td align="right">64</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">DMJ16</td>
+<td align="right">1746</td>
+<td align="right">1996</td>
+<td align="right">251</td>
+<td align="right">7</td>
+<td align="right">86</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+<p>As with “defol” objects, it can be plotted directly, and summary statistics are available.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_outbreak.html">plot_outbreak</a></span>(dmj_obr)</code></pre></div>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-13-1.png" width="768" style="display: block; margin: auto;"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dmj_obr_stats &lt;-<span class="st"> </span><span class="kw"><a href="../reference/outbreak_stats.html">outbreak_stats</a></span>(dmj_obr)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(dmj_obr_stats)</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">start</th>
+<th align="right">end</th>
+<th align="right">duration</th>
+<th align="right">num_trees_start</th>
+<th align="right">perc_trees_start</th>
+<th align="right">peak_outbreak_year</th>
+<th align="right">num_trees_outbreak</th>
+<th align="right">peak_defol_year</th>
+<th align="right">min_gsi</th>
+<th align="right">mean_ngsi</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1680</td>
+<td align="right">1699</td>
+<td align="right">20</td>
+<td align="right">1</td>
+<td align="right">33.3</td>
+<td align="right">1690</td>
+<td align="right">3</td>
+<td align="right">1692</td>
+<td align="right">0.121</td>
+<td align="right">-2.407</td>
+</tr>
+<tr class="even">
+<td align="right">1753</td>
+<td align="right">1769</td>
+<td align="right">17</td>
+<td align="right">6</td>
+<td align="right">46.2</td>
+<td align="right">1754</td>
+<td align="right">7</td>
+<td align="right">1755</td>
+<td align="right">0.343</td>
+<td align="right">-1.611</td>
+</tr>
+<tr class="odd">
+<td align="right">1825</td>
+<td align="right">1840</td>
+<td align="right">16</td>
+<td align="right">11</td>
+<td align="right">78.6</td>
+<td align="right">1831</td>
+<td align="right">12</td>
+<td align="right">1826</td>
+<td align="right">0.500</td>
+<td align="right">-1.304</td>
+</tr>
+<tr class="even">
+<td align="right">1849</td>
+<td align="right">1865</td>
+<td align="right">17</td>
+<td align="right">7</td>
+<td align="right">46.7</td>
+<td align="right">1852</td>
+<td align="right">13</td>
+<td align="right">1853</td>
+<td align="right">0.252</td>
+<td align="right">-1.994</td>
+</tr>
+<tr class="odd">
+<td align="right">1881</td>
+<td align="right">1895</td>
+<td align="right">15</td>
+<td align="right">8</td>
+<td align="right">53.3</td>
+<td align="right">1886</td>
+<td align="right">14</td>
+<td align="right">1885</td>
+<td align="right">0.262</td>
+<td align="right">-1.945</td>
+</tr>
+<tr class="even">
+<td align="right">1959</td>
+<td align="right">1970</td>
+<td align="right">12</td>
+<td align="right">7</td>
+<td align="right">41.2</td>
+<td align="right">1960</td>
+<td align="right">15</td>
+<td align="right">1965</td>
+<td align="right">0.328</td>
+<td align="right">-1.830</td>
+</tr>
+<tr class="odd">
+<td align="right">1987</td>
+<td align="right">1996</td>
+<td align="right">10</td>
+<td align="right">9</td>
+<td align="right">52.9</td>
+<td align="right">1989</td>
+<td align="right">15</td>
+<td align="right">1995</td>
+<td align="right">0.378</td>
+<td align="right">-1.640</td>
+</tr>
+</tbody>
+</table>
+<p>The summary statistics for “outbreak” objects include each identified outbreak event as a row, with start/end years, duration, and other metrics used for analyses.</p>
+<p>One important metric to analyze is the return interval of outbreaks. Many researchers use the first year of the event as the point of reference. One can calculate return intervals for our DMJ site in this way via</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+dmj_interv &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span>(dmj_obr_stats<span class="op">$</span>start)
+
+<span class="co"># All intervals</span>
+dmj_interv
+<span class="co">#&gt; [1] 73 72 24 32 78 28</span>
+
+<span class="co"># Mean interval</span>
+<span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(dmj_interv)
+<span class="co">#&gt; [1] 51.16667</span>
+
+<span class="co"># MEdian interval</span>
+<span class="kw"><a href="https://rdrr.io/r/stats/median.html">median</a></span>(dmj_interv)
+<span class="co">#&gt; [1] 52</span></code></pre></div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#vignette-info">Vignette Info</a></li>
-      <li><a href="#styles">Styles</a></li>
-      <li><a href="#figures">Figures</a></li>
-      <li><a href="#more-examples">More Examples</a></li>
-      </ul>
-</div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
       </div>
 
 </div>
 
 
+
       <footer><div class="copyright">
-  <p>Developed by Christopher H Guiterman.</p>
+  <p>Developed by Chris Guiterman, Ann Lynch, Jodi Axelson.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
