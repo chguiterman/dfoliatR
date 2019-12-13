@@ -67,14 +67,14 @@ plot_defol <- function(x, breaks){
 #'
 #' @export
 plot_outbreak <- function(x, disp_index = "mean_ngsi"){
-  if(!is.outbreak(x)) stop("'x' must be an 'outbreak' object")
+  if(!is.obr(x)) stop("'x' must be an 'obr' object")
   if(! (disp_index == "mean_gsi" | disp_index == "mean_ngsi")) {
     # warning("Displaying the 'mean_ngsi'")
     disp_index <- "mean_ngsi"
   }
   if(disp_index == "mean_ngsi") y_intercept <- 0
   else y_intercept <- 1
-  outbrk_events <- x[! is.na(x$outbreak_status), ]
+  outbrk_events <- x[! x$outbreak_status %in% "not_obr", ]
 
   # setup plot
   p <- ggplot(data = x, aes(x = .data$year))

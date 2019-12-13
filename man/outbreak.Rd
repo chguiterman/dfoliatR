@@ -5,7 +5,7 @@
 \title{Composite defoliation series to determine outbreak events}
 \usage{
 outbreak(x, filter_perc = 25, filter_min_series = 3,
-  filter_min_defol = 1, force = FALSE)
+  filter_min_defol = 1)
 }
 \arguments{
 \item{x}{a defol object}
@@ -18,9 +18,6 @@ event. Default is 3 trees.}
 
 \item{filter_min_defol}{The minimum number of trees recording a defoliation
 event. Default is 1 tree.}
-
-\item{force}{Ignores the class structure if the data frame, to aid in  batch
-processing. Defaults to FALSE. Use cautiously.}
 }
 \description{
 Composite defoliation series to determine outbreak events

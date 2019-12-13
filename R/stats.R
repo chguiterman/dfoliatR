@@ -91,7 +91,7 @@ get_defol_events <- function(x){
 #'
 #'@export
 outbreak_stats <- function(x){
-  if(!is.outbreak(x)) stop ("x must be an outbreak object")
+  if(!is.obr(x)) stop ("x must be an `obr` object")
   events <- rle(x$outbreak_status == "outbreak")
   events_index <- cumsum(events$lengths)
   events_pos <- which(events$values == TRUE)

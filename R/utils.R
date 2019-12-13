@@ -213,7 +213,7 @@ as_defol <- function(x) {
 #' @export
 as.defol <- function(x) {
   as_defol(x)
-  }
+}
 
 #' Stack a defoliation list
 #'
@@ -275,6 +275,104 @@ is.defol <- function(x) {
   inherits(x, 'defol')
 }
 
+#' Turn character vector into factor with proper levels of `outbreak_status`
+#'
+#' @param x a vector of outbreak designation types
+#'
+#' @return A factor with appropriate outbreak levels
+#'
+#' @noRd
+make_outbreak_status <- function(x){
+  obr_types <- c("outbreak", "not_obr")
+  stopifnot(x %in% obr_types)
+  factor(x, levels = obr_types)
+}
+
+#' Constructor for an `obr` object.
+#'
+#' @param year An n-length numeric vector of observed years.
+#'
+#' @param samp_depth An n-length numeric vector of the number of trees.
+#'
+#' @param num_defol An n-length numeric vector of the number of trees
+#'   experiencing defoliation.
+#'
+#' @param perc_defol An n-length numeric vector of the percent of trees
+#'   experiencing defoliation.
+#'
+#' @param num_max_defol An n-length numeric vector of the number of trees
+#'   experiencing their maximum level of defoliation (i.e., their most extreme
+#'   negative growth departure).
+#'
+#' @param perc_max_defol An n-length numeric vector of the percent of trees
+#'   experiencing their maximum level of defoliation (i.e., their most extreme
+#'   negative growth departure).
+#'
+#' @param mean_gsi An n-length numeric vector of the average growth suppression
+#'   index across all observed trees.
+#'
+#' @param mean_ngsi An n-length numeric vector of the average normalized
+#'   (scaled) growth suppression index.
+#'
+#' @param outbreak_status An n-length factor or character vector that identified
+#'   whether that year surpasses the designated thresholds for an "outbreak
+#'   event". Threshold criteria are provided in [outbreak()].
+#'
+#' @return An `obr` object with columns matching the input variables.
+#'
+#' @export
+obr <- function(year, samp_depth, num_defol, perc_defol, num_max_defol, perc_max_defol,
+                mean_gsi, mean_ngsi, outbreak_status) {
+  obr_dat <- data.frame(
+    year = as.numeric(year),
+    samp_depth = as.numeric(samp_depth),
+    num_defol = as.numeric(num_defol),
+    perc_defol = as.numeric(perc_defol),
+    num_max_defol = as.numeric(num_max_defol),
+    perc_max_defol = as.numeric(perc_max_defol),
+    mean_gsi = as.numeric(mean_gsi),
+    mean_ngsi = as.numeric(mean_ngsi),
+    outbreak_status = make_outbreak_status(outbreak_status)
+  )
+  class(obr_dat) <- c("obr", "data.frame")
+  obr_dat
+}
+
+#' Cast data frame to list-like to `obr` object
+#'
+#' @param x A data frame or list-like object to cast. Must have named elements
+#'   for "year", "samp_depth", "num_defol", "perc_defol", "num_max_defol", "perc_max_defol",
+#'   "mean_gsi", "mean_ngsi", "outbreak_status".
+#'
+#' @return `x` cast to an `obr` object
+#'
+#' @examples
+#' data(dmj_obr)
+#' example_data <- as.data.frame(dmj_obr)
+#' is.obr(example_data)
+#' back_to_obr <- as_obr(example_data)
+#' is.obr(back_to_obr)
+#'
+#' @export
+as_obr <- function(x) {
+  if (!all(c("year", "samp_depth", "num_defol", "perc_defol", "num_max_defol", "perc_max_defol",
+             "mean_gsi", "mean_ngsi", "outbreak_status") %in% names(x))) {
+    stop("`x` must have members 'year', 'samp_depth', 'num_defol', 'perc_defol', 'num_max_defol',
+          'perc_max_defol', 'mean_gsi', 'mean_ngsi', 'outbreak_status'")
+  }
+  obr(x$year, x$samp_depth, x$num_defol, x$perc_defol, x$num_max_defol, x$perc_max_defol,
+        x$mean_gsi, x$mean_ngsi, x$outbreak_status)
+}
+
+#' Alias to [as_obr()]
+#'
+#' @inherit as_obr
+#'
+#' @export
+as.obr <- function(x) {
+  as_obr(x)
+}
+
 #' Check if object is outbreak, meaning site-level outbreak object
 #'
 #' @param x Any R object.
@@ -282,6 +380,6 @@ is.defol <- function(x) {
 #' @return Boolean indicating whether `x` is an outbreak object.
 #'
 #' @export
-is.outbreak <- function(x) {
-  inherits(x, 'outbreak')
+is.obr <- function(x) {
+  inherits(x, 'obr')
 }
