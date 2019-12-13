@@ -9,6 +9,8 @@
 * plotting is now stable to ggplot2 v3.2.0
 * testing of plots via vdiffr
 * Add "Maturing" as a lifecycle badge
+* Add new constructor functions to (re)establish object classes for defol and outbreak. This is particularly useful when batch processing with {purrr} functions like `map`
+* Changed the `outbreak` object code to `obr`. And updated several functions to account for the change.
 
 
 # dfoliatR v0.0.3
