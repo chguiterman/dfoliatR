@@ -39,13 +39,13 @@ library(dfoliatR)
 
 `dfoliatR` requires two independent datasets: 
 
-* Host-tree series, of one or more individual trees (not cores), as standardized ring widths. To average cores and obtain individual tree series, see `dplr::treeMean`. 
+* Host data: Standardized ring-width series of one or more individual trees (not site series, and multiple cores per tree need to be averaged to the tree level). To average cores and obtain individual tree series, see dplr::treeMean, or use ARSTAN output files (.TRE) with the summary chronology for each tree.
 
-* A non-host standardized tree-ring chronology.
+* Non-host or control data: Usually a standardized tree-ring chronology (site chronology, not individual tree series) from non-host tree species. Alternatively, an independent annually-resolved climate series.
 
-These datasets can be created in ARSTAN or by with the `detrend()` function in the `dplR` library. A chronology can be created in `dplR` with the `chron()` function. Once read into R, the data can be passed to `dfoliatR` functions. They must share the formatting of `rwl` objects in `dplR`.
+Both host and non-host data should be formatted in R to match the `dplR::rwl` object type. 
 
-Data are provided in this package to demonstrate some of the utilities of `dfoliatR`, courtesy of Dr. Ann Lynch. 
+Data are provided in `dfoliatR` to demonstrate some of the utilities of `dfoliatR`, courtesy of Dr. Ann Lynch. 
 
 The first is a collection of Douglas-fir trees sampled for a reconstruction of western spruce budworm. It is paired with a ponderosa pine non-host chronology from a nearby site.
 
@@ -83,11 +83,11 @@ All data created and presented in this vignette is available through the package
 
 Analyzing insect outbreak signals from tree rings in `dfoliatR` requires a two-step process.
 
-1. Identify *defoliation events* on host trees by removing the growth pattern of non-host trees. 
+1. Identify defoliation events on host trees by removing the growth pattern of non-host trees. Host and non-host trees are presumed to respond similarly to climate, so this step produces individual tree-level series of what the two species do NOT share in common. 
 
-2. Composite host tree series for the site to assess the scale of defoliation. Events recorded on more than a threshold percentage of trees (e.g., 25%) are considered *outbreaks*.
+2. Composite host individual tree series to the site level to assess the scale of defoliation. Events recorded on more than a threshold number and/or percentage of trees (e.g., 25%) are considered outbreaks.
 
-To identify defoliation events, input the set of host tree series and the non-host chronology into the `defoliate_trees()` function. Some parameters regarding the length and severity of growth departure can be changed by the user. The parameter defaults follow those in OUTBREAK. Definitions of the function parameters are provided with `?defoliate_trees`
+To identify defoliation events, input the set of host tree series and the non-host chronology into the `defoliate_trees()` function. Some parameters regarding the length and severity of growth departure can be changed by the user. The parameter defaults follow those in OUTBREAK (negative departures for 8 or more years, at least one reaching -1.28 standard deviations, and allowing 1 positive excursion before and after the greatest departure). Definitions of the function parameters are provided with `?defoliate_trees`
 
 ```{r, echo=TRUE}
 dmj_defol <- defoliate_trees(host_tree = dmj_h, nonhost_chron = dmj_nh, 
@@ -116,9 +116,9 @@ defol_stats(dmj_defol)
 knitr::kable(head(defol_stats(dmj_defol), 10))
 ```
 
-It is important to note that`dfoliatR` distinguishes between a "defoliation event" that is recorded on individual trees and an "outbreak" that synchronously effected a proportion of trees. 
+It is important to note that `dfoliatR` distinguishes between a "defoliation event" that is recorded on individual trees and an "outbreak" that synchronously effected a proportion of trees. 
 
-Outbreak periods can be identified with the function `outbreak()`. In essence, this is a composte function that combines all trees provided in the "defol" object to assess the synchrony and scale of defoliation. Should enough trees record defoliation (regardless of the duration), it will be termed an "outbreak". Filter parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak. 
+Outbreak periods can be identified with the function `outbreak()`. In essence, this is a composite function that combines all trees provided in the "defol" object to assess the synchrony and scale of defoliation. Should enough trees record defoliation (regardless of the duration), it will be termed an "outbreak". Filtering parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak. 
 
 ```{r, echo=TRUE}
 dmj_obr <- outbreak(dmj_defol, filter_perc = 25, filter_min_series = 3)
@@ -161,7 +161,7 @@ dmj_interv
 # Mean interval
 mean(dmj_interv)
 
-# MEdian interval
+# Median interval
 median(dmj_interv)
 
 ```
