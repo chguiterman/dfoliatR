@@ -7,9 +7,7 @@
 get_defol_events(x)
 }
 \arguments{
-\item{x}{a defol object
-
-#' @importFrom rlang .data}
+\item{x}{a defol object}
 }
 \description{
 Defoliation event list

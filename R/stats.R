@@ -57,15 +57,16 @@ defol_stats <- function(x) {
 #'
 #' @param x a defol object
 #'
-#' #' @importFrom rlang .data
+#' @importFrom rlang .data
 #'
 #' @export
 get_defol_events <- function(x){
   if(!is.defol(x)) stop("x must be a defol object")
   defol_events <- c("defol", "max_defol", "bridge_defol", "series_end_defol")
-  series <- series_names(x)
-  event_list <- lapply(series, function(i){
-    dat <- dplyr::filter(x, series == i)
+  all_series <- defol_stats(x)
+  event_series <- dplyr::filter(all_series, .data$num_events > 0)
+  event_list <- lapply(event_series$series, function(i){
+    dat <- dplyr::filter(x, .data$series == i)
     event_tbl <- dplyr::mutate(events_table(dat$defol_status, defol_events),
                                series = i,
                                start_year = dat$year[.data$starts],
@@ -78,7 +79,16 @@ get_defol_events <- function(x){
     return(event_tbl)
   })
   defol_table <- do.call(rbind, event_list)
-  return(subset(defol_table, select=c("series", "start_year", "end_year", "ngsi_mean")))
+  defol_table <- dplyr::select(defol_table, -.data$starts, -.data$ends)
+  null_series <- dplyr::filter(all_series, .data$num_events == 0)
+  if (nrow(null_series) > 0) {
+    null_tbl <- data.frame(series = null_series$series,
+                           start_year = NA,
+                           end_year = NA,
+                           ngsi_mean = NA)
+    defol_table <- rbind(defol_table, null_tbl)
+  }
+  defol_table[order(defol_table$series), ]
 }
 
 #' Outbreak statistics
