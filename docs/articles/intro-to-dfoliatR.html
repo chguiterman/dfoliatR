@@ -85,7 +85,7 @@
       <h1>Introduction to dfoliatR</h1>
                         <h4 class="author">Chris Guiterman</h4>
             
-            <h4 class="date">2019-12-06</h4>
+            <h4 class="date">2019-12-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/chguiterman/dfoliatR/blob/master/vignettes/intro-to-dfoliatR.Rmd"><code>vignettes/intro-to-dfoliatR.Rmd</code></a></small>
       <div class="hidden name"><code>intro-to-dfoliatR.Rmd</code></div>
@@ -109,11 +109,11 @@
 <a href="#data" class="anchor"></a>Data</h3>
 <p><code>dfoliatR</code> requires two independent datasets:</p>
 <ul>
-<li><p>Host-tree series, of one or more individual trees (not cores), as standardized ring widths. To average cores and obtain individual tree series, see <code>dplr::treeMean</code>.</p></li>
-<li><p>A non-host standardized tree-ring chronology.</p></li>
+<li><p>Host data: Standardized ring-width series of one or more individual trees (not site series, and multiple cores per tree need to be averaged to the tree level). To average cores and obtain individual tree series, see dplr::treeMean, or use ARSTAN output files (.TRE) with the summary chronology for each tree.</p></li>
+<li><p>Non-host or control data: Usually a standardized tree-ring chronology (site chronology, not individual tree series) from non-host tree species. Alternatively, an independent annually-resolved climate series.</p></li>
 </ul>
-<p>These datasets can be created in ARSTAN or by with the <code>detrend()</code> function in the <code>dplR</code> library. A chronology can be created in <code>dplR</code> with the <code>chron()</code> function. Once read into R, the data can be passed to <code>dfoliatR</code> functions. They must share the formatting of <code>rwl</code> objects in <code>dplR</code>.</p>
-<p>Data are provided in this package to demonstrate some of the utilities of <code>dfoliatR</code>, courtesy of Dr. Ann Lynch.</p>
+<p>Both host and non-host data should be formatted in R to match the <code>dplR::rwl</code> object type.</p>
+<p>Data are provided in <code>dfoliatR</code> to demonstrate some of the utilities of <code>dfoliatR</code>, courtesy of Dr. Ann Lynch.</p>
 <p>The first is a collection of Douglas-fir trees sampled for a reconstruction of western spruce budworm. It is paired with a ponderosa pine non-host chronology from a nearby site.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(dmj_h)</code></pre></div>
 <p>The host and non-host objects are directly from <code>dplR</code> in the form of <code>rwl</code> objects:</p>
@@ -324,10 +324,10 @@
 <a href="#performance" class="anchor"></a>Performance</h3>
 <p>Analyzing insect outbreak signals from tree rings in <code>dfoliatR</code> requires a two-step process.</p>
 <ol style="list-style-type: decimal">
-<li><p>Identify <em>defoliation events</em> on host trees by removing the growth pattern of non-host trees.</p></li>
-<li><p>Composite host tree series for the site to assess the scale of defoliation. Events recorded on more than a threshold percentage of trees (e.g., 25%) are considered <em>outbreaks</em>.</p></li>
+<li><p>Identify defoliation events on host trees by removing the growth pattern of non-host trees. Host and non-host trees are presumed to respond similarly to climate, so this step produces individual tree-level series of what the two species do NOT share in common.</p></li>
+<li><p>Composite host individual tree series to the site level to assess the scale of defoliation. Events recorded on more than a threshold number and/or percentage of trees (e.g., 25%) are considered outbreaks.</p></li>
 </ol>
-<p>To identify defoliation events, input the set of host tree series and the non-host chronology into the <code><a href="../reference/defoliate_trees.html">defoliate_trees()</a></code> function. Some parameters regarding the length and severity of growth departure can be changed by the user. The parameter defaults follow those in OUTBREAK. Definitions of the function parameters are provided with <code><a href="../reference/defoliate_trees.html">?defoliate_trees</a></code></p>
+<p>To identify defoliation events, input the set of host tree series and the non-host chronology into the <code><a href="../reference/defoliate_trees.html">defoliate_trees()</a></code> function. Some parameters regarding the length and severity of growth departure can be changed by the user. The parameter defaults follow those in OUTBREAK (negative departures for 8 or more years, at least one reaching -1.28 standard deviations, and allowing 1 positive excursion before and after the greatest departure). Definitions of the function parameters are provided with <code><a href="../reference/defoliate_trees.html">?defoliate_trees</a></code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dmj_defol &lt;-<span class="st"> </span><span class="kw"><a href="../reference/defoliate_trees.html">defoliate_trees</a></span>(<span class="dt">host_tree =</span> dmj_h, <span class="dt">nonhost_chron =</span> dmj_nh, 
       <span class="dt">duration_years =</span> <span class="dv">8</span>, <span class="dt">max_reduction =</span> <span class="op">-</span><span class="fl">1.28</span>, <span class="dt">list_output =</span> <span class="ot">FALSE</span>)
 <span class="co">#&gt; Registered S3 method overwritten by 'R.oo':</span>
@@ -523,110 +523,132 @@
 </tr>
 </tbody>
 </table>
-<p>It is important to note that<code>dfoliatR</code> distinguishes between a “defoliation event” that is recorded on individual trees and an “outbreak” that synchronously effected a proportion of trees.</p>
-<p>Outbreak periods can be identified with the function <code><a href="../reference/outbreak.html">outbreak()</a></code>. In essence, this is a composte function that combines all trees provided in the “defol” object to assess the synchrony and scale of defoliation. Should enough trees record defoliation (regardless of the duration), it will be termed an “outbreak”. Filter parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak.</p>
+<p>It is important to note that <code>dfoliatR</code> distinguishes between a “defoliation event” that is recorded on individual trees and an “outbreak” that synchronously effected a proportion of trees.</p>
+<p>Outbreak periods can be identified with the function <code><a href="../reference/outbreak.html">outbreak()</a></code>. In essence, this is a composite function that combines all trees provided in the “defol” object to assess the synchrony and scale of defoliation. Should enough trees record defoliation (regardless of the duration), it will be termed an “outbreak”. Filtering parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dmj_obr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/outbreak.html">outbreak</a></span>(dmj_defol, <span class="dt">filter_perc =</span> <span class="dv">25</span>, <span class="dt">filter_min_series =</span> <span class="dv">3</span>)</code></pre></div>
 <p>Running <code>outbreak</code> produces a new class of data frame, an “outbreak” object.</p>
 <table class="table">
 <thead><tr class="header">
-<th align="left">series</th>
-<th align="right">first</th>
-<th align="right">last</th>
-<th align="right">years</th>
-<th align="right">num_events</th>
-<th align="right">tot_years</th>
-<th align="right">mean_duration</th>
+<th align="right">year</th>
+<th align="right">samp_depth</th>
+<th align="right">num_defol</th>
+<th align="right">perc_defol</th>
+<th align="right">num_max_defol</th>
+<th align="right">perc_max_defol</th>
+<th align="right">mean_gsi</th>
+<th align="right">mean_ngsi</th>
+<th align="left">outbreak_status</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">DMJ01</td>
-<td align="right">1810</td>
-<td align="right">1996</td>
-<td align="right">187</td>
-<td align="right">4</td>
-<td align="right">50</td>
-<td align="right">12</td>
-</tr>
-<tr class="even">
-<td align="left">DMJ02</td>
-<td align="right">1750</td>
-<td align="right">1996</td>
-<td align="right">247</td>
-<td align="right">6</td>
-<td align="right">75</td>
-<td align="right">12</td>
-</tr>
-<tr class="odd">
-<td align="left">DMJ03</td>
-<td align="right">1830</td>
-<td align="right">1996</td>
-<td align="right">167</td>
-<td align="right">4</td>
-<td align="right">42</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="left">DMJ04</td>
-<td align="right">1720</td>
-<td align="right">1996</td>
-<td align="right">277</td>
-<td align="right">8</td>
-<td align="right">90</td>
-<td align="right">11</td>
-</tr>
-<tr class="odd">
-<td align="left">DMJ06</td>
-<td align="right">1700</td>
-<td align="right">1996</td>
-<td align="right">297</td>
-<td align="right">6</td>
-<td align="right">81</td>
-<td align="right">14</td>
-</tr>
-<tr class="even">
-<td align="left">DMJ07</td>
-<td align="right">1710</td>
-<td align="right">1996</td>
-<td align="right">287</td>
-<td align="right">7</td>
-<td align="right">96</td>
-<td align="right">14</td>
-</tr>
-<tr class="odd">
-<td align="left">DMJ11</td>
-<td align="right">1900</td>
-<td align="right">1997</td>
-<td align="right">98</td>
-<td align="right">2</td>
-<td align="right">19</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="left">DMJ14</td>
 <td align="right">1675</td>
-<td align="right">1996</td>
-<td align="right">322</td>
-<td align="right">9</td>
-<td align="right">112</td>
-<td align="right">12</td>
-</tr>
-<tr class="odd">
-<td align="left">DMJ15</td>
-<td align="right">1730</td>
-<td align="right">1996</td>
-<td align="right">267</td>
-<td align="right">4</td>
-<td align="right">64</td>
-<td align="right">16</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">1.5303</td>
+<td align="right">1.5145</td>
+<td align="left">not_obr</td>
 </tr>
 <tr class="even">
-<td align="left">DMJ16</td>
-<td align="right">1746</td>
-<td align="right">1996</td>
-<td align="right">251</td>
-<td align="right">7</td>
-<td align="right">86</td>
-<td align="right">12</td>
+<td align="right">1676</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">1.2435</td>
+<td align="right">0.7143</td>
+<td align="left">not_obr</td>
+</tr>
+<tr class="odd">
+<td align="right">1677</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">50.0</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">0.9222</td>
+<td align="right">-0.1820</td>
+<td align="left">not_obr</td>
+</tr>
+<tr class="even">
+<td align="right">1678</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">50.0</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">0.9716</td>
+<td align="right">-0.0442</td>
+<td align="left">not_obr</td>
+</tr>
+<tr class="odd">
+<td align="right">1679</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">50.0</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">1.1373</td>
+<td align="right">0.4198</td>
+<td align="left">not_obr</td>
+</tr>
+<tr class="even">
+<td align="right">1680</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">33.3</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">0.7244</td>
+<td align="right">-0.7303</td>
+<td align="left">outbreak</td>
+</tr>
+<tr class="odd">
+<td align="right">1681</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">33.3</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">0.5545</td>
+<td align="right">-1.2048</td>
+<td align="left">outbreak</td>
+</tr>
+<tr class="even">
+<td align="right">1682</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">33.3</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">0.7372</td>
+<td align="right">-0.6983</td>
+<td align="left">outbreak</td>
+</tr>
+<tr class="odd">
+<td align="right">1683</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">66.7</td>
+<td align="right">1</td>
+<td align="right">33.3</td>
+<td align="right">0.3466</td>
+<td align="right">-1.7847</td>
+<td align="left">outbreak</td>
+</tr>
+<tr class="even">
+<td align="right">1684</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">66.7</td>
+<td align="right">0</td>
+<td align="right">0.0</td>
+<td align="right">0.6063</td>
+<td align="right">-1.0589</td>
+<td align="left">outbreak</td>
 </tr>
 </tbody>
 </table>
@@ -748,7 +770,7 @@ dmj_interv
 <span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(dmj_interv)
 <span class="co">#&gt; [1] 51.16667</span>
 
-<span class="co"># MEdian interval</span>
+<span class="co"># Median interval</span>
 <span class="kw"><a href="https://rdrr.io/r/stats/median.html">median</a></span>(dmj_interv)
 <span class="co">#&gt; [1] 52</span></code></pre></div>
 </div>

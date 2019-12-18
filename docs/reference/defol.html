@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Demi John outbreak object — dmj_obr • dfoliatR</title>
+<title>Constructor for S3 defol class — defol • dfoliatR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Demi John outbreak object — dmj_obr" />
+<meta property="og:title" content="Constructor for S3 defol class — defol" />
 
-<meta property="og:description" content="Produced by running `outbreak(dmj_defol)`" />
+<meta property="og:description" content="Constructor for S3 defol class" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,36 +118,60 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Demi John outbreak object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/chguiterman/dfoliatR/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>dmj_obr.Rd</code></div>
+    <h1>Constructor for S3 defol class</h1>
+    <small class="dont-index">Source: <a href='https://github.com/chguiterman/dfoliatR/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>defol.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Produced by running `outbreak(dmj_defol)`</p>
+    <p>Constructor for S3 defol class</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>dmj_obr</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>obr</code> (inherits from <code>data.frame</code>) with 323 rows and 9 columns.</p>
+    <pre class="usage"><span class='fu'>defol</span>(<span class='no'>year</span>, <span class='no'>series</span>, <span class='no'>gsi</span>, <span class='no'>ngsi</span>, <span class='no'>defol_status</span>)</pre>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>year</th>
+      <td><p>An n-length integer vector of observation years</p></td>
+    </tr>
+    <tr>
+      <th>series</th>
+      <td><p>An n-length factor or character vector of series names</p></td>
+    </tr>
+    <tr>
+      <th>gsi</th>
+      <td><p>An n-length numeric vector of growth suppression index, such as
+calculated by [gsi()]</p></td>
+    </tr>
+    <tr>
+      <th>ngsi</th>
+      <td><p>An n-length numeric vector of normalized gsi, such as calculated
+by [gsi()].</p></td>
+    </tr>
+    <tr>
+      <th>defol_status</th>
+      <td><p>An n-length factor or character vector denoting the
+defoliation event status of each year. This uses a controlled vocabulary,
+see `dfoliatR:::make_defol_status` for possible values.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>@format An `outbreak` object with 323 rows and 9 columns</p>
+    <p>a tree-level `defol` object</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#details">Details</a></li>
+      <li><a href="#value">Value</a></li>
           </ul>
 
   </div>

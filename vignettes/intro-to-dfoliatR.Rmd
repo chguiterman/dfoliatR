@@ -127,7 +127,7 @@ dmj_obr <- outbreak(dmj_defol, filter_perc = 25, filter_min_series = 3)
 Running `outbreak` produces a new class of data frame, an "outbreak" object. 
 
 ```{r, echo=FALSE, results='asis'}
-knitr::kable(head(defol_stats(dmj_defol), 10))
+knitr::kable(head(dmj_obr, 10))
 ```
 
 As with "defol" objects, it can be plotted directly, and summary statistics are available.

@@ -4,6 +4,21 @@
     <loc>https://chguiterman.github.io/dfoliatR//index.html</loc>
   </url>
   <url>
+    <loc>https://chguiterman.github.io/dfoliatR//reference/as.defol.html</loc>
+  </url>
+  <url>
+    <loc>https://chguiterman.github.io/dfoliatR//reference/as.obr.html</loc>
+  </url>
+  <url>
+    <loc>https://chguiterman.github.io/dfoliatR//reference/as_defol.html</loc>
+  </url>
+  <url>
+    <loc>https://chguiterman.github.io/dfoliatR//reference/as_obr.html</loc>
+  </url>
+  <url>
+    <loc>https://chguiterman.github.io/dfoliatR//reference/defol.html</loc>
+  </url>
+  <url>
     <loc>https://chguiterman.github.io/dfoliatR//reference/defoliate_trees.html</loc>
   </url>
   <url>
@@ -49,13 +64,10 @@
     <loc>https://chguiterman.github.io/dfoliatR//reference/is.defol.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/is.outbreak.html</loc>
+    <loc>https://chguiterman.github.io/dfoliatR//reference/is.obr.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/make_defol_status.html</loc>
-  </url>
-  <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/new_defol.html</loc>
+    <loc>https://chguiterman.github.io/dfoliatR//reference/obr.html</loc>
   </url>
   <url>
     <loc>https://chguiterman.github.io/dfoliatR//reference/outbreak.html</loc>
