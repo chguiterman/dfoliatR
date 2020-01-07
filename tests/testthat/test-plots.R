@@ -15,4 +15,3 @@ test_that("outbreak plot is stable", {
   vdiffr::expect_doppelganger("Outbreak-Tile-Plot",
               plot_outbreak(dfoliatR::dmj_obr))
 })
-

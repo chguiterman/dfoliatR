@@ -21,38 +21,36 @@ defolation event}
 \item{max_reduction}{the minimum level of tree growth to be considered in
 defoliation}
 
-\item{bridge_events}{Binary, defaults to `FALSE`. This option allows for
-two successive events separated by a single year to be bridged and called one
+\item{bridge_events}{Binary, defaults to `FALSE`. This option allows for two
+successive events separated by a single year to be bridged and called one
 event. It should be used cautiously and closely evaluated to ensure the
 likelihood that the two events are actually one long event.}
 
-\item{series_end_event}{Binary, defaults to `FALSE`. This option allows
-the user to identify an event ocuring at the time of sampling as a
-defoliation event, regardless of duration. Including it will help to
-quantify periodicity and extent of an outbreak. This should only be used if
-the user has direct knowledge of an ongoing defoliation event when the
-trees were sampled.}
+\item{series_end_event}{Binary, defaults to `FALSE`. This option allows the
+user to identify an event ocuring at the time of sampling as a defoliation
+event, regardless of duration. Including it will help to quantify
+periodicity and extent of an outbreak. This should only be used if the user
+has direct knowledge of an ongoing defoliation event when the trees were
+sampled.}
 
-\item{list_output}{defaults to `FALSE`. This option is to output a long
-list object containing a separate data.frame for each series in
-`host_tree` that includes the input series and the
-`nonhost_chron`, the corrected series, and the character string
-identifying the defoliation events.}
+\item{list_output}{defaults to `FALSE`. This option is to output a long list
+object containing a separate data.frame for each series in `host_tree` that
+includes the input series and the `nonhost_chron`, the corrected series, and
+the character string identifying the defoliation events.}
 }
 \value{
 By default this returns a long-form data frame of tree-level growth
-  suppression indices and identified defoliation events. If `list_output = TRUE`,
-  it returns a list object with each element containing a data.frame
-  rwl object of the host and non-host series, plus the outputs from
-  [gsi()]. The list object is useful for assessing the effects of running
-  [gsi()] on the host and nonhost data.
+ suppression indices and identified defoliation events. If `list_output =
+ TRUE`, it returns a list object with each element containing a data.frame
+ rwl object of the host and non-host series, plus the outputs from [gsi()].
+ The list object is useful for assessing the effects of running [gsi()] on
+ the host and nonhost data.
 }
 \description{
 Identify defoliation events in host trees
 }
 \note{
-Other functions in `dfoliatR``, like [outbreak()] and
-  [plot_defol()], require a long-form data frame identifiable as a
-  [defol()] object. Selecting `list_output = TRUE` will trigger
-  errors in running other functions.
+Other functions in `dfoliatR``, like [outbreak()] and [plot_defol()],
+ require a long-form data frame identifiable as a [defol()] object. Selecting
+ `list_output = TRUE` will trigger errors in running other functions.
 }

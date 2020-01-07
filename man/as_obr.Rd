@@ -8,8 +8,8 @@ as_obr(x)
 }
 \arguments{
 \item{x}{A data frame or list-like object to cast. Must have named elements
-for "year", "samp_depth", "num_defol", "perc_defol", "num_max_defol", "perc_max_defol",
-"mean_gsi", "mean_ngsi", "outbreak_status".}
+for "year", "samp_depth", "num_defol", "perc_defol", "num_max_defol",
+"perc_max_defol", "mean_gsi", "mean_ngsi", "outbreak_status".}
 }
 \value{
 `x` cast to an `obr` object

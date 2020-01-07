@@ -1,4 +1,4 @@
-context('Defoliate trees')
+context("Defoliate trees")
 library(dfoliatR)
 
 data("ef_defol")
@@ -15,5 +15,3 @@ test_that("gsi calculates the growth stress index consistently", {
 test_that("id_defoliation runs consistently", {
   expect_equal(test_defol$defol_status, ef_defol$defol_status)
 })
-
-

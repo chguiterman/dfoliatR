@@ -13,21 +13,22 @@ id_defoliation(input_series, duration_years = 8, max_reduction = -1.28,
 \item{duration_years}{the minimum length of time in which the tree is
 considered to be in defoliation}
 
-\item{max_reduction}{minimum value of ngsi required to be considered a defoliation
-event. If a sequence of negative ngsi values does not reach this threshold,
-the potential event is rejected. Defaults to -1.28}
+\item{max_reduction}{minimum value of ngsi required to be considered a
+defoliation event. If a sequence of negative ngsi values does not reach
+this threshold, the potential event is rejected. Defaults to -1.28}
 
 \item{bridge_events}{Binary, defaults to `FALSE`. This option allows for
-successive events that are separated by a single year to be bridged and become one
-event. It should be used cautiously and closely evaluated to ensure the
-likelihood that the two (or more) events are actually one long event.}
+successive events that are separated by a single year to be bridged and
+become one event. It should be used cautiously and closely evaluated to
+ensure the likelihood that the two (or more) events are actually one long
+event.}
 
-\item{series_end_event}{Binary, defaults to `FALSE`. This option allows
-the user to identify an event ocuring at the time of sampling as a
-defoliation event, regardless of duration. Including it will help to
-quantify periodicity and extent of an outbreak. This should only be used if
-the user has direct knowledge of an ongoing defoliation event when the
-trees were sampled.}
+\item{series_end_event}{Binary, defaults to `FALSE`. This option allows the
+user to identify an event ocuring at the time of sampling as a defoliation
+event, regardless of duration. Including it will help to quantify
+periodicity and extent of an outbreak. This should only be used if the user
+has direct knowledge of an ongoing defoliation event when the trees were
+sampled.}
 }
 \value{
 after performing runs analyses, the function adds a column to the

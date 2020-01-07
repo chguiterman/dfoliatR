@@ -6,21 +6,21 @@
 #'
 #' @export
 sample_depth <- function(x) {
-  if(!is.defol(x)) stop("x must be a defol object")
+  if (!is.defol(x)) stop("x must be a defol object")
   x_stats <- defol_stats(x)
   n_trees <- nrow(x_stats)
   out <- data.frame(year = min(x_stats$first):max(x_stats$last))
-  for(i in 1:n_trees){
+  for (i in 1:n_trees) {
     yrs <- x_stats[i, ]$first : x_stats[i, ]$last
     treespan <- data.frame(year = yrs, z = 1)
     names(treespan)[2] <- paste(x_stats$series[i])
-    out <- merge(out, treespan, by=c('year'), all=TRUE)
+    out <- merge(out, treespan, by = c("year"), all = TRUE)
   }
-  if(n_trees > 1){
-    out$samp_depth <- rowSums(out[, -1], na.rm=TRUE)
+  if (n_trees > 1) {
+    out$samp_depth <- rowSums(out[, -1], na.rm = TRUE)
   }
   else out$samp_depth <- out[, -1]
-  out <- subset(out, select=c('year', 'samp_depth'))
+  out <- subset(out, select = c("year", "samp_depth"))
   return(out)
 }
 
@@ -32,13 +32,13 @@ sample_depth <- function(x) {
 #'
 #' @export
 defol_stats <- function(x) {
-  if(!is.defol(x)) stop("x must be a defol object")
-  out <- plyr::ddply(x, c('series'), function(df) {
+  if (!is.defol(x)) stop("x must be a defol object")
+  out <- plyr::ddply(x, c("series"), function(df) {
     first <- min(df$year)
     last <- max(df$year)
     years <- length(df$year)
     count <- plyr::count(df, "defol_status")
-    if(nrow(count) == 1){ # No defols
+    if (nrow(count) == 1) { # No defols
       sts <- c(first, last, years, 0, 0, 0)
     }
     else {
@@ -49,7 +49,13 @@ defol_stats <- function(x) {
     }
     return(sts)
   })
-  names(out) <- c("series", "first", "last", "years", "num_events", "tot_years", "mean_duration")
+  names(out) <- c("series",
+                  "first",
+                  "last",
+                  "years",
+                  "num_events",
+                  "tot_years",
+                  "mean_duration")
   return(out)
 }
 
@@ -60,21 +66,21 @@ defol_stats <- function(x) {
 #' @importFrom rlang .data
 #'
 #' @export
-get_defol_events <- function(x){
-  if(!is.defol(x)) stop("x must be a defol object")
+get_defol_events <- function(x) {
+  if (!is.defol(x)) stop("x must be a defol object")
   defol_events <- c("defol", "max_defol", "bridge_defol", "series_end_defol")
   all_series <- defol_stats(x)
   event_series <- dplyr::filter(all_series, .data$num_events > 0)
-  event_list <- lapply(event_series$series, function(i){
+  event_list <- lapply(event_series$series, function(i) {
     dat <- dplyr::filter(x, .data$series == i)
     event_tbl <- dplyr::mutate(events_table(dat$defol_status, defol_events),
                                series = i,
                                start_year = dat$year[.data$starts],
                                end_year = dat$year[.data$ends])
-    event_tbl$ngsi_mean <- unlist(lapply(seq(nrow(event_tbl)), function(j){
+    event_tbl$ngsi_mean <- unlist(lapply(seq(nrow(event_tbl)), function(j) {
       period <- event_tbl[j, ]$start_year : event_tbl[j, ]$end_year
       ngsi <- dat[dat$year %in% period, ]$ngsi
-      mean(ngsi, na.rm=TRUE)
+      mean(ngsi, na.rm = TRUE)
     }))
     return(event_tbl)
   })
@@ -91,32 +97,39 @@ get_defol_events <- function(x){
   defol_table[order(defol_table$series), ]
 }
 
-#' Outbreak statistics
+#'Outbreak statistics
 #'
-#' @param x An outbreak object after running \code{outbreak}
+#'@param x An outbreak object after running \code{outbreak}
 #'
-#' @return A data.frame with descriptive statistics for each outbreak event determined by \code{outbreak},
-#'  including start and end years, duration, the year with the most number of trees in the outbreak and its
-#'  associated tree count, and the year with the maximum growth suppression with its associated mean_ngsi value.
+#'@return A data.frame with descriptive statistics for each outbreak event
+#'  determined by \code{outbreak}, including start and end years, duration, the
+#'  year with the most number of trees in the outbreak and its associated tree
+#'  count, and the year with the maximum growth suppression with its associated
+#'  mean_ngsi value.
 #'
 #'@export
-outbreak_stats <- function(x){
-  if(!is.obr(x)) stop ("x must be an `obr` object")
+outbreak_stats <- function(x) {
+  if (!is.obr(x)) stop("x must be an `obr` object")
   events <- rle(x$outbreak_status == "outbreak")
   events_index <- cumsum(events$lengths)
   events_pos <- which(events$values == TRUE)
   ends <- events_index[events_pos]
-  newindex = ifelse(events_pos > 1, events_pos - 1, 0)
+  newindex <-  ifelse(events_pos > 1, events_pos - 1, 0)
   starts <- events_index[newindex] + 1
-  if (0 %in% newindex) starts = c(1,starts)
+  if (0 %in% newindex) starts <-  c(1, starts)
   deps <- data.frame(cbind(starts, ends))
   start_years <- x$year[starts]
   end_years <- x$year[ends]
   duration <- end_years - start_years + 1
-  peaks <- data.frame(matrix(NA, ncol=7, nrow=nrow(deps)))
-  names(peaks) <- c("num_trees_start", "perc_trees_start", "peak_outbreak_year",
-                    "num_trees_outbreak", "peak_defol_year", "min_gsi", "mean_ngsi")
-  for(i in 1:nrow(deps)){
+  peaks <- data.frame(matrix(NA, ncol = 7, nrow = nrow(deps)))
+  names(peaks) <- c("num_trees_start",
+                    "perc_trees_start",
+                    "peak_outbreak_year",
+                    "num_trees_outbreak",
+                    "peak_defol_year",
+                    "min_gsi",
+                    "mean_ngsi")
+  for (i in seq_len(nrow(deps))) {
     ob <- x[deps$starts[i] : deps$ends[i], ]
     peaks[i, 1] <- ob[1, ]$num_defol
     peaks[i, 2] <- ob[1, ]$perc_defol
