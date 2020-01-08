@@ -7,9 +7,9 @@
 gsi(input_series)
 }
 \arguments{
-\item{input_series}{data frame rwl objects with the host tree series as the
+\item{input_series}{A `dplr::rwl` object with the host tree series as the
 first column and the non-host chronology as the second. Years should be the
-row names.}
+row names. This is specifically created by [defoliate_trees()] and passed to [gsi()].}
 }
 \value{
 A data frame with the two input columns (host and nonhost series) and
