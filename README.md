@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/chguiterman/dfoliatR.svg?branch=master)](https://travis-ci.org/chguiterman/dfoliatR)
 [![Coverage Status](https://coveralls.io/repos/github/chguiterman/dfoliatR/badge.svg?branch=master)](https://coveralls.io/github/chguiterman/dfoliatR?branch=master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![DOI](https://zenodo.org/badge/104808563.svg)](https://zenodo.org/badge/latestdoi/104808563)
+
 
 `dfoliatR` provides dendrochronologists with tools for identifying and analyzing the signatures of insect defoliators preserved in tree rings. The methods it employs closely follow (or exactly replicate) OUTBREAK, a Fortran program available from the [Dendrochronological Program Library](https://www.ltrr.arizona.edu/pub/dpl/). 
 
