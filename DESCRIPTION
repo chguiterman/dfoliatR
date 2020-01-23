@@ -1,7 +1,7 @@
 Package: dfoliatR
 Type: Package
 Title: Detection and analysis of insect defoliation in tree rings
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: c(person("Chris", "Guiterman", email = "chguiterman@email.arizona.edu", role = c("aut", "cre")),
             person("Ann", "Lynch", role = "aut"),
             person("Jodi", "Axelson", role = "aut"))
@@ -10,7 +10,7 @@ URL: http://github.com/chguiterman/dfoliatR
 BugReports: http://github.com/chguiterman/dfoliatR/issues
 Depends:
     R (>= 3.2)
-License: GPL (>= 3)
+License: MIT + file LICENSE
 Suggests:
     testthat,
     vdiffr,
