@@ -12,6 +12,10 @@
 * Add new constructor functions to (re)establish object classes for defol and outbreak. This is particularly useful when batch processing with {purrr} functions like `map`
 * Changed the `outbreak` object code to `obr`. And updated several functions to account for the change.
 * Bug fix in `get_defol_events()` to pass non-defoliated series through to final table.
+* Spell check and code flow fixes
+* Added MIT License
+* Adding Zenodo DOI
+* Ready for v.0.0.4
 
 
 # dfoliatR v0.0.3
