@@ -7,7 +7,7 @@
 \method{plot}{defol}(...)
 }
 \arguments{
-\item{...}{arguments passed to \code{plot_defol}}
+\item{...}{arguments passed to \code{\link[=plot_defol]{plot_defol()}}}
 }
 \description{
 Plot a \code{defol} object

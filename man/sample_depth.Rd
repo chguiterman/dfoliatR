@@ -7,11 +7,16 @@
 sample_depth(x)
 }
 \arguments{
-\item{x}{A defol object.}
+\item{x}{A \code{defol} object.}
 }
 \value{
 A data.frame containing the years and number of trees
 }
 \description{
 Calculate the sample depth of a defol object
+}
+\examples{
+data("dmj_defol")
+head(sample_depth(dmj_defol))
+
 }

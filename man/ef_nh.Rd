@@ -4,12 +4,12 @@
 \name{ef_nh}
 \alias{ef_nh}
 \title{East Fork Jemez area ponderosa pine}
-\format{An `rwl` chronology object with 1 series, 1612-1987. Standardized in
-  ARSTAN.}
+\format{An \code{rwl} chronology object with 1 series, 1612-1987. Standardized in
+ARSTAN.}
 \usage{
 ef_nh
 }
 \description{
-Non-host pair chronology for East Fork Douglas-fir `ef_h`
+Non-host pair chronology for East Fork Douglas-fir \code{ef_h}
 }
 \keyword{datasets}

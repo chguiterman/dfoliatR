@@ -9,9 +9,9 @@
 dmj_obr
 }
 \description{
-Produced by running `outbreak(dmj_defol)`
+Produced by running \code{outbreak(dmj_defol)}
 }
 \details{
-@format An `outbreak` object with 323 rows and 9 columns
+@format An \code{outbreak} object with 323 rows and 9 columns
 }
 \keyword{datasets}

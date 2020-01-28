@@ -9,52 +9,51 @@ defoliate_trees(host_tree, nonhost_chron, duration_years = 8,
   series_end_event = FALSE, list_output = FALSE)
 }
 \arguments{
-\item{host_tree}{A `dplR::rwl` object containing the tree-level growth
+\item{host_tree}{A \code{dplR::rwl} object containing the tree-level growth
 series for all host trees to be compared to the non-host chronology.}
 
-\item{nonhost_chron}{A `dplR::rwl` object comtaining a single non-host
+\item{nonhost_chron}{A \code{dplR::rwl} object comtaining a single non-host
 chronology.}
 
 \item{duration_years}{The minimum length of time in which the tree is
 considered to be in defoliation.}
 
-\item{max_reduction}{The minimum value of `ngsi` required to be considered a
+\item{max_reduction}{The minimum value of \code{ngsi} required to be considered a
 defoliation event. If a sequence of negative ngsi values does not reach
 this threshold, the potential event is rejected. Defaults to -1.28.}
 
-\item{bridge_events}{Binary, defaults to `FALSE`. This option allows for
+\item{bridge_events}{Binary, defaults to \code{FALSE}. This option allows for
 successive events that are separated by a single year to be bridged and
 become one event. It should be used cautiously and closely evaluated to
 ensure the likelihood that the two (or more) events are actually one long
 event.}
 
-\item{series_end_event}{Binary, defaults to `FALSE`. This option allows the
+\item{series_end_event}{Binary, defaults to \code{FALSE}. This option allows the
 user to identify an event ocuring at the time of sampling as a defoliation
 event, regardless of duration. Including it will help to quantify
 periodicity and extent of an outbreak. This should only be used if the user
 has direct knowledge of an ongoing defoliation event when the trees were
 sampled.}
 
-\item{list_output}{Defaults to `FALSE`. This option is to output a long list
-object containing a separate data.frame for each series in `host_tree` that
-includes the input series and the `nonhost_chron`, the corrected series, and
+\item{list_output}{Defaults to \code{FALSE}. This option is to output a long list
+object containing a separate data.frame for each series in \code{host_tree} that
+includes the input series and the \code{nonhost_chron}, the corrected series, and
 the character string identifying the defoliation events.}
 }
 \value{
 By default this returns a long-form data frame of tree-level growth
- suppression indices and identified defoliation events. If `list_output =
- TRUE`, it returns a list object with each element containing a data.frame
- rwl object of the host and non-host series, plus the outputs from [gsi()].
- The list object is useful for assessing the effects of running [gsi()] on
- the host and nonhost data.
+suppression indices and identified defoliation events. If \code{list_output = TRUE}, it returns a list object with each element containing a data.frame
+rwl object of the host and non-host series, plus the outputs from \code{\link[=gsi]{gsi()}}.
+The list object is useful for assessing the effects of running \code{\link[=gsi]{gsi()}} on
+the host and nonhost data.
 }
 \description{
 Identify defoliation events in host trees
 }
 \note{
-Other functions in `dfoliatR`, like [outbreak()] and [plot_defol()],
- require a long-form data frame identifiable as a [defol()] object. Selecting
- `list_output = TRUE` will trigger errors in running other functions.
+Other functions in \code{dfoliatR}, like \code{\link[=outbreak]{outbreak()}} and \code{\link[=plot_defol]{plot_defol()}},
+require a long-form data frame identifiable as a \code{\link[=defol]{defol()}} object. Selecting
+\code{list_output = TRUE} will trigger errors in running other functions.
 }
 \examples{
 # Load host and non-host data

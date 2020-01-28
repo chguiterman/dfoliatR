@@ -8,9 +8,9 @@ events in time}
 plot_defol(x, breaks)
 }
 \arguments{
-\item{x}{a \code{defol} object produced by \code{defoliate_trees}.}
+\item{x}{a \code{defol} object produced by \code{\link[=defoliate_trees]{defoliate_trees()}}.}
 
-\item{breaks}{a vector length two providing threshold (negative) `ngsi`
+\item{breaks}{a vector length two providing threshold (negative) \code{ngsi}
 values to separate minor, moderate, and severe defoliation events. If
 blank, the mean and 1st quartile are used.}
 }

@@ -7,14 +7,14 @@
 outbreak_stats(x)
 }
 \arguments{
-\item{x}{An outbreak object after running \code{outbreak}}
+\item{x}{An outbreak object after running \code{\link[=outbreak]{outbreak()}}}
 }
 \value{
 A data.frame with descriptive statistics for each outbreak event
- determined by \code{outbreak}, including start and end years, duration, the
- year with the most number of trees in the outbreak and its associated tree
- count, and the year with the maximum growth suppression with its associated
- mean_ngsi value.
+determined by \code{\link[=outbreak]{outbreak()}}, including start and end years, duration, the
+year with the most number of trees in the outbreak and its associated tree
+count, and the year with the maximum growth suppression with its associated
+"mean_ngsi" value.
 }
 \description{
 Outbreak statistics

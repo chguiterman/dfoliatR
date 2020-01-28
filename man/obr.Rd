@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{obr}
 \alias{obr}
-\title{Constructor for an `obr` object.}
+\title{Constructor for an \code{obr} object.}
 \usage{
 obr(year, samp_depth, num_defol, perc_defol, num_max_defol, perc_max_defol,
   mean_gsi, mean_ngsi, outbreak_status)
@@ -34,11 +34,11 @@ index across all observed trees.}
 
 \item{outbreak_status}{An n-length factor or character vector that identified
 whether that year surpasses the designated thresholds for an "outbreak
-event". Threshold criteria are provided in [outbreak()].}
+event". Threshold criteria are provided in \code{\link[=outbreak]{outbreak()}}.}
 }
 \value{
-An `obr` object with columns matching the input variables.
+An \code{obr} object with columns matching the input variables.
 }
 \description{
-Constructor for an `obr` object.
+Constructor for an \code{obr} object.
 }

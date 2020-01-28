@@ -1,8 +1,12 @@
 #' Calculate the sample depth of a defol object
 #'
-#' @param x A defol object.
+#' @param x A `defol` object.
 #'
 #' @return A data.frame containing the years and number of trees
+#'
+#' @examples
+#' data("dmj_defol")
+#' head(sample_depth(dmj_defol))
 #'
 #' @export
 sample_depth <- function(x) {
@@ -26,9 +30,13 @@ sample_depth <- function(x) {
 
 #' Descriptive statistics for defoliation trees
 #'
-#' @param x A defol object after running \code{defoliate_trees}.
+#' @param x A defol object after running [defoliate_trees()].
 #'
 #' @return A data frame containing tree/series-level statistics.
+#'
+#' @examples
+#' data("dmj_defol")
+#' head(defol_stats(dmj_defol))
 #'
 #' @export
 defol_stats <- function(x) {
@@ -61,7 +69,7 @@ defol_stats <- function(x) {
 
 #' Defoliation event list
 #'
-#' @param x a defol object
+#' @param x a `defol`` object
 #'
 #' @importFrom rlang .data
 #'
@@ -99,13 +107,13 @@ get_defol_events <- function(x) {
 
 #'Outbreak statistics
 #'
-#'@param x An outbreak object after running \code{outbreak}
+#'@param x An outbreak object after running [outbreak()]
 #'
 #'@return A data.frame with descriptive statistics for each outbreak event
-#'  determined by \code{outbreak}, including start and end years, duration, the
+#'  determined by [outbreak()], including start and end years, duration, the
 #'  year with the most number of trees in the outbreak and its associated tree
 #'  count, and the year with the maximum growth suppression with its associated
-#'  mean_ngsi value.
+#'  "mean_ngsi" value.
 #'
 #'@export
 outbreak_stats <- function(x) {

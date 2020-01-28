@@ -12,17 +12,17 @@ defol(year, series, gsi, ngsi, defol_status)
 \item{series}{An n-length factor or character vector of series names}
 
 \item{gsi}{An n-length numeric vector of growth suppression index, such as
-calculated by [gsi()]}
+calculated by \code{\link[=gsi]{gsi()}}}
 
 \item{ngsi}{An n-length numeric vector of normalized gsi, such as calculated
-by [gsi()].}
+by \code{\link[=gsi]{gsi()}}.}
 
 \item{defol_status}{An n-length factor or character vector denoting the
 defoliation event status of each year. This uses a controlled vocabulary,
-see `dfoliatR:::make_defol_status` for possible values.}
+see \code{dfoliatR:::make_defol_status} for possible values.}
 }
 \value{
-a tree-level `defol` object
+a tree-level \code{defol} object
 }
 \description{
 Constructor for S3 defol class

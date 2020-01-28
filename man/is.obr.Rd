@@ -10,7 +10,7 @@ is.obr(x)
 \item{x}{Any R object.}
 }
 \value{
-Boolean indicating whether `x` is an outbreak object.
+Boolean indicating whether \code{x} is an outbreak object.
 }
 \description{
 Check if object is outbreak, meaning site-level outbreak object

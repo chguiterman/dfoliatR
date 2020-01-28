@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{as.obr}
 \alias{as.obr}
-\title{Alias to [as_obr()]}
+\title{Alias to \code{\link[=as_obr]{as_obr()}}}
 \usage{
 as.obr(x)
 }
@@ -12,10 +12,10 @@ for "year", "samp_depth", "num_defol", "perc_defol", "num_max_defol",
 "perc_max_defol", "mean_gsi", "mean_ngsi", "outbreak_status".}
 }
 \value{
-`x` cast to an `obr` object
+\code{x} cast to an \code{obr} object
 }
 \description{
-Alias to [as_obr()]
+Alias to \code{\link[=as_obr]{as_obr()}}
 }
 \examples{
 data(dmj_obr)

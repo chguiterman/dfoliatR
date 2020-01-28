@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{is.defol}
 \alias{is.defol}
-\title{Check if object is tree-level defoliation object: `defol`}
+\title{Check if object is tree-level defoliation object: \code{defol}}
 \usage{
 is.defol(x)
 }
@@ -10,8 +10,8 @@ is.defol(x)
 \item{x}{Any R object.}
 }
 \value{
-Boolean indicating whether `x` is a defol object.
+Boolean indicating whether \code{x} is a defol object.
 }
 \description{
-Check if object is tree-level defoliation object: `defol`
+Check if object is tree-level defoliation object: \code{defol}
 }

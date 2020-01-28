@@ -9,9 +9,9 @@
 dmj_defol
 }
 \description{
-Produced by running `defoliate_trees(dmj_h, dmj_nh, series_end_events=TRUE)`
+Produced by running \code{defoliate_trees(dmj_h, dmj_nh, series_end_events=TRUE)}
 }
 \details{
-@format A `defol` object with 4267 rows and 5 columns
+@format A \code{defol} object with 4267 rows and 5 columns
 }
 \keyword{datasets}

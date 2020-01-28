@@ -1,6 +1,6 @@
 Package: dfoliatR
 Type: Package
-Title: Detection and analysis of insect defoliation in tree rings
+Title: Detection and Analysis of Insect Defoliation in Tree Rings
 Version: 0.0.4
 Authors@R: c(person("Chris", "Guiterman", email = "chguiterman@email.arizona.edu", role = c("aut", "cre")),
             person("Ann", "Lynch", role = "aut"),
@@ -31,3 +31,4 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)

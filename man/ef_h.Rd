@@ -4,8 +4,8 @@
 \name{ef_h}
 \alias{ef_h}
 \title{East Fork Jemez River Douglas-fir}
-\format{An `rwl` object with 15 tree-level series, standardized in ARSTAN.
-  Dates range from 1776-1987.}
+\format{An \code{rwl} object with 15 tree-level series, standardized in ARSTAN.
+Dates range from 1776-1987.}
 \usage{
 ef_h
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{as.defol}
 \alias{as.defol}
-\title{Alias to [as_defol()]}
+\title{Alias to \code{\link[=as_defol]{as_defol()}}}
 \usage{
 as.defol(x)
 }
@@ -11,10 +11,10 @@ as.defol(x)
 for "year", "series", "gsi", "ngsi", and "defol_status".}
 }
 \value{
-`x` cast to a `defol` object
+\code{x} cast to a \code{defol} object
 }
 \description{
-Alias to [as_defol()]
+Alias to \code{\link[=as_defol]{as_defol()}}
 }
 \examples{
 data(dmj_defol)

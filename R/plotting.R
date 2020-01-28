@@ -1,7 +1,7 @@
 #' Produce a Gantt plot of individual tree-ring series to show defoliation
 #' events in time
 #'
-#' @param x a \code{defol} object produced by \code{defoliate_trees}.
+#' @param x a `defol` object produced by [defoliate_trees()].
 #' @param breaks a vector length two providing threshold (negative) `ngsi`
 #'   values to separate minor, moderate, and severe defoliation events. If
 #'   blank, the mean and 1st quartile are used.
@@ -59,10 +59,10 @@ plot_defol <- function(x, breaks) {
 #' Produce a stacked plot to present composited, site-level insect outbreak
 #' chronologies
 #'
-#' @param x an 'outbreak' object produced by \code{outbreak}
+#' @param x an 'outbreak' object produced by [outbreak()]
 #' @param disp_index Identify the timeseries index to plot. Defaults to
-#'   \code{mean_ngsi}, the average normalized growth suppression index for the
-#'   site. The only other option is \code{mean_gsi}, the average growth
+#'   `mean_ngsi`, the average normalized growth suppression index for the
+#'   site. The only other option is `mean_gsi`, the average growth
 #'   suppression index.
 #'
 #' @importFrom rlang .data
@@ -125,9 +125,9 @@ plot_outbreak <- function(x, disp_index = "mean_ngsi") {
   ggpubr::ggarrange(index, prop, line, nrow = 3, align = "v")
 }
 
-#' Plot a \code{defol} object
+#' Plot a `defol` object
 #'
-#' @param ... arguments passed to \code{plot_defol}
+#' @param ... arguments passed to [plot_defol()]
 #'
 #' @export
 plot.defol <- function(...) {

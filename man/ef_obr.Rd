@@ -4,11 +4,11 @@
 \name{ef_obr}
 \alias{ef_obr}
 \title{East Fork outbreak object}
-\format{An `outbreak` object with 221 rows and 9 columns}
+\format{An \code{outbreak} object with 221 rows and 9 columns}
 \usage{
 ef_obr
 }
 \description{
-Produced by running `outbreak(ef_defol)`
+Produced by running \code{outbreak(ef_defol)}
 }
 \keyword{datasets}

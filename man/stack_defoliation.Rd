@@ -7,7 +7,7 @@
 stack_defoliation(x)
 }
 \arguments{
-\item{x}{a list object created by [defoliate_trees()]}
+\item{x}{a list object created by \code{\link[=defoliate_trees]{defoliate_trees()}}}
 }
 \value{
 a defol object (long-format data frame)

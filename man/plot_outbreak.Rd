@@ -8,7 +8,7 @@ chronologies}
 plot_outbreak(x, disp_index = "mean_ngsi")
 }
 \arguments{
-\item{x}{an 'outbreak' object produced by \code{outbreak}}
+\item{x}{an 'outbreak' object produced by \code{\link[=outbreak]{outbreak()}}}
 
 \item{disp_index}{Identify the timeseries index to plot. Defaults to
 \code{mean_ngsi}, the average normalized growth suppression index for the
