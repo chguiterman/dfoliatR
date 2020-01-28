@@ -1,9 +1,20 @@
 #'Identify defoliation events in host trees
 #'
-#'@param host_tree A `dplR::rwl` object containing the tree-level growth
-#'  series for all host trees to be compared to the non-host chronology.
+#'[defoliate_trees()] is the starting point for most analyses of insect
+#'defoliation signals preserved in the growth patterns of trees. It requires
+#'individual-tree standardized measurements from potential host trees and a
+#'tree-ring chronology from a nearby non-host species. First, [defoliate_trees()]
+#'combines these tree-ring indices by calling [gsi()] to perform a
+#'"correction" of the host-tree indices to remove the climatic influences on
+#'tree growth as represented by the non-host chronology. This should isolate a
+#'disturbance-related signal. Second, [defoliate_trees()], runs [id_defoliation()], which completes a
+#'runs analyses to evaluate sequences of negetive departures in the host tree growth series (`ngsi`)
+#'for potential defoliation events.
 #'
-#'@param nonhost_chron A `dplR::rwl` object comtaining a single non-host
+#'@param host_tree A `dplR::rwl` object containing the tree-level growth series
+#'  for all host trees to be compared to the non-host chronology.
+#'
+#'@param nonhost_chron A `dplR::rwl` object containing a single non-host
 #'  chronology.
 #'
 #'@inheritParams id_defoliation
@@ -66,6 +77,12 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
 
 #' Composite defoliation series to determine outbreak events
 #'
+#' [outbreak()] takes a `defol` object from
+#' [defoliate_trees()] and composites it into a site-level object.
+#' Function parameters allow the user to filter the tree-level series in various
+#' ways to optimize thresholds of what constitutes an "outbreak" level event
+#' recorded by the host trees.
+#'
 #' @param x a defol object
 #'
 #' @param filter_perc the minimum percentage of defoliated trees to be
@@ -77,6 +94,23 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
 #' @param filter_min_defol The minimum number of trees recording a defoliation
 #'   event. Default is 1 tree.
 #'
+#' @return A data.frame `obr` object for the site that includes all trees in the
+#'   host `defol` object. Columns in the `obr` include:
+#'
+#'   \enumerate{ \item `year` for every year in the set of host trees, \item
+#'   `num_defol` the number of trees recording a defoliation event, \item
+#'   `percent_defol` the percent of trees recording a defoliation, \item
+#'   `num_max_defol` the number of trees recording a maximum growth suppression
+#'   (or peak of that event on that tree), \item `perc_max_defol` the percent of
+#'   trees at maximum defoliation, \item `mean_gsi` the average of all trees
+#'   growth suppression index (`gsi`), \item `mean_ngsi` the average of all
+#'   trees normalized growth suppression index (`ngsi`), \item `outbreak_status`
+#'   whether that year constitutes an outbreak based on the filters applied to
+#'   the function.}
+#'
+#' @examples
+#' data("dmj_obr")
+#' head(outbreak(dmj_obr))
 #'
 #' @importFrom rlang .data
 #'

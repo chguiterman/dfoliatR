@@ -24,11 +24,11 @@ ensure the likelihood that the two (or more) events are actually one long
 event.}
 
 \item{series_end_event}{Binary, defaults to \code{FALSE}. This option allows the
-user to identify an event ocuring at the time of sampling as a defoliation
-event, regardless of duration. Including it will help to quantify
-periodicity and extent of an outbreak. This should only be used if the user
-has direct knowledge of an ongoing defoliation event when the trees were
-sampled.}
+user to identify an event occurring at the time of sampling as a
+defoliation event, regardless of duration. Including it will help to
+quantify periodicity and extent of an outbreak. This should only be used if
+the user has direct knowledge of an ongoing defoliation event when the
+trees were sampled.}
 }
 \value{
 After performing runs analyses, the function adds a column to the
@@ -39,13 +39,13 @@ within the event).
 \description{
 After calculating the growth suppression index in \code{\link[=gsi]{gsi()}}, \code{\link[=id_defoliation]{id_defoliation()}}
 performs a runs analysis on the normalized growth suppression index, or
-\code{ngsi}, in which sequences of negative departires are assessed as possible
+\code{ngsi}, in which sequences of negative departures are assessed as possible
 defoliation events. \code{\link[=id_defoliation]{id_defoliation()}} is the workhorse for
-\code{\link[=defoliate_trees]{defoliate_trees()}}, performing much od the necessary criteria evaluation
+\code{\link[=defoliate_trees]{defoliate_trees()}}, performing much of the necessary criteria evaluation
 used in OUTBREAK. The defaults for most parameters originate from OUTBREAK.
 Two new features distinguish the \code{dfoliatR} version: bridging events that
 occur in close sequence and allowing for the recent end of a series to be
-evaluted for defoliation regardless of the event duration. See paramter
+evaluated for defoliation regardless of the event duration. See parameter
 specifics for details.
 }
 \note{

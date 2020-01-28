@@ -9,10 +9,10 @@ defoliate_trees(host_tree, nonhost_chron, duration_years = 8,
   series_end_event = FALSE, list_output = FALSE)
 }
 \arguments{
-\item{host_tree}{A \code{dplR::rwl} object containing the tree-level growth
-series for all host trees to be compared to the non-host chronology.}
+\item{host_tree}{A \code{dplR::rwl} object containing the tree-level growth series
+for all host trees to be compared to the non-host chronology.}
 
-\item{nonhost_chron}{A \code{dplR::rwl} object comtaining a single non-host
+\item{nonhost_chron}{A \code{dplR::rwl} object containing a single non-host
 chronology.}
 
 \item{duration_years}{The minimum length of time in which the tree is
@@ -29,11 +29,11 @@ ensure the likelihood that the two (or more) events are actually one long
 event.}
 
 \item{series_end_event}{Binary, defaults to \code{FALSE}. This option allows the
-user to identify an event ocuring at the time of sampling as a defoliation
-event, regardless of duration. Including it will help to quantify
-periodicity and extent of an outbreak. This should only be used if the user
-has direct knowledge of an ongoing defoliation event when the trees were
-sampled.}
+user to identify an event occurring at the time of sampling as a
+defoliation event, regardless of duration. Including it will help to
+quantify periodicity and extent of an outbreak. This should only be used if
+the user has direct knowledge of an ongoing defoliation event when the
+trees were sampled.}
 
 \item{list_output}{Defaults to \code{FALSE}. This option is to output a long list
 object containing a separate data.frame for each series in \code{host_tree} that
@@ -48,7 +48,16 @@ The list object is useful for assessing the effects of running \code{\link[=gsi]
 the host and nonhost data.
 }
 \description{
-Identify defoliation events in host trees
+\code{\link[=defoliate_trees]{defoliate_trees()}} is the starting point for most analyses of insect
+defoliation signals preserved in the growth patterns of trees. It requires
+individual-tree standardized measurements from potential host trees and a
+tree-ring chronology from a nearby non-host species. First, \code{\link[=defoliate_trees]{defoliate_trees()}}
+combines these tree-ring indices by calling \code{\link[=gsi]{gsi()}} to perform a
+"correction" of the host-tree indices to remove the climatic influences on
+tree growth as represented by the non-host chronology. This should isolate a
+disturbance-related signal. Second, \code{\link[=defoliate_trees]{defoliate_trees()}}, runs \code{\link[=id_defoliation]{id_defoliation()}}, which completes a
+runs analyses to evaluate sequences of negetive departures in the host tree growth series (\code{ngsi})
+for potential defoliation events.
 }
 \note{
 Other functions in \code{dfoliatR}, like \code{\link[=outbreak]{outbreak()}} and \code{\link[=plot_defol]{plot_defol()}},

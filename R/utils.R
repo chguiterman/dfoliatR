@@ -49,13 +49,13 @@ gsi <- function(input_series) {
 #'
 #' After calculating the growth suppression index in [gsi()], [id_defoliation()]
 #' performs a runs analysis on the normalized growth suppression index, or
-#' `ngsi`, in which sequences of negative departires are assessed as possible
+#' `ngsi`, in which sequences of negative departures are assessed as possible
 #' defoliation events. [id_defoliation()] is the workhorse for
-#' [defoliate_trees()], performing much od the necessary criteria evaluation
+#' [defoliate_trees()], performing much of the necessary criteria evaluation
 #' used in OUTBREAK. The defaults for most parameters originate from OUTBREAK.
 #' Two new features distinguish the `dfoliatR` version: bridging events that
 #' occur in close sequence and allowing for the recent end of a series to be
-#' evaluted for defoliation regardless of the event duration. See paramter
+#' evaluated for defoliation regardless of the event duration. See parameter
 #' specifics for details.
 #'
 #' @note [id_defoliation()] is called by [defoliate_trees()]. It might only be
@@ -77,11 +77,11 @@ gsi <- function(input_series) {
 #'   event.
 #'
 #' @param series_end_event Binary, defaults to `FALSE`. This option allows the
-#'   user to identify an event ocuring at the time of sampling as a defoliation
-#'   event, regardless of duration. Including it will help to quantify
-#'   periodicity and extent of an outbreak. This should only be used if the user
-#'   has direct knowledge of an ongoing defoliation event when the trees were
-#'   sampled.
+#'   user to identify an event occurring at the time of sampling as a
+#'   defoliation event, regardless of duration. Including it will help to
+#'   quantify periodicity and extent of an outbreak. This should only be used if
+#'   the user has direct knowledge of an ongoing defoliation event when the
+#'   trees were sampled.
 #'
 #' @return After performing runs analyses, the function adds a column to the
 #'   input data frame that distinguishes years of defoliation and the maximum

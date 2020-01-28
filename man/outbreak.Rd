@@ -19,6 +19,30 @@ event. Default is 3 trees.}
 \item{filter_min_defol}{The minimum number of trees recording a defoliation
 event. Default is 1 tree.}
 }
+\value{
+A data.frame \code{obr} object for the site that includes all trees in the
+host \code{defol} object. Columns in the \code{obr} include:
+
+\enumerate{ \item \code{year} for every year in the set of host trees, \item
+\code{num_defol} the number of trees recording a defoliation event, \item
+\code{percent_defol} the percent of trees recording a defoliation, \item
+\code{num_max_defol} the number of trees recording a maximum growth suppression
+(or peak of that event on that tree), \item \code{perc_max_defol} the percent of
+trees at maximum defoliation, \item \code{mean_gsi} the average of all trees
+growth suppression index (\code{gsi}), \item \code{mean_ngsi} the average of all
+trees normalized growth suppression index (\code{ngsi}), \item \code{outbreak_status}
+whether that year constitutes an outbreak based on the filters applied to
+the function.}
+}
 \description{
-Composite defoliation series to determine outbreak events
+\code{\link[=outbreak]{outbreak()}} takes a \code{defol} object from
+\code{\link[=defoliate_trees]{defoliate_trees()}} and composites it into a site-level object.
+Function parameters allow the user to filter the tree-level series in various
+ways to optimize thresholds of what constitutes an "outbreak" level event
+recorded by the host trees.
+}
+\examples{
+data("dmj_obr")
+head(outbreak(dmj_obr))
+
 }
