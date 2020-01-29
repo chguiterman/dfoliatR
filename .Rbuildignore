@@ -6,3 +6,4 @@
 ^\_config\.yml$
 ^doc$
 ^Meta$
+^cran-comments\.md$
