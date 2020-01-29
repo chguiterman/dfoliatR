@@ -42,7 +42,7 @@ ways to optimize thresholds of what constitutes an "outbreak" level event
 recorded by the host trees.
 }
 \examples{
-data("dmj_obr")
-head(outbreak(dmj_obr))
+data("dmj_defol")
+head(outbreak(dmj_defol))
 
 }
