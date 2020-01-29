@@ -109,8 +109,8 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
 #'   the function.}
 #'
 #' @examples
-#' data("dmj_obr")
-#' head(outbreak(dmj_obr))
+#' data("dmj_defol")
+#' head(outbreak(dmj_defol))
 #'
 #' @importFrom rlang .data
 #'
