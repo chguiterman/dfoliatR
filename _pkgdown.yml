@@ -4,7 +4,7 @@ template:
   params:
     bootswatch: flatly
 reference:
-  - title: "Performance"
+  - title: "Usage"
     desc: >
       Identifying insect defoliation and outbreak events in tree-ing growth patterns is the goal of dfoliatR.
       Two functions perform the majority of the workload. They take indexed tree-ring data and find tree-level

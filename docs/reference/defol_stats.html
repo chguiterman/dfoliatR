@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dfoliatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -99,12 +99,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/chguiterman/dfoliatR">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -119,7 +114,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Descriptive statistics for defoliation trees</h1>
-    <small class="dont-index">Source: <a href='https://github.com/chguiterman/dfoliatR/blob/master/R/stats.R'><code>R/stats.R</code></a></small>
+    
     <div class="hidden name"><code>defol_stats.Rd</code></div>
     </div>
 
@@ -136,7 +131,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A defol object after running <code>defoliate_trees</code>.</p></td>
+      <td><p>A defol object after running <code><a href='defoliate_trees.html'>defoliate_trees()</a></code>.</p></td>
     </tr>
     </table>
     
@@ -145,6 +140,16 @@
     <p>A data frame containing tree/series-level statistics.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"dmj_defol"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>defol_stats</span>(<span class='no'>dmj_defol</span>))</div><div class='output co'>#&gt;   series first last years num_events tot_years mean_duration
+#&gt; 1  DMJ01  1810 1996   187          4        50            12
+#&gt; 2  DMJ02  1750 1996   247          6        75            12
+#&gt; 3  DMJ03  1830 1996   167          4        42            10
+#&gt; 4  DMJ04  1720 1996   277          8        90            11
+#&gt; 5  DMJ06  1700 1996   297          6        81            14
+#&gt; 6  DMJ07  1710 1996   287          7        96            14</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
@@ -152,7 +157,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

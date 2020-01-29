@@ -34,7 +34,16 @@
 
 <meta property="og:title" content="Identify defoliation events in host trees — defoliate_trees" />
 
-<meta property="og:description" content="Identify defoliation events in host trees" />
+<meta property="og:description" content="defoliate_trees() is the starting point for most analyses of insect
+defoliation signals preserved in the growth patterns of trees. It requires
+individual-tree standardized measurements from potential host trees and a
+tree-ring chronology from a nearby non-host species. First, defoliate_trees()
+combines these tree-ring indices by calling gsi() to perform a
+&quot;correction&quot; of the host-tree indices to remove the climatic influences on
+tree growth as represented by the non-host chronology. This should isolate a
+disturbance-related signal. Second, defoliate_trees(), runs id_defoliation(), which completes a
+runs analyses to evaluate sequences of negetive departures in the host tree growth series (ngsi)
+for potential defoliation events." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -66,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dfoliatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -99,12 +108,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/chguiterman/dfoliatR">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -119,13 +123,22 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Identify defoliation events in host trees</h1>
-    <small class="dont-index">Source: <a href='https://github.com/chguiterman/dfoliatR/blob/master/R/main.R'><code>R/main.R</code></a></small>
+    
     <div class="hidden name"><code>defoliate_trees.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Identify defoliation events in host trees</p>
+    <p><code>defoliate_trees()</code> is the starting point for most analyses of insect
+defoliation signals preserved in the growth patterns of trees. It requires
+individual-tree standardized measurements from potential host trees and a
+tree-ring chronology from a nearby non-host species. First, <code>defoliate_trees()</code>
+combines these tree-ring indices by calling <code><a href='gsi.html'>gsi()</a></code> to perform a
+"correction" of the host-tree indices to remove the climatic influences on
+tree growth as represented by the non-host chronology. This should isolate a
+disturbance-related signal. Second, <code>defoliate_trees()</code>, runs <code><a href='id_defoliation.html'>id_defoliation()</a></code>, which completes a
+runs analyses to evaluate sequences of negetive departures in the host tree growth series (<code>ngsi</code>)
+for potential defoliation events.</p>
     
     </div>
 
@@ -138,35 +151,37 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>host_tree</th>
-      <td><p>a data.frame rwl object containing the tree-level growth
-series for all host trees to be compared to the non-host chronology</p></td>
+      <td><p>A <code>dplR::rwl</code> object containing the tree-level growth series
+for all host trees to be compared to the non-host chronology.</p></td>
     </tr>
     <tr>
       <th>nonhost_chron</th>
-      <td><p>a data.frame rwl object comtaining a single non-host
-chronology</p></td>
+      <td><p>A <code>dplR::rwl</code> object containing a single non-host
+chronology.</p></td>
     </tr>
     <tr>
       <th>duration_years</th>
-      <td><p>the mimimum number of years in which to consider a
-defolation event</p></td>
+      <td><p>The minimum length of time in which the tree is
+considered to be in defoliation.</p></td>
     </tr>
     <tr>
       <th>max_reduction</th>
-      <td><p>the minimum level of tree growth to be considered in
-defoliation</p></td>
+      <td><p>The minimum value of <code>ngsi</code> required to be considered a
+defoliation event. If a sequence of negative ngsi values does not reach
+this threshold, the potential event is rejected. Defaults to -1.28.</p></td>
     </tr>
     <tr>
       <th>bridge_events</th>
-      <td><p>Binary, defaults to `FALSE`. This option allows for
-two successive events separated by a single year to be bridged and called one
-event. It should be used cautiously and closely evaluated to ensure the
-likelihood that the two events are actually one long event.</p></td>
+      <td><p>Binary, defaults to <code>FALSE</code>. This option allows for
+successive events that are separated by a single year to be bridged and
+become one event. It should be used cautiously and closely evaluated to
+ensure the likelihood that the two (or more) events are actually one long
+event.</p></td>
     </tr>
     <tr>
       <th>series_end_event</th>
-      <td><p>Binary, defaults to `FALSE`. This option allows
-the user to identify an event ocuring at the time of sampling as a
+      <td><p>Binary, defaults to <code>FALSE</code>. This option allows the
+user to identify an event occurring at the time of sampling as a
 defoliation event, regardless of duration. Including it will help to
 quantify periodicity and extent of an outbreak. This should only be used if
 the user has direct knowledge of an ongoing defoliation event when the
@@ -174,31 +189,34 @@ trees were sampled.</p></td>
     </tr>
     <tr>
       <th>list_output</th>
-      <td><p>defaults to `FALSE`. This option is to output a long
-list object containing a separate data.frame for each series in
-`host_tree` that includes the input series and the
-`nonhost_chron`, the corrected series, and the character string
-identifying the defoliation events.</p></td>
+      <td><p>Defaults to <code>FALSE</code>. This option is to output a long list
+object containing a separate data.frame for each series in <code>host_tree</code> that
+includes the input series and the <code>nonhost_chron</code>, the corrected series, and
+the character string identifying the defoliation events.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>By default this returns a long-form data frame of tree-level growth
-  suppression indices and identified defoliation events. If `list_output = TRUE`,
-  it returns a list object with each element containing a data.frame
-  rwl object of the host and non-host series, plus the outputs from
-  [gsi()]. The list object is useful for assessing the effects of running
-  [gsi()] on the host and nonhost data.</p>
+suppression indices and identified defoliation events. If <code>list_output = TRUE</code>, it returns a list object with each element containing a data.frame
+rwl object of the host and non-host series, plus the outputs from <code><a href='gsi.html'>gsi()</a></code>.
+The list object is useful for assessing the effects of running <code><a href='gsi.html'>gsi()</a></code> on
+the host and nonhost data.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Other functions in `dfoliatR``, like [outbreak()] and
-  [plot_defol()], require a long-form data frame identifiable as a
-  [defol()] object. Selecting `list_output = TRUE` will trigger
-  errors in running other functions.</p>
+    <p>Other functions in <code>dfoliatR</code>, like <code><a href='outbreak.html'>outbreak()</a></code> and <code><a href='plot_defol.html'>plot_defol()</a></code>,
+require a long-form data frame identifiable as a <code><a href='defol.html'>defol()</a></code> object. Selecting
+<code>list_output = TRUE</code> will trigger errors in running other functions.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Load host and non-host data</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"dmj_h"</span>) <span class='co'># Host trees</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"dmj_nh"</span>) <span class='co'># Non-host chronology</span>
+
+<span class='no'>dmj_defol</span> <span class='kw'>&lt;-</span> <span class='fu'>defoliate_trees</span>(<span class='no'>dmj_h</span>, <span class='no'>dmj_nh</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
@@ -208,7 +226,9 @@ identifying the defoliation events.</p></td>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#note">Note</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

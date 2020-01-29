@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dfoliatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -62,14 +62,7 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/chguiterman/dfoliatR">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
+<ul class="nav navbar-nav navbar-right"></ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -85,9 +78,9 @@
       <h1>Introduction to dfoliatR</h1>
                         <h4 class="author">Chris Guiterman</h4>
             
-            <h4 class="date">2019-12-17</h4>
+            <h4 class="date">2020-01-29</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/chguiterman/dfoliatR/blob/master/vignettes/intro-to-dfoliatR.Rmd"><code>vignettes/intro-to-dfoliatR.Rmd</code></a></small>
+      
       <div class="hidden name"><code>intro-to-dfoliatR.Rmd</code></div>
 
     </div>
@@ -98,11 +91,11 @@
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
 <p><code>dfoliatR</code> is not currently on CRAN. To install <code>dfoliatR</code> use the <code>devtools</code> package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)
-
-<span class="kw">install_github</span>(<span class="st">"chguiterman/dfoliatR"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">install_github</span>(<span class="st">"chguiterman/dfoliatR"</span>)</a></code></pre></div>
 <p>Once installed, <code>dfoliatR</code> can be called like any other R package</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dfoliatR)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dfoliatR)</a></code></pre></div>
 </div>
 <div id="data" class="section level3">
 <h3 class="hasAnchor">
@@ -115,7 +108,7 @@
 <p>Both host and non-host data should be formatted in R to match the <code>dplR::rwl</code> object type.</p>
 <p>Data are provided in <code>dfoliatR</code> to demonstrate some of the utilities of <code>dfoliatR</code>, courtesy of Dr. Ann Lynch.</p>
 <p>The first is a collection of Douglas-fir trees sampled for a reconstruction of western spruce budworm. It is paired with a ponderosa pine non-host chronology from a nearby site.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(dmj_h)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(dmj_h)</a></code></pre></div>
 <p>The host and non-host objects are directly from <code>dplR</code> in the form of <code>rwl</code> objects:</p>
 <table class="table">
 <thead><tr class="header">
@@ -264,7 +257,7 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(dmj_nh)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(dmj_nh)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -314,9 +307,9 @@
 </tbody>
 </table>
 <p>The <code>dfoliatR</code> package also includes a second site for users to explore:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(ef_h)
-
-<span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(ef_nh)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(ef_h)</a>
+<a class="sourceLine" id="cb5-2" title="2"></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(ef_nh)</a></code></pre></div>
 <p>All data created and presented in this vignette is available through the package by the object names used here.</p>
 </div>
 <div id="performance" class="section level3">
@@ -328,11 +321,11 @@
 <li><p>Composite host individual tree series to the site level to assess the scale of defoliation. Events recorded on more than a threshold number and/or percentage of trees (e.g., 25%) are considered outbreaks.</p></li>
 </ol>
 <p>To identify defoliation events, input the set of host tree series and the non-host chronology into the <code><a href="../reference/defoliate_trees.html">defoliate_trees()</a></code> function. Some parameters regarding the length and severity of growth departure can be changed by the user. The parameter defaults follow those in OUTBREAK (negative departures for 8 or more years, at least one reaching -1.28 standard deviations, and allowing 1 positive excursion before and after the greatest departure). Definitions of the function parameters are provided with <code><a href="../reference/defoliate_trees.html">?defoliate_trees</a></code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dmj_defol &lt;-<span class="st"> </span><span class="kw"><a href="../reference/defoliate_trees.html">defoliate_trees</a></span>(<span class="dt">host_tree =</span> dmj_h, <span class="dt">nonhost_chron =</span> dmj_nh, 
-      <span class="dt">duration_years =</span> <span class="dv">8</span>, <span class="dt">max_reduction =</span> <span class="op">-</span><span class="fl">1.28</span>, <span class="dt">list_output =</span> <span class="ot">FALSE</span>)
-<span class="co">#&gt; Registered S3 method overwritten by 'R.oo':</span>
-<span class="co">#&gt;   method        from       </span>
-<span class="co">#&gt;   throw.default R.methodsS3</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">dmj_defol &lt;-<span class="st"> </span><span class="kw"><a href="../reference/defoliate_trees.html">defoliate_trees</a></span>(<span class="dt">host_tree =</span> dmj_h, <span class="dt">nonhost_chron =</span> dmj_nh, </a>
+<a class="sourceLine" id="cb6-2" title="2">      <span class="dt">duration_years =</span> <span class="dv">8</span>, <span class="dt">max_reduction =</span> <span class="fl">-1.28</span>, <span class="dt">list_output =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; Registered S3 method overwritten by 'R.oo':</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;   method        from       </span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt;   throw.default R.methodsS3</span></a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">year</th>
@@ -415,11 +408,11 @@
 </tbody>
 </table>
 <p>The best way to evaluate the results of the call to <code>defoliate_trees</code> is to graph the resulting “defol” object:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(dmj_defol)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(dmj_defol)</a></code></pre></div>
 <p><img src="intro-to-dfoliatR_files/figure-html/unnamed-chunk-8-1.png" width="768" style="display: block; margin: auto;"></p>
 <p>Each horizontal line in the plot provides the measured time sequence for each tree. Defoliation events are shown as thicker line segments, with colors to indicate the relative severity of each event. Breakpoints to distinguish between severe, moderate, and minor defoliation levels can be set via the <code>breaks</code> parameter in <code>plot</code> or <code>plot_defol</code>.</p>
 <p>Basic and informative tree-level statistics regarding the sample data and defoliation events are provided.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/defol_stats.html">defol_stats</a></span>(dmj_defol)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="../reference/defol_stats.html">defol_stats</a></span>(dmj_defol)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">series</th>
@@ -525,7 +518,7 @@
 </table>
 <p>It is important to note that <code>dfoliatR</code> distinguishes between a “defoliation event” that is recorded on individual trees and an “outbreak” that synchronously effected a proportion of trees.</p>
 <p>Outbreak periods can be identified with the function <code><a href="../reference/outbreak.html">outbreak()</a></code>. In essence, this is a composite function that combines all trees provided in the “defol” object to assess the synchrony and scale of defoliation. Should enough trees record defoliation (regardless of the duration), it will be termed an “outbreak”. Filtering parameters control the percent of trees in defoliation and minimum number of trees required to be considered an outbreak.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dmj_obr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/outbreak.html">outbreak</a></span>(dmj_defol, <span class="dt">filter_perc =</span> <span class="dv">25</span>, <span class="dt">filter_min_series =</span> <span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">dmj_obr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/outbreak.html">outbreak</a></span>(dmj_defol, <span class="dt">filter_perc =</span> <span class="dv">25</span>, <span class="dt">filter_min_series =</span> <span class="dv">3</span>)</a></code></pre></div>
 <p>Running <code>outbreak</code> produces a new class of data frame, an “outbreak” object.</p>
 <table class="table">
 <thead><tr class="header">
@@ -653,10 +646,10 @@
 </tbody>
 </table>
 <p>As with “defol” objects, it can be plotted directly, and summary statistics are available.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_outbreak.html">plot_outbreak</a></span>(dmj_obr)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="../reference/plot_outbreak.html">plot_outbreak</a></span>(dmj_obr)</a></code></pre></div>
 <p><img src="intro-to-dfoliatR_files/figure-html/unnamed-chunk-13-1.png" width="768" style="display: block; margin: auto;"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dmj_obr_stats &lt;-<span class="st"> </span><span class="kw"><a href="../reference/outbreak_stats.html">outbreak_stats</a></span>(dmj_obr)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(dmj_obr_stats)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">dmj_obr_stats &lt;-<span class="st"> </span><span class="kw"><a href="../reference/outbreak_stats.html">outbreak_stats</a></span>(dmj_obr)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(dmj_obr_stats)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">start</th>
@@ -759,20 +752,20 @@
 </table>
 <p>The summary statistics for “outbreak” objects include each identified outbreak event as a row, with start/end years, duration, and other metrics used for analyses.</p>
 <p>One important metric to analyze is the return interval of outbreaks. Many researchers use the first year of the event as the point of reference. One can calculate return intervals for our DMJ site in this way via</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-dmj_interv &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span>(dmj_obr_stats<span class="op">$</span>start)
-
-<span class="co"># All intervals</span>
-dmj_interv
-<span class="co">#&gt; [1] 73 72 24 32 78 28</span>
-
-<span class="co"># Mean interval</span>
-<span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(dmj_interv)
-<span class="co">#&gt; [1] 51.16667</span>
-
-<span class="co"># Median interval</span>
-<span class="kw"><a href="https://rdrr.io/r/stats/median.html">median</a></span>(dmj_interv)
-<span class="co">#&gt; [1] 52</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"></a>
+<a class="sourceLine" id="cb13-2" title="2">dmj_interv &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span>(dmj_obr_stats<span class="op">$</span>start)</a>
+<a class="sourceLine" id="cb13-3" title="3"></a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="co"># All intervals</span></a>
+<a class="sourceLine" id="cb13-5" title="5">dmj_interv</a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="co">#&gt; [1] 73 72 24 32 78 28</span></a>
+<a class="sourceLine" id="cb13-7" title="7"></a>
+<a class="sourceLine" id="cb13-8" title="8"><span class="co"># Mean interval</span></a>
+<a class="sourceLine" id="cb13-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(dmj_interv)</a>
+<a class="sourceLine" id="cb13-10" title="10"><span class="co">#&gt; [1] 51.16667</span></a>
+<a class="sourceLine" id="cb13-11" title="11"></a>
+<a class="sourceLine" id="cb13-12" title="12"><span class="co"># Median interval</span></a>
+<a class="sourceLine" id="cb13-13" title="13"><span class="kw"><a href="https://rdrr.io/r/stats/median.html">median</a></span>(dmj_interv)</a>
+<a class="sourceLine" id="cb13-14" title="14"><span class="co">#&gt; [1] 52</span></a></code></pre></div>
 </div>
   </div>
 

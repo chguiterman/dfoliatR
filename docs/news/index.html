@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dfoliatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -96,12 +96,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/chguiterman/dfoliatR">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -116,14 +111,40 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/chguiterman/dfoliatR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+      
     </div>
 
-    <div id="dfoliatr-v0-0-39999" class="section level1">
+    <div id="dfoliatr-v010" class="section level1">
 <h1 class="page-header">
-<a href="#dfoliatr-v0-0-39999" class="anchor"></a>dfoliatR v0.0.39999</h1>
+<a href="#dfoliatr-v010" class="anchor"></a>dfoliatR v0.1.0</h1>
+</div>
+    <div id="dfoliatr-v004" class="section level1">
+<h1 class="page-header">
+<a href="#dfoliatr-v004" class="anchor"></a>dfoliatR v0.0.4</h1>
 <ul>
-<li>Add data from Demi John; change built-in data naming scheme to help differentiate host series from nonhosr chronologies</li>
+<li>preparation for CRAN release</li>
+<li>adding examples to primary functions</li>
+<li>checking spelling and code format</li>
+<li>Updating man files with <code><a href="https://usethis.r-lib.org/reference/use_roxygen_md.html">usethis::use_roxygen_md()</a></code>
+</li>
+<li>running diagnostic utilities in <code>devtools</code>
+</li>
+<li>
+<code><a href="https://rdrr.io/pkg/devtools/man/check.html">devtools::check()</a></code> R CMD Check 0 errors, 0 warnings, 0 notes</li>
+<li>
+<code><a href="https://rdrr.io/pkg/devtools/man/check_rhub.html">devtools::check_rhub()</a></code> 0 errors, 0 warnings, 1 note</li>
+<li>The note relates to spelling of “Swetnam” and “dfoliatR” in the DESCRIPTION. Both are correct.</li>
+<li>
+<code><a href="https://rdrr.io/pkg/devtools/man/check_win.html">devtools::check_win_devel()</a></code> seems to check out.</li>
+<li>Update README</li>
+<li>Update pkgdown site</li>
+</ul>
+</div>
+    <div id="dfoliatr-v0039999" class="section level1">
+<h1 class="page-header">
+<a href="#dfoliatr-v0039999" class="anchor"></a>dfoliatR v0.0.39999</h1>
+<ul>
+<li>Add data from Demi John; change built-in data naming scheme to help differentiate host series from nonhost chronologies</li>
 <li>Added provision to prevent defoliation events two years following one, unless bridge_events is set to true.</li>
 <li>Reduced event levels for more meaningful interpretation</li>
 <li>Added Gantt plot to plotting options. This required adding several new helper functions, including the useful get_defol_events function</li>
@@ -137,31 +158,35 @@
 </li>
 <li>Changed the <code>outbreak</code> object code to <code>obr</code>. And updated several functions to account for the change.</li>
 <li>Bug fix in <code><a href="../reference/get_defol_events.html">get_defol_events()</a></code> to pass non-defoliated series through to final table.</li>
+<li>Spell check and code flow fixes</li>
+<li>Added MIT License</li>
+<li>Adding Zenodo DOI</li>
+<li>Ready for v.0.0.4</li>
 </ul>
 </div>
-    <div id="dfoliatr-v0-0-3" class="section level1">
+    <div id="dfoliatr-v003" class="section level1">
 <h1 class="page-header">
-<a href="#dfoliatr-v0-0-3" class="anchor"></a>dfoliatR v0.0.3</h1>
+<a href="#dfoliatr-v003" class="anchor"></a>dfoliatR v0.0.3</h1>
 <ul>
 <li>Changed package name</li>
-<li>Add parameter to allow for events that are ongoing at the time of sampling, called series end events. This is for users who know, with certainty, that they sampling during an outbreak event. The paramter allows for events to be recorded regardless of duration, but only the recent end of the series.</li>
+<li>Add parameter to allow for events that are ongoing at the time of sampling, called series end events. This is for users who know, with certainty, that they sampling during an outbreak event. The parameter allows for events to be recorded regardless of duration, but only the recent end of the series.</li>
 <li>Add parameter to allow for bridging of two defoliation events on a single tree. This was done after observing instances where two successive events were separated by a single year, and in the case of western spruce budworm more likely represented a single, long event. The option should be used with caution and scrutinized closely.</li>
 <li>Update author list to reflect significant contributions to dfoliatR development by Ann Lynch and Jodi Axelson.</li>
-<li>Replaced the correct_host_series fucntion with gsi to better capture the process of calculating the growth suppression index.</li>
+<li>Replaced the correct_host_series function with gsi to better capture the process of calculating the growth suppression index.</li>
 </ul>
 </div>
-    <div id="bugr-v0-0-2" class="section level1">
+    <div id="bugr-v002" class="section level1">
 <h1 class="page-header">
-<a href="#bugr-v0-0-2" class="anchor"></a>bugr v0.0.2</h1>
+<a href="#bugr-v002" class="anchor"></a>bugr v0.0.2</h1>
 <ul>
 <li>This version in response to validation trials with real data</li>
 <li>Improve id_defoliation to prevent overlapping defol events</li>
 <li>Add both corrected and normalized index series to outputs of defoliate_trees and outbreak functions</li>
 </ul>
 </div>
-    <div id="bugr-v0-0-1" class="section level1">
+    <div id="bugr-v001" class="section level1">
 <h1 class="page-header">
-<a href="#bugr-v0-0-1" class="anchor"></a>bugr v0.0.1</h1>
+<a href="#bugr-v001" class="anchor"></a>bugr v0.0.1</h1>
 <ul>
 <li>Initial uploads of basic functions</li>
 <li>Includes detecting defoliation signals following protocols of Swetnam, Lynch, and Holmes studies and programs</li>
@@ -176,10 +201,12 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#dfoliatr-v0-0-39999">0.0.39999</a></li>
-        <li><a href="#dfoliatr-v0-0-3">0.0.3</a></li>
-        <li><a href="#bugr-v0-0-2">0.0.2</a></li>
-        <li><a href="#bugr-v0-0-1">0.0.1</a></li>
+        <li><a href="#dfoliatr-v010">0.1.0</a></li>
+        <li><a href="#dfoliatr-v004">0.0.4</a></li>
+        <li><a href="#dfoliatr-v0039999">0.0.39999</a></li>
+        <li><a href="#dfoliatr-v003">0.0.3</a></li>
+        <li><a href="#bugr-v002">0.0.2</a></li>
+        <li><a href="#bugr-v001">0.0.1</a></li>
       </ul>
     </div>
   </div>
