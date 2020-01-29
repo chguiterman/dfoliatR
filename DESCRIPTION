@@ -6,7 +6,7 @@ Authors@R: c(person("Chris", "Guiterman", email = "chguiterman@email.arizona.edu
             person("Ann", "Lynch", role = "aut"),
             person("Jodi", "Axelson", role = "aut"))
 Description: Tools to extract, quantify, analyze, and visualize insect 
-    defoliation signals preserved in tree rings. `dfoliatR` requires 
+    defoliation signals preserved in tree rings. 'dfoliatR' requires 
     standardized ring-width measurements from potential insect host trees
     and an indexed tree-ring chronology form local non-host trees. It performs 
     a "correction" procedure to remove the climatic signal represented in the
@@ -15,7 +15,7 @@ Description: Tools to extract, quantify, analyze, and visualize insect
     Site-level analyses help to determine outbreak events that synchronously 
     affect most of the trees. Functions are available for summary statistics and 
     graphics of tree- and site-level series. The basic procedures and defaults 
-    follow and replicate the program OUTBREAK (Holmes and Swetnam), but `dfoliatR`
+    follow and replicate the program OUTBREAK (Holmes and Swetnam), but 'dfoliatR'
     provides greater parameter control for the user, separation of tree and site
     level assessments of events, and built-in publication-quality graphics.
 URL: https://chguiterman.github.io/dfoliatR/
