@@ -1,5 +1,18 @@
-# dfoliatR v0.0.4
+# dfoliatR v0.1.0
 
+
+# dfoliatR v0.0.4
+* preparation for CRAN release
+* adding examples to primary functions
+* checking spelling and code format
+* Updating man files with `usethis::use_roxygen_md()`
+* running diagnostic utilities in `devtools`
+* `devtools::check()` R CMD Check 0 errors, 0 warnings, 0 notes
+* `devtools::check_rhub()` 0 errors, 0 warnings, 1 note 
+* The note relates to spelling of "Swetnam" and "dfoliatR" in the DESCRIPTION. Both are correct.
+* `devtools::check_win_devel()` seems to check out.
+* Update README
+* Update pkgdown site
 
 # dfoliatR v0.0.39999
 * Add data from Demi John; change built-in data naming scheme to help differentiate host series from nonhost chronologies

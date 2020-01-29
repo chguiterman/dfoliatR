@@ -1,7 +1,7 @@
 Package: dfoliatR
 Type: Package
 Title: Detection and Analysis of Insect Defoliation in Tree Rings
-Version: 0.0.4
+Version: 0.1.0
 Authors@R: c(person("Chris", "Guiterman", email = "chguiterman@email.arizona.edu", role = c("aut", "cre")),
             person("Ann", "Lynch", role = "aut"),
             person("Jodi", "Axelson", role = "aut"))
