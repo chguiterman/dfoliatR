@@ -78,7 +78,7 @@
       <h1>Introduction to dfoliatR</h1>
                         <h4 class="author">Chris Guiterman</h4>
             
-            <h4 class="date">2020-01-29</h4>
+            <h4 class="date">2020-01-30</h4>
       
       
       <div class="hidden name"><code>intro-to-dfoliatR.Rmd</code></div>
@@ -322,10 +322,7 @@
 </ol>
 <p>To identify defoliation events, input the set of host tree series and the non-host chronology into the <code><a href="../reference/defoliate_trees.html">defoliate_trees()</a></code> function. Some parameters regarding the length and severity of growth departure can be changed by the user. The parameter defaults follow those in OUTBREAK (negative departures for 8 or more years, at least one reaching -1.28 standard deviations, and allowing 1 positive excursion before and after the greatest departure). Definitions of the function parameters are provided with <code><a href="../reference/defoliate_trees.html">?defoliate_trees</a></code></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">dmj_defol &lt;-<span class="st"> </span><span class="kw"><a href="../reference/defoliate_trees.html">defoliate_trees</a></span>(<span class="dt">host_tree =</span> dmj_h, <span class="dt">nonhost_chron =</span> dmj_nh, </a>
-<a class="sourceLine" id="cb6-2" title="2">      <span class="dt">duration_years =</span> <span class="dv">8</span>, <span class="dt">max_reduction =</span> <span class="fl">-1.28</span>, <span class="dt">list_output =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; Registered S3 method overwritten by 'R.oo':</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;   method        from       </span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt;   throw.default R.methodsS3</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-2" title="2">      <span class="dt">duration_years =</span> <span class="dv">8</span>, <span class="dt">max_reduction =</span> <span class="fl">-1.28</span>, <span class="dt">list_output =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">year</th>
