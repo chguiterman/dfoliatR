@@ -2,9 +2,9 @@ Package: dfoliatR
 Type: Package
 Title: Detection and Analysis of Insect Defoliation in Tree Rings
 Version: 0.1.0
-Authors@R: c(person("Chris", "Guiterman", email = "chguiterman@email.arizona.edu", role = c("aut", "cre")),
-            person("Ann", "Lynch", role = "aut"),
-            person("Jodi", "Axelson", role = "aut"))
+Authors@R: c(person("Chris", "Guiterman", email = "chguiterman@email.arizona.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-9706-9332")),
+            person("Ann", "Lynch", role = "aut", comment = c(ORCID = "0000-0002-8043-3855")),
+            person("Jodi", "Axelson", role = "aut", comment = c(ORCID = "0000-0002-1799-6364")))
 Description: Tools to extract, quantify, analyze, and visualize insect 
     defoliation signals preserved in tree rings. 'dfoliatR' requires 
     standardized ring-width measurements from potential insect host trees
