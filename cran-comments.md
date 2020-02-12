@@ -1,9 +1,10 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Addressed the build note regarind spelling in the DESCRIPTION file by adding unidirectional quotes to "dfoliatR".
-* Added ORCID referneces for authors.
-* re-license to GPLv3 for consistency with associated and dependency packages
+* Removed term "runs analysis" from DESCRIPTION
+* Removed quotations around word "corrected" in DESCRIPTION
+* Edited DESCRIPTION for improved clarity
+
 
 
 ## Test environments
@@ -15,4 +16,4 @@ This is a resubmission. In this version I have:
 0 errors | 0 warnings | 0 notes
 
 ## Downstream dependencies
-* There are no currently downstream dependencies
+* There are no downstream dependencies

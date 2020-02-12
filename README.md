@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/chguiterman/dfoliatR.svg?branch=master)](https://travis-ci.org/chguiterman/dfoliatR)
 [![Coverage Status](https://coveralls.io/repos/github/chguiterman/dfoliatR/badge.svg?branch=master)](https://coveralls.io/github/chguiterman/dfoliatR?branch=master)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![DOI](https://zenodo.org/badge/104808563.svg)](https://zenodo.org/badge/latestdoi/104808563)
 
 
@@ -27,9 +26,9 @@ For the full range of usage in `dfoliatR`, please visit the [introduction vignet
 
 ## Overview
 
-The package requires users to input two sets of tree-ring data: standardized ring widths of individual host trees and a standardized tree-ring chronology from a local non-host tree species. `dfoliatR` combines these to remove the climate signal represented by the non-host chronology from the host tree series. What's left should represent a disturbance signal. Then, `dfoliatR` identifies defoliation events in the host tree series. 
+The package requires users to input two sets of tree-ring data: standardized ring widths of individual host trees and a standardized tree-ring chronology from a local non-host tree species. `dfoliatR` combines these to remove the climate signal represented by the non-host chronology from the host tree series. What's left should represent a disturbance signal. Then `dfoliatR` identifies defoliation events in the host tree series. 
 
-We recommend that the input tree-ring data be standardized in either ARSTAN or the `dplR` R package. These standardized ring-width series should be averaged to the tree level. In ARSTAN, make sure to output .TRE files and read them into R with the `read.compact()` function in `dplR`. If you choose to standardize raw ring widths in `dplR` with `detrend()`, then use the `treeMean()` function to generate tree-level series. All data input to `dfoliatR` needs to be an `rwl` object as defined in `dplR`.
+We recommend that the input tree-ring data be standardized in either ARSTAN or the `dplR` R package. These standardized ring-width series should be averaged to the tree level. In ARSTAN, make sure to output '.TRE' files and read them into R with the `read.compact()` function in `dplR`. If you choose to standardize raw ring widths in `dplR` with `detrend()`, then use the `treeMean()` function to generate tree-level series. All data input to `dfoliatR` needs to be an `rwl` object as defined in `dplR`.
 
 Begin using `dfoliatR` by applying the `defoliate_trees()` function that calls for these host tree series and a non-host site chronology. Note that the non-host chronology cannot include the "samp.depth" column commonly included in chronology files (e.g., .crn) and created by the `dplr::chron()` function.
 
