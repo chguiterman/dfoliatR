@@ -1,9 +1,7 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Removed term "runs analysis" from DESCRIPTION
-* Removed quotations around word "corrected" in DESCRIPTION
-* Edited DESCRIPTION for improved clarity
+* Shortened the package description in the DESCRIPTION file to be contemporary with similar packages. There's no "best" reference for the package methods yet, as we're currently writing a paper to fill that need.
 
 
 
