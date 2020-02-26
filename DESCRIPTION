@@ -5,20 +5,7 @@ Version: 0.1.0
 Authors@R: c(person("Chris", "Guiterman", email = "chguiterman@email.arizona.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-9706-9332")),
             person("Ann", "Lynch", role = "aut", comment = c(ORCID = "0000-0002-8043-3855")),
             person("Jodi", "Axelson", role = "aut", comment = c(ORCID = "0000-0002-1799-6364")))
-Description: Tools to identify, quantify, analyze, and visualize growth 
-    suppression events in tree rings that are often produced by insect 
-    defoliation. 'dfoliatR' requires standardized ring-width measurements 
-    from potential insect host trees and an indexed tree-ring chronology 
-    from local non-host trees. It performs a correction procedure to remove 
-    the climatic signal represented in the non-host chronology from the 
-    host-tree series. It then identifies defoliation events recored by 
-    individual trees. Site-level analysis functions identify outbreak events
-    that synchronously  affect most of the trees. Functions are available for
-    summary statistics and graphics of tree- and site-level series. The basic
-    procedures and defaults follow and replicate the program OUTBREAK, but 
-    'dfoliatR' provides greater parameter control to the user, including 
-    separation of tree and site level assessments of events, and built-in
-    publication-quality graphics.
+Description: Detection and analysis of insect defoliation signals in tree rings.
 URL: https://chguiterman.github.io/dfoliatR/
 BugReports: http://github.com/chguiterman/dfoliatR/issues
 Depends:
