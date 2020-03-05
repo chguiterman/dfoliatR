@@ -40,20 +40,20 @@ devtools::install_github("chguiterman/dfoliatR")
 
 The package requires users to input two sets of tree-ring data:
 standardized ring widths of individual host trees and a standardized
-tree-ring chronology from a local non-host tree species. `dfoliatR`
-combines these to remove the climate signal represented by the non-host
-chronology from the host tree series. What’s left should represent a
-disturbance signal. Then `dfoliatR` identifies defoliation events in the
-host tree series.
+tree-ring chronology from a local non-host tree species or climate
+series. `dfoliatR` combines these to remove the climate signal
+represented by the non-host chronology from the host tree series. What’s
+left should represent a disturbance signal. Then `dfoliatR` identifies
+defoliation events in the host tree series.
 
 We recommend that the input tree-ring data be standardized in either
-ARSTAN or the `dplR` R package. These standardized ring-width series
-should be averaged to the tree level. In ARSTAN, make sure to output
-‘.TRE’ files and read them into R with the `read.compact()` function
-in `dplR`. If you choose to standardize raw ring widths in `dplR` with
-`detrend()`, then use the `treeMean()` function to generate tree-level
-series. All data input to `dfoliatR` needs to be an `rwl` object as
-defined in `dplR`.
+ARSTAN or the `dplR` R package. If there is more than one ring-width
+series from the same tree, these should be standardized and averaged to
+the tree level. In ARSTAN, make sure to output ‘.TRE’ files and read
+them into R with the `read.compact()` function in `dplR`. If you choose
+to standardize raw ring widths in `dplR` with `detrend()`, then use the
+`treeMean()` function to generate tree-level series. All data input to
+`dfoliatR` needs to be an `rwl` object as defined in `dplR`.
 
 ## Example
 
