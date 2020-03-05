@@ -4,9 +4,15 @@
 \alias{defoliate_trees}
 \title{Identify defoliation events in host trees}
 \usage{
-defoliate_trees(host_tree, nonhost_chron, duration_years = 8,
-  max_reduction = -1.28, bridge_events = FALSE,
-  series_end_event = FALSE, list_output = FALSE)
+defoliate_trees(
+  host_tree,
+  nonhost_chron,
+  duration_years = 8,
+  max_reduction = -1.28,
+  bridge_events = FALSE,
+  series_end_event = FALSE,
+  list_output = FALSE
+)
 }
 \arguments{
 \item{host_tree}{A \code{dplR::rwl} object containing the tree-level growth series

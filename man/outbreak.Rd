@@ -4,8 +4,7 @@
 \alias{outbreak}
 \title{Composite defoliation series to determine outbreak events}
 \usage{
-outbreak(x, filter_perc = 25, filter_min_series = 3,
-  filter_min_defol = 1)
+outbreak(x, filter_perc = 25, filter_min_series = 3, filter_min_defol = 1)
 }
 \arguments{
 \item{x}{a defol object}

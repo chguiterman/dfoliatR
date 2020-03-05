@@ -210,7 +210,7 @@ defol <- function(year, series, gsi, ngsi, defol_status) {
   df
 }
 
-#' Cast data frame to list-like to `defol` object
+#' Cast data frame to list-like `defol` object
 #'
 #' @param x A data frame or list-like object to cast. Must have named elements
 #'   for "year", "series", "gsi", "ngsi", and "defol_status".
@@ -377,7 +377,7 @@ obr <- function(year,
   obr_dat
 }
 
-#' Cast data frame to list-like to `obr` object
+#' Cast data frame to list-like `obr` object
 #'
 #' @param x A data frame or list-like object to cast. Must have named elements
 #'   for "year", "samp_depth", "num_defol", "perc_defol", "num_max_defol",

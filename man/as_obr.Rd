@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{as_obr}
 \alias{as_obr}
-\title{Cast data frame to list-like to \code{obr} object}
+\title{Cast data frame to list-like \code{obr} object}
 \usage{
 as_obr(x)
 }
@@ -15,7 +15,7 @@ for "year", "samp_depth", "num_defol", "perc_defol", "num_max_defol",
 \code{x} cast to an \code{obr} object
 }
 \description{
-Cast data frame to list-like to \code{obr} object
+Cast data frame to list-like \code{obr} object
 }
 \examples{
 data(dmj_obr)
