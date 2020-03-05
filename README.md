@@ -9,6 +9,7 @@
 Status](https://travis-ci.org/chguiterman/dfoliatR.svg?branch=master)](https://travis-ci.org/chguiterman/dfoliatR)
 [![Coverage
 Status](https://coveralls.io/repos/github/chguiterman/dfoliatR/badge.svg?branch=master)](https://coveralls.io/github/chguiterman/dfoliatR?branch=master)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/dfoliatR)](https://cran.r-project.org/package=dfoliatR)
 [![DOI](https://zenodo.org/badge/104808563.svg)](https://zenodo.org/badge/latestdoi/104808563)
 
 <!-- badges: end -->
