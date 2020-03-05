@@ -113,8 +113,7 @@ id_defoliation <- function(input_series,
     max.red <- dep_seq[1] + which.min(input_series[dep_seq, 5]) - 1
     # Includes setting for max growth reduction
     if (input_series[max.red, 5] > max_reduction) next
-
-   prev_flag <- FALSE
+    prev_flag <- FALSE
     if (y > 1) {
       if (min(dep_seq) - deps$ends[y - 1] == 2) {
         if (! any(
