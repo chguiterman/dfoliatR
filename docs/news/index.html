@@ -8,10 +8,19 @@
 
 <title>Changelog • dfoliatR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -32,7 +41,11 @@
 
 
 
+
 <meta property="og:title" content="Changelog" />
+<meta property="og:image" content="https://chguiterman.github.io/dfoliatR/logo.png" />
+<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -63,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dfoliatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9000</span>
       </span>
     </div>
 
@@ -94,7 +107,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -116,11 +128,17 @@
 
     <div id="dfoliatr-v010" class="section level1">
 <h1 class="page-header">
-<a href="#dfoliatr-v010" class="anchor"></a>dfoliatR v0.1.0</h1>
+<a href="#dfoliatr-v010" class="anchor"></a>dfoliatR v0.1.0<small> 2020-03-04 </small>
+</h1>
+<ul>
+<li>Edits to DESCRIPTION</li>
+<li>Accepted to CRAN</li>
+</ul>
 </div>
     <div id="dfoliatr-v004" class="section level1">
 <h1 class="page-header">
-<a href="#dfoliatr-v004" class="anchor"></a>dfoliatR v0.0.4</h1>
+<a href="#dfoliatr-v004" class="anchor"></a>dfoliatR v0.0.4<small> Unreleased </small>
+</h1>
 <ul>
 <li>preparation for CRAN release</li>
 <li>adding examples to primary functions</li>
@@ -130,19 +148,20 @@
 <li>running diagnostic utilities in <code>devtools</code>
 </li>
 <li>
-<code><a href="https://rdrr.io/pkg/devtools/man/check.html">devtools::check()</a></code> R CMD Check 0 errors, 0 warnings, 0 notes</li>
+<code><a href="https://devtools.r-lib.org//reference/check.html">devtools::check()</a></code> R CMD Check 0 errors, 0 warnings, 0 notes</li>
 <li>
-<code><a href="https://rdrr.io/pkg/devtools/man/check_rhub.html">devtools::check_rhub()</a></code> 0 errors, 0 warnings, 1 note</li>
+<code><a href="https://devtools.r-lib.org//reference/check_rhub.html">devtools::check_rhub()</a></code> 0 errors, 0 warnings, 1 note</li>
 <li>The note relates to spelling of “Swetnam” and “dfoliatR” in the DESCRIPTION. Both are correct.</li>
 <li>
-<code><a href="https://rdrr.io/pkg/devtools/man/check_win.html">devtools::check_win_devel()</a></code> seems to check out.</li>
+<code><a href="https://devtools.r-lib.org//reference/check_win.html">devtools::check_win_devel()</a></code> seems to check out.</li>
 <li>Update README</li>
 <li>Update pkgdown site</li>
 </ul>
 </div>
     <div id="dfoliatr-v0039999" class="section level1">
 <h1 class="page-header">
-<a href="#dfoliatr-v0039999" class="anchor"></a>dfoliatR v0.0.39999</h1>
+<a href="#dfoliatr-v0039999" class="anchor"></a>dfoliatR v0.0.39999<small> Unreleased </small>
+</h1>
 <ul>
 <li>Add data from Demi John; change built-in data naming scheme to help differentiate host series from nonhost chronologies</li>
 <li>Added provision to prevent defoliation events two years following one, unless bridge_events is set to true.</li>
@@ -166,7 +185,8 @@
 </div>
     <div id="dfoliatr-v003" class="section level1">
 <h1 class="page-header">
-<a href="#dfoliatr-v003" class="anchor"></a>dfoliatR v0.0.3</h1>
+<a href="#dfoliatr-v003" class="anchor"></a>dfoliatR v0.0.3<small> Unreleased </small>
+</h1>
 <ul>
 <li>Changed package name</li>
 <li>Add parameter to allow for events that are ongoing at the time of sampling, called series end events. This is for users who know, with certainty, that they sampling during an outbreak event. The parameter allows for events to be recorded regardless of duration, but only the recent end of the series.</li>
@@ -177,7 +197,8 @@
 </div>
     <div id="bugr-v002" class="section level1">
 <h1 class="page-header">
-<a href="#bugr-v002" class="anchor"></a>bugr v0.0.2</h1>
+<a href="#bugr-v002" class="anchor"></a>bugr v0.0.2<small> Unreleased </small>
+</h1>
 <ul>
 <li>This version in response to validation trials with real data</li>
 <li>Improve id_defoliation to prevent overlapping defol events</li>
@@ -186,7 +207,8 @@
 </div>
     <div id="bugr-v001" class="section level1">
 <h1 class="page-header">
-<a href="#bugr-v001" class="anchor"></a>bugr v0.0.1</h1>
+<a href="#bugr-v001" class="anchor"></a>bugr v0.0.1<small> Unreleased </small>
+</h1>
 <ul>
 <li>Initial uploads of basic functions</li>
 <li>Includes detecting defoliation signals following protocols of Swetnam, Lynch, and Holmes studies and programs</li>
