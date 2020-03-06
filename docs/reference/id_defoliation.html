@@ -8,10 +8,19 @@
 
 <title>Identify defoliation events in a host series — id_defoliation • dfoliatR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -32,8 +41,8 @@
 
 
 
-<meta property="og:title" content="Identify defoliation events in a host series — id_defoliation" />
 
+<meta property="og:title" content="Identify defoliation events in a host series — id_defoliation" />
 <meta property="og:description" content="After calculating the growth suppression index in gsi(), id_defoliation()
 performs a runs analysis on the normalized growth suppression index, or
 ngsi, in which sequences of negative departures are assessed as possible
@@ -44,7 +53,9 @@ Two new features distinguish the dfoliatR version: bridging events that
 occur in close sequence and allowing for the recent end of a series to be
 evaluated for defoliation regardless of the event duration. See parameter
 specifics for details." />
+<meta property="og:image" content="https://chguiterman.github.io/dfoliatR/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -75,7 +86,7 @@ specifics for details." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dfoliatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9000</span>
       </span>
     </div>
 
@@ -106,7 +117,6 @@ specifics for details." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -128,7 +138,6 @@ specifics for details." />
     </div>
 
     <div class="ref-description">
-    
     <p>After calculating the growth suppression index in <code><a href='gsi.html'>gsi()</a></code>, <code>id_defoliation()</code>
 performs a runs analysis on the normalized growth suppression index, or
 <code>ngsi</code>, in which sequences of negative departures are assessed as possible
@@ -139,12 +148,16 @@ Two new features distinguish the <code>dfoliatR</code> version: bridging events 
 occur in close sequence and allowing for the recent end of a series to be
 evaluated for defoliation regardless of the event duration. See parameter
 specifics for details.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>id_defoliation</span>(<span class='no'>input_series</span>, <span class='kw'>duration_years</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>max_reduction</span> <span class='kw'>=</span> -<span class='fl'>1.28</span>,
-  <span class='kw'>bridge_events</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>series_end_event</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>id_defoliation</span>(
+  <span class='no'>input_series</span>,
+  <span class='kw'>duration_years</span> <span class='kw'>=</span> <span class='fl'>8</span>,
+  <span class='kw'>max_reduction</span> <span class='kw'>=</span> -<span class='fl'>1.28</span>,
+  <span class='kw'>bridge_events</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>series_end_event</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -181,30 +194,26 @@ the user has direct knowledge of an ongoing defoliation event when the
 trees were sampled.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>After performing runs analyses, the function adds a column to the
 input data frame that distinguishes years of defoliation and the maximum
 defoliation year (ie. the year the greatest negative growth departure
 within the event).</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p><code>id_defoliation()</code> is called by <code><a href='defoliate_trees.html'>defoliate_trees()</a></code>. It might only be
 used by the user for troubleshooting.</p>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#note">Note</a></li>
-          </ul>
+    </ul>
 
   </div>
 </div>
