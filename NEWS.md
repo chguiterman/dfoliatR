@@ -1,4 +1,13 @@
+# dfoliatR c0.1.9000
+
+* Readme edits
+* Edits to function descriptions
+* Adding new logo
+
 # dfoliatR v0.1.0
+
+* Edits to DESCRIPTION
+* Accepted to CRAN
 
 
 # dfoliatR v0.0.4

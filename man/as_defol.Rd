@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{as_defol}
 \alias{as_defol}
-\title{Cast data frame to list-like to \code{defol} object}
+\title{Cast data frame to list-like \code{defol} object}
 \usage{
 as_defol(x)
 }
@@ -14,7 +14,7 @@ for "year", "series", "gsi", "ngsi", and "defol_status".}
 \code{x} cast to a \code{defol} object
 }
 \description{
-Cast data frame to list-like to \code{defol} object
+Cast data frame to list-like \code{defol} object
 }
 \examples{
 data(dmj_defol)

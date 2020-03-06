@@ -4,14 +4,11 @@
 \name{dmj_defol}
 \alias{dmj_defol}
 \title{Demi John dfol object}
-\format{An object of class \code{defol} (inherits from \code{data.frame}) with 4267 rows and 5 columns.}
+\format{A \code{defol} object with 4267 rows and 5 columns}
 \usage{
 dmj_defol
 }
 \description{
 Produced by running \code{defoliate_trees(dmj_h, dmj_nh, series_end_events=TRUE)}
-}
-\details{
-@format A \code{defol} object with 4267 rows and 5 columns
 }
 \keyword{datasets}

@@ -4,8 +4,17 @@
 \alias{obr}
 \title{Constructor for an \code{obr} object.}
 \usage{
-obr(year, samp_depth, num_defol, perc_defol, num_max_defol, perc_max_defol,
-  mean_gsi, mean_ngsi, outbreak_status)
+obr(
+  year,
+  samp_depth,
+  num_defol,
+  perc_defol,
+  num_max_defol,
+  perc_max_defol,
+  mean_gsi,
+  mean_ngsi,
+  outbreak_status
+)
 }
 \arguments{
 \item{year}{An n-length numeric vector of observed years.}

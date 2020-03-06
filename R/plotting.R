@@ -97,7 +97,7 @@ plot_outbreak <- function(x, disp_index = "mean_ngsi") {
                               y = y_intercept,
                               yend = .data[[disp_index]]),
                           size = 2) +
-    scale_y_continuous(name = "Growth suppression index") +
+    scale_y_continuous(name = "GSI") +
     ggpubr::theme_pubr() +
     theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"),
                    axis.title.x = element_blank(),
