@@ -273,7 +273,7 @@ stack_defoliation <- function(x) {
 #' @param status vector of defoliation or outbreak status
 #' @param events vector of events types to include in the table
 #'
-#' @export
+#' @noRd
 events_table <- function(status, events) {
   rlx <- rle(status %in% events)
   index <- cumsum(rlx$lengths)
