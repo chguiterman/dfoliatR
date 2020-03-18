@@ -7,15 +7,29 @@
 outbreak_stats(x)
 }
 \arguments{
-\item{x}{An outbreak object after running \code{\link[=outbreak]{outbreak()}}}
+\item{x}{An \link{obr} object after running \code{\link[=outbreak]{outbreak()}}}
 }
 \value{
-A data.frame with descriptive statistics for each outbreak event
-determined by \code{\link[=outbreak]{outbreak()}}, including start and end years, duration, the
-year with the most number of trees in the outbreak and its associated tree
-count, and the year with the maximum growth suppression with its associated
-"mean_ngsi" value.
+A data frame with descriptive statistics for each outbreak event
+determined by \code{\link[=outbreak]{outbreak()}}, including:
+\itemize{
+\item{"start" -- first year of outbreak}
+\item{"end" -- last year of outbreak}
+\item{"duration" -- length of outbreak (in years)}
+\item{"num_trees_start" -- number of trees at the start}
+\item{"perc_trees_start" -- percent of trees at the start}
+\item{"num_trees_outbreak" -- number of trees in the outbreak}
+\item{"peak_outbreak_year" -- year with maximum number of trees defoliated}
+\item{"peak_defol_year" -- year with the lowest value mean growth suppression index}
+\item{"min_gsi" -- minimum growth suppression index}
+\item{"min_ngsi" -- minimum normalized gsi}
+}
 }
 \description{
-Outbreak statistics
+Summary statistics for inferred outbreaks
+}
+\examples{
+data(dmj_obr)
+outbreak_stats(dmj_obr)
+
 }

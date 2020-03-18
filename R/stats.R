@@ -107,13 +107,28 @@ get_defol_events <- function(x) {
 
 #'Outbreak statistics
 #'
-#'@param x An outbreak object after running [outbreak()]
+#'Summary statistics for inferred outbreaks
 #'
-#'@return A data.frame with descriptive statistics for each outbreak event
-#'  determined by [outbreak()], including start and end years, duration, the
-#'  year with the most number of trees in the outbreak and its associated tree
-#'  count, and the year with the maximum growth suppression with its associated
-#'  "mean_ngsi" value.
+#'@param x An [obr] object after running [outbreak()]
+#'
+#'@return A data frame with descriptive statistics for each outbreak event
+#'  determined by [outbreak()], including:
+#'  \itemize{
+#'    \item{"start" -- first year of outbreak}
+#'    \item{"end" -- last year of outbreak}
+#'    \item{"duration" -- length of outbreak (in years)}
+#'    \item{"num_trees_start" -- number of trees at the start}
+#'    \item{"perc_trees_start" -- percent of trees at the start}
+#'    \item{"num_trees_outbreak" -- number of trees in the outbreak}
+#'    \item{"peak_outbreak_year" -- year with maximum number of trees defoliated}
+#'    \item{"peak_defol_year" -- year with the lowest value mean growth suppression index}
+#'    \item{"min_gsi" -- minimum growth suppression index}
+#'    \item{"min_ngsi" -- minimum normalized gsi}
+#'  }
+#'
+#'@examples
+#'data(dmj_obr)
+#'outbreak_stats(dmj_obr)
 #'
 #'@export
 outbreak_stats <- function(x) {
@@ -132,8 +147,8 @@ outbreak_stats <- function(x) {
   peaks <- data.frame(matrix(NA, ncol = 7, nrow = nrow(deps)))
   names(peaks) <- c("num_trees_start",
                     "perc_trees_start",
-                    "peak_outbreak_year",
                     "num_trees_outbreak",
+                    "peak_outbreak_year",
                     "peak_defol_year",
                     "min_gsi",
                     "min_ngsi")
@@ -141,8 +156,8 @@ outbreak_stats <- function(x) {
     ob <- x[deps$starts[i] : deps$ends[i], ]
     peaks[i, 1] <- ob[1, ]$num_defol
     peaks[i, 2] <- ob[1, ]$perc_defol
-    peaks[i, 3] <- ob[which.max(ob$num_defol), ]$year
-    peaks[i, 4] <- max(ob$num_defol)
+    peaks[i, 3] <- max(ob$num_defol)
+    peaks[i, 4] <- ob[which.max(ob$num_defol), ]$year
     peaks[i, 5] <- ob[which.min(ob$mean_ngsi), ]$year
     peaks[i, 6] <- round(min(ob$mean_gsi), 3)
     peaks[i, 7] <- round(min(ob$mean_ngsi), 3)
