@@ -136,7 +136,7 @@ outbreak_stats <- function(x) {
                     "num_trees_outbreak",
                     "peak_defol_year",
                     "min_gsi",
-                    "mean_ngsi")
+                    "min_ngsi")
   for (i in seq_len(nrow(deps))) {
     ob <- x[deps$starts[i] : deps$ends[i], ]
     peaks[i, 1] <- ob[1, ]$num_defol
