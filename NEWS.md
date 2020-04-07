@@ -3,6 +3,8 @@
 * Readme edits
 * Edits to function descriptions
 * Adding new logo
+* Fixed a bug in `id_defoliation()` regarding series_end_events
+* Added updated East Fork data, new objects are `efk_*`
 
 # dfoliatR v0.1.0
 
