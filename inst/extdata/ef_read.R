@@ -1,20 +1,19 @@
 # East fork host series
-ef_h <- dplR::read.compact("inst/extdata/EFKDF2.TRE")
+efk_h <- dplR::read.compact("inst/extdata/EFKARS.TRE")
 
-usethis::use_data(ef_h, overwrite = TRUE)
+usethis::use_data(efk_h, overwrite = TRUE)
 
 # Nonhost chronology for Eastfork
-bac <- dplR::read.compact("inst/extdata/BAC2.CRN")
-ef_nh <- bac[, 1, drop = FALSE]
+efk_nh <- dplR::read.crn("inst/extdata/BAC2.CRN")
 
-usethis::use_data(ef_nh, overwrite = TRUE)
+usethis::use_data(efk_nh, overwrite = TRUE)
 
 # Run defoliate_trees
-ef_defol <- dfoliatR::defoliate_trees(ef_h, ef_nh, series_end_event = TRUE)
+efk_defol <- dfoliatR::defoliate_trees(efk_h, efk_nh, series_end_event = TRUE)
 
-usethis::use_data(ef_defol, overwrite = TRUE)
+usethis::use_data(efk_defol, overwrite = TRUE)
 
 # Run outbreak on defol
-ef_obr <- dfoliatR::outbreak(ef_defol)
+efk_obr <- dfoliatR::outbreak(efk_defol)
 
-usethis::use_data(ef_obr, overwrite = TRUE)
+usethis::use_data(efk_obr, overwrite = TRUE)
