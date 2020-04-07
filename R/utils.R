@@ -140,7 +140,7 @@ id_defoliation <- function(input_series,
       }
     }
     if (series_end_event) {
-      if (any((deps[y, "ends"] - nrow(input_series)) == c(0:2))) {
+      if (any((nrow(input_series) - deps[y, "ends"]) < 2)) {
        dep_seq <- c(min(dep_seq) : nrow(input_series))
       }
     }
@@ -150,7 +150,7 @@ id_defoliation <- function(input_series,
     }
     input_series[dep_seq, "defol_status"] <- "defol"
     input_series[max.red, "defol_status"] <- "max_defol"
-    if (nrow(input_series) == max(dep_seq)) {
+    if (series_end_event & nrow(input_series) == max(dep_seq)) {
       input_series[dep_seq, ]$defol_status <-
         replace(input_series[dep_seq, ]$defol_status,
                 input_series[dep_seq, ]$defol_status == "defol",
