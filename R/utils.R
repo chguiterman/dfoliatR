@@ -107,9 +107,9 @@ id_defoliation <- function(input_series,
   for (y in seq_len(nrow(deps))) {
    dep_seq <- deps$starts[y] : deps$ends[y]
     if (any(input_series[dep_seq, ]$defol_status %in% events)) next
-    if ((! bridge_events) & (y > 1)) {
-      if (any(input_series[min(dep_seq) - 2, ] %in% events)) next
-    }
+    # if ((! bridge_events) & (y > 1)) {
+    #   if (any(input_series[min(dep_seq) - 2, ] %in% events)) next
+    # }
     max.red <- dep_seq[1] + which.min(input_series[dep_seq, 5]) - 1
     # Includes setting for max growth reduction
     if (input_series[max.red, 5] > max_reduction) next
