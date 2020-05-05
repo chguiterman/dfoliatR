@@ -9,6 +9,13 @@
 #' @importFrom rlang .data
 #' @importFrom ggplot2 ggplot aes geom_segment theme_bw theme element_blank
 #'
+#' @example
+#' data("dmj_defol")
+#' plot_defol(dmj_defol)
+#'
+#' ## Change the values severity classes
+#' plot_defol(dmj_defol, breaks = c(-1.0, -0.5))
+#'
 #' @export
 plot_defol <- function(x, breaks) {
   stopifnot(is.defol(x))
