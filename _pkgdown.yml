@@ -1,5 +1,5 @@
 title: dfoliatR
-url: https://chguiterman.github.io/dfoliatR/
+url: https://github.com/chguiterman/dfoliatR
 template:
   params:
     bootswatch: flatly
@@ -35,7 +35,7 @@ reference:
       The samples were collected to reconstruct western spruce budwork outbreak dynamics.
     contents:
       - starts_with("dmj")
-      - starts_with("ef")
+      - starts_with("efk")
   - title: "Background functions"
     desc: >
       These functions are mainly used inside of other dfoliatR functions
