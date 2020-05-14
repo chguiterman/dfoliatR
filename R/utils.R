@@ -16,7 +16,8 @@
 #'
 #' @param input_series A `dplr::rwl` object with the host tree series as the
 #'   first column and the non-host chronology as the second. Years should be the
-#'   row names. This is specifically created by [defoliate_trees()] and passed to [gsi()].
+#'   row names. This is specifically created by [defoliate_trees()] and
+#'   passed to [gsi()].
 #'
 #' @return A data frame with the two input columns (host and nonhost series) and
 #'   3 added columns:
@@ -107,9 +108,6 @@ id_defoliation <- function(input_series,
   for (y in seq_len(nrow(deps))) {
    dep_seq <- deps$starts[y] : deps$ends[y]
     if (any(input_series[dep_seq, ]$defol_status %in% events)) next
-    # if ((! bridge_events) & (y > 1)) {
-    #   if (any(input_series[min(dep_seq) - 2, ] %in% events)) next
-    # }
     max.red <- dep_seq[1] + which.min(input_series[dep_seq, 5]) - 1
     # Includes setting for max growth reduction
     if (input_series[max.red, 5] > max_reduction) next
@@ -154,19 +152,9 @@ id_defoliation <- function(input_series,
     }
     else if (length(dep_seq) < duration_years) next
 
-    # if (series_end_event) {
-    #   if (any((nrow(input_series) - deps[y, "ends"]) < 2)) {
-    #    dep_seq <- c(min(dep_seq) : nrow(input_series))
-    #   }
-    # }
-    # if (!(y == nrow(deps) & series_end_event)) {
-    #   # Includes setting for min duration
-    #   if (length(dep_seq) < duration_years) next
-    # }
-
     input_series[dep_seq, "defol_status"] <- "defol"
     input_series[max.red, "defol_status"] <- "max_defol"
-    # if (series_end_event & nrow(input_series) == max(dep_seq)) {
+
     if (se_flag) {
       input_series[dep_seq, ]$defol_status <-
         replace(input_series[dep_seq, ]$defol_status,

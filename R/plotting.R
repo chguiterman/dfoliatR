@@ -79,19 +79,19 @@ plot_defol <- function(x, breaks) {
 #'   geom_ribbon unit
 #'
 #' @export
-plot_outbreak <- function(x, disp_index = c("GSI", "NGSI")){
+plot_outbreak <- function(x, disp_index = c("GSI", "NGSI")) {
 
   if (!is.obr(x)) stop("'x' must be an 'obr' object")
   if (missing(disp_index)) disp_index <- "NGSI"
-  if (! disp_index %in% c("NGSI", "GSI")){
+  if (! disp_index %in% c("NGSI", "GSI")) {
     stop("Please assign either 'NGSI' or 'GSI' to the `disp_index` argument")
   }
 
-  if (disp_index == "NGSI"){
+  if (disp_index == "NGSI") {
     y_intercept <- 0
     var <- "mean_ngsi"
   }
-  if (disp_index == "GSI"){
+  if (disp_index == "GSI") {
     y_intercept <- 1
     var <- "mean_gsi"
   }
@@ -124,7 +124,7 @@ plot_outbreak <- function(x, disp_index = c("GSI", "NGSI")){
     # geom_area(data=outbrk_events, aes(x = .data$year,
     #                                   y = .data[[var]]),
     #           stat = "identity") +
-    geom_ribbon(data=outbrk_events, aes(x = .data$year,
+    geom_ribbon(data = outbrk_events, aes(x = .data$year,
                                         ymin = .data[[var]],
                                         ymax = y_intercept)) +
     geom_line(aes(y = .data[[var]])) +
@@ -144,7 +144,10 @@ plot_outbreak <- function(x, disp_index = c("GSI", "NGSI")){
     theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
 
   # combine
-  ggpubr::ggarrange(line, index, prop, nrow = 3, align = "v", heights = c(1, 2, 2))
+  ggpubr::ggarrange(line, index, prop,
+                    nrow = 3,
+                    align = "v",
+                    heights = c(1, 2, 2))
 }
 
 #' Plot a `defol` object
