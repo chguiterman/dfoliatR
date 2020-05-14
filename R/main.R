@@ -112,7 +112,8 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
 #' data("dmj_defol")
 #' head(outbreak(dmj_defol))
 #'
-#' @importFrom rlang .data
+#' @importFrom rlang .data quos
+#' @importFrom magrittr %>%
 #'
 #' @export
 outbreak <- function(x,
@@ -156,16 +157,21 @@ outbreak <- function(x,
   comp <- merge(counts, event_years, by = "year", all = TRUE)
   comp$outbreak_status <-
     forcats::fct_explicit_na(comp$outbreak_status, na_level = "not_obr")
-  series_cast_gsi <-
-    reshape2::dcast(x, year ~ series, value.var = "gsi")
-  series_cast_gsi$mean_gsi <-
-    round(rowMeans(series_cast_gsi[, -1], na.rm = TRUE), 4)
-  series_cast_norm <-
-    reshape2::dcast(x, year ~ series, value.var = "ngsi")
-  series_cast_norm$mean_ngsi <-
-    round(rowMeans(series_cast_norm[, -1], na.rm = TRUE), 4)
-  mean_series <- merge(series_cast_gsi[, c("year", "mean_gsi")],
-                       series_cast_norm[, c("year", "mean_ngsi")])
+  mean_series <- x %>%
+    dplyr::group_by(.data$year) %>%
+    dplyr::summarise_at(c("mean_gsi" = quos(.data$gsi), "mean_ngsi" = quos(.data$ngsi)),
+                        ~ mean(., na.rm = TRUE) %>%
+                          round(., 4))
+  # series_cast_gsi <-
+  #   reshape2::dcast(x, year ~ series, value.var = "gsi")
+  # series_cast_gsi$mean_gsi <-
+  #   round(rowMeans(series_cast_gsi[, -1], na.rm = TRUE), 4)
+  # series_cast_norm <-
+  #   reshape2::dcast(x, year ~ series, value.var = "ngsi")
+  # series_cast_norm$mean_ngsi <-
+  #   round(rowMeans(series_cast_norm[, -1], na.rm = TRUE), 4)
+  # mean_series <- merge(series_cast_gsi[, c("year", "mean_gsi")],
+  #                      series_cast_norm[, c("year", "mean_ngsi")])
   out <- merge(comp, mean_series, by = "year")
   out <-
     dplyr::select(

@@ -22,12 +22,11 @@ Imports:
     dplR,
     dplyr,
     rlang,
-    MASS,
     magrittr,
     stats,
+    tidyr,
     ggplot2,
     ggpubr,
-    reshape2,
     plyr,
     forcats
 Encoding: UTF-8
