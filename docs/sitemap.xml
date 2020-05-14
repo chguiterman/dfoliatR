@@ -1,99 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//index.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/index.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/as.defol.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/as.defol.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/as.obr.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/as.obr.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/as_defol.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/as_defol.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/as_obr.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/as_obr.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/defol.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/defol.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/defoliate_trees.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/defoliate_trees.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/defol_stats.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/defol_stats.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/dmj_defol.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/dmj_defol.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/dmj_h.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/dmj_h.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/dmj_nh.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/dmj_nh.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/dmj_obr.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/dmj_obr.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/ef_defol.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/efk_defol.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/ef_h.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/efk_h.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/ef_nh.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/efk_nh.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/ef_obr.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/efk_obr.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/events_table.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/ef_defol.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/get_defol_events.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/ef_h.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/gsi.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/ef_nh.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/id_defoliation.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/ef_obr.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/is.defol.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/get_defol_events.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/is.obr.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/gsi.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/obr.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/id_defoliation.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/outbreak.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/is.defol.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/outbreak_stats.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/is.obr.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/plot.defol.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/obr.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/plot_defol.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/outbreak.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/plot_outbreak.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/outbreak_stats.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/sample_depth.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/plot.defol.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/series_names.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/plot_defol.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//reference/stack_defoliation.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/plot_outbreak.html</loc>
   </url>
   <url>
-    <loc>https://chguiterman.github.io/dfoliatR//articles/intro-to-dfoliatR.html</loc>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/sample_depth.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/series_names.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/chguiterman/dfoliatR/reference/stack_defoliation.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/chguiterman/dfoliatR/articles/intro-to-dfoliatR.html</loc>
   </url>
 </urlset>

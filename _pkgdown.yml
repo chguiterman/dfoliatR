@@ -36,16 +36,3 @@ reference:
     contents:
       - starts_with("dmj")
       - starts_with("efk")
-  - title: "Background functions"
-    desc: >
-      These functions are mainly used inside of other dfoliatR functions
-    contents:
-      - events_table
-      - gsi
-      - id_defoliation
-      - is.defol
-      - is.outbreak
-      - make_defol_status
-      - new_defol
-      - plot.defol
-      - stack_defoliation
