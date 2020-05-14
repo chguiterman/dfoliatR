@@ -23,6 +23,7 @@ Imports:
     dplyr,
     rlang,
     MASS,
+    magrittr,
     stats,
     ggplot2,
     ggpubr,
