@@ -57,12 +57,15 @@ the host and nonhost data.
 \code{\link[=defoliate_trees]{defoliate_trees()}} is the starting point for most analyses of insect
 defoliation signals preserved in the growth patterns of trees. It requires
 individual-tree standardized measurements from potential host trees and a
-tree-ring chronology from a nearby non-host species. First, \code{\link[=defoliate_trees]{defoliate_trees()}}
+tree-ring chronology from a nearby non-host species.
+First, \code{\link[=defoliate_trees]{defoliate_trees()}}
 combines these tree-ring indices by calling \code{\link[=gsi]{gsi()}} to perform a
 "correction" of the host-tree indices to remove the climatic influences on
-tree growth as represented by the non-host chronology. This should isolate a
-disturbance-related signal. Second, \code{\link[=defoliate_trees]{defoliate_trees()}}, runs \code{\link[=id_defoliation]{id_defoliation()}}, which completes a
-runs analyses to evaluate sequences of negetive departures in the host tree growth series (\code{ngsi})
+tree growth as represented by the non-host chronology. This should isolate
+a disturbance-related signal. Second, \code{\link[=defoliate_trees]{defoliate_trees()}},
+runs \code{\link[=id_defoliation]{id_defoliation()}}, which completes a
+runs analyses to evaluate sequences of negetive departures in the
+host tree growth series (\code{ngsi})
 for potential defoliation events.
 }
 \note{
