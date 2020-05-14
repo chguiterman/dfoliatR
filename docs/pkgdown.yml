@@ -4,6 +4,6 @@ pkgdown_sha: 24ef1bbdec0de44fe11eb1d58b40dba961525d43
 articles:
   intro-to-dfoliatR: intro-to-dfoliatR.html
 urls:
-  reference: https://chguiterman.github.io/dfoliatR//reference
-  article: https://chguiterman.github.io/dfoliatR//articles
+  reference: https://github.com/chguiterman/dfoliatR/reference
+  article: https://github.com/chguiterman/dfoliatR/articles
 

@@ -8,7 +8,6 @@ test_defol <- defoliate_trees(host_tree = dfoliatR::efk_h,
                               series_end_event = TRUE)
 
 test_that("gsi calculates the growth stress index consistently", {
-  # expect_equal(x_gsi$EFK01_gsi, check_dat$gsi)
   expect_equal(test_defol$gsi, efk_defol$gsi)
 })
 

@@ -18,3 +18,11 @@ blank, the mean and 1st quartile are used.}
 Produce a Gantt plot of individual tree-ring series to show defoliation
 events in time
 }
+\examples{
+data("dmj_defol")
+plot_defol(dmj_defol)
+
+## Change the values severity classes
+plot_defol(dmj_defol, breaks = c(-1.0, -0.5))
+
+}

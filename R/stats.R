@@ -120,8 +120,10 @@ get_defol_events <- function(x) {
 #'    \item{"num_trees_start" -- number of trees at the start}
 #'    \item{"perc_trees_start" -- percent of trees at the start}
 #'    \item{"num_trees_outbreak" -- number of trees in the outbreak}
-#'    \item{"peak_outbreak_year" -- year with maximum number of trees defoliated}
-#'    \item{"peak_defol_year" -- year with the lowest value mean growth suppression index}
+#'    \item{"peak_outbreak_year" -- year with maximum number of trees
+#'    defoliated}
+#'    \item{"peak_defol_year" -- year with the lowest value mean
+#'    growth suppression index}
 #'    \item{"min_gsi" -- minimum growth suppression index}
 #'    \item{"min_ngsi" -- minimum normalized gsi}
 #'  }
