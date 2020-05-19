@@ -33,43 +33,62 @@ sample_depth <- function(x) {
 #' @param x A defol object after running [defoliate_trees()].
 #'
 #' @return A data frame containing tree/series-level statistics.
+#' @note If series-end-events are present, they are omitted from calculations of
+#'   total event years and mean duration.
+#'
+#' @importFrom rlang .data
+#' @importFrom magrittr %>%
+#' @importFrom dplyr group_by summarize mutate left_join select
+#' @importFrom purrr map map_int map_dbl
+#' @importFrom tidyr nest
+#' @importFrom forcats fct_count
 #'
 #' @examples
 #' data("dmj_defol")
-#' head(defol_stats(dmj_defol))
+#' defol_stats(dmj_defol)
+#'
 #'
 #' @export
 defol_stats <- function(x) {
   if (!is.defol(x)) stop("x must be a defol object")
-  out <- plyr::ddply(x, c("series"), function(df) {
-    first <- min(df$year)
-    last <- max(df$year)
-    years <- length(df$year)
-    count <- plyr::count(df, "defol_status")
-    if (nrow(count) == 1) { # No defols
-      sts <- c(first, last, years, 0, 0, 0)
-    }
-    else {
-      num_defol <- count[count$defol_status == "max_defol", ]$freq
-      tot_defol <- sum(count[count$defol_status != "nd", ]$freq)
-      avg_defol <- round(tot_defol / num_defol, 0)
-      sts <- c(first, last, years, num_defol, tot_defol, avg_defol)
-    }
-    return(sts)
-  })
-  names(out) <- c("series",
-                  "first",
-                  "last",
-                  "years",
-                  "num_events",
-                  "tot_years",
-                  "mean_duration")
-  return(out)
+  left <- x %>%
+    group_by(.data$series) %>%
+    summarize(first = min(.data$year),
+              last = max(.data$year),
+              years = length(.data$year)
+    )
+  right <- x %>%
+    group_by(.data$series) %>%
+    nest() %>%
+    mutate(count = map(.data$data, ~ fct_count(.x$defol_status)),
+           n_events = map_int(.data$count, ~ .x[.x$f == "max_defol", ]$n),
+           tot_years =
+             map_dbl(.data$count,
+                     ~ if (.x[.x$f == "series_end_defol", "n"] > 0) {
+                       sum(.x[! .x$f %in% c("nd", "series_end_defol"), ]$n) - 1
+                     }
+                     else sum(.x[! .x$f %in% "nd", ]$n)),
+           mean_duration =
+             map_dbl(.data$count,
+                     ~ if (.x[.x$f == "series_end_defol", ]$n > 0) {
+                       t <- sum(.x[! .x$f %in% c("nd", "series_end_defol"), ]$n) - 1
+                       n <- .x[.x$f == "max_defol", ]$n - 1
+                       round(t / n, 0)
+                     }
+                     else {
+                       t <- sum(.x[! .x$f %in% "nd", ]$n)
+                       n <- .x[.x$f == "max_defol", ]$n
+                       round(t / n, 0)
+                     }
+             )
+    ) %>%
+    select(-.data$data, -.data$count)
+  left_join(left, right, by = "series")
 }
 
 #' Defoliation event list
 #'
-#' @param x a `defol`` object
+#' @param x a `defol` object
 #'
 #' @importFrom rlang .data
 #'
@@ -78,7 +97,7 @@ get_defol_events <- function(x) {
   if (!is.defol(x)) stop("x must be a defol object")
   defol_events <- c("defol", "max_defol", "bridge_defol", "series_end_defol")
   all_series <- defol_stats(x)
-  event_series <- dplyr::filter(all_series, .data$num_events > 0)
+  event_series <- dplyr::filter(all_series, .data$n_events > 0)
   event_list <- lapply(event_series$series, function(i) {
     dat <- dplyr::filter(x, .data$series == i)
     event_tbl <- dplyr::mutate(events_table(dat$defol_status, defol_events),
@@ -94,7 +113,7 @@ get_defol_events <- function(x) {
   })
   defol_table <- do.call(rbind, event_list)
   defol_table <- dplyr::select(defol_table, -.data$starts, -.data$ends)
-  null_series <- dplyr::filter(all_series, .data$num_events == 0)
+  null_series <- dplyr::filter(all_series, .data$n_events == 0)
   if (nrow(null_series) > 0) {
     null_tbl <- data.frame(series = null_series$series,
                            start_year = NA,
