@@ -320,7 +320,7 @@ is.defol <- function(x) {
 #'
 #' @noRd
 make_outbreak_status <- function(x) {
-  obr_types <- c("outbreak", "not_obr")
+  obr_types <- c("outbreak", "se_outbreak", "not_obr")
   stopifnot(x %in% obr_types)
   factor(x, levels = obr_types)
 }
