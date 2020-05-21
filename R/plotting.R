@@ -79,7 +79,7 @@ plot_defol <- function(x, breaks) {
 #' @importFrom  magrittr %>%
 #' @importFrom ggplot2 ggplot aes geom_segment geom_vline theme_bw theme
 #'   element_blank geom_line geom_hline scale_y_continuous scale_x_continuous
-#'   geom_ribbon unit
+#'   geom_ribbon unit expansion
 #'
 #' @export
 plot_outbreak <- function(x, disp_index = c("GSI", "NGSI")) {
@@ -141,7 +141,8 @@ plot_outbreak <- function(x, disp_index = c("GSI", "NGSI")) {
   prop <- p +
     geom_vline(xintercept = minor_labs, colour = "grey90") +
     geom_ribbon(aes(ymax = .data$perc_defol, ymin = 0)) +
-    scale_y_continuous(name = "% defoliated") +
+    scale_y_continuous(name = "% defoliated",
+                       expand = expansion(mult = c(0, 0.05))) +
     scale_x_continuous(name = "Year") +
     ggpubr::theme_pubr() +
     theme(plot.margin = unit(c(0.1, 0, 0, 0), "cm"))
