@@ -8,6 +8,7 @@
 #'
 #' @importFrom rlang .data :=
 #' @importFrom ggplot2 ggplot aes geom_segment theme_bw theme element_blank
+#' scale_colour_manual
 #'
 #' @examples
 #' data("dmj_defol")
@@ -34,7 +35,6 @@ plot_defol <- function(x, breaks) {
                           labels = c("Severe",
                                      "Moderate",
                                      "Minor"))
-  # plot object formation
   p <- ggplot(x, aes(x = .data$year, y = .data$series))
   p <- p + geom_segment(data = s_stats,
                          aes(x = .data$first,
@@ -42,14 +42,17 @@ plot_defol <- function(x, breaks) {
                              y = .data$series,
                              yend = .data$series),
                          linetype = "dotted")
-  p <- p + geom_segment(data = e_stats,
+  p <- p +
+    geom_segment(data = e_stats,
                          aes(x = .data$start_year,
                              xend = .data$end_year,
                              y = .data$series,
                              yend = .data$series,
                              colour = .data$Severity),
                          linetype = "solid",
-                         size = 1.25)
+                         size = 1.25) +
+    # custom colors, provided by ggsci::pal_npg()
+    scale_colour_manual(values = c( "#DC0000FF", "#F39B7FFF", "#4DBBD5FF"))
   p <- p + theme_bw() +
     theme(
       panel.grid.major.y = element_blank(),

@@ -15,8 +15,13 @@ A data frame containing tree/series-level statistics.
 \description{
 Descriptive statistics for defoliation trees
 }
+\note{
+If series-end-events are present, they are omitted from calculations of
+total event years and mean duration.
+}
 \examples{
 data("dmj_defol")
-head(defol_stats(dmj_defol))
+defol_stats(dmj_defol)
+
 
 }

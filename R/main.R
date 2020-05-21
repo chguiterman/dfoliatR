@@ -117,6 +117,8 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
 #'
 #' @importFrom rlang .data quos
 #' @importFrom magrittr %>%
+#' @importFrom dplyr group_by summarize summarize_at n_distinct
+#' inner_join case_when filter
 #'
 #' @export
 outbreak <- function(x,
@@ -125,59 +127,36 @@ outbreak <- function(x,
                      filter_min_defol = 1) {
   if (!is.defol(x))
     stop("x must be a defol object")
-  series_count <- sample_depth(x)
   defol_events <-
     c("defol", "max_defol", "bridge_defol", "series_end_defol")
-  event_count <-
-    as.data.frame(
-      table(year = subset(x, x$defol_status %in% defol_events)$year)
+  x <- group_by(x, .data$year)
+  counts <- x %>%
+    summarize(samp_depth = n_distinct(.data$series),
+              num_defol = sum(.data$defol_status %in% defol_events),
+              perc_defol = round(.data$num_defol / .data$samp_depth * 100, 1),
+              num_max_defol = sum(.data$defol_status %in% "max_defol"),
+              perc_max_defol = round(.data$num_max_defol / .data$samp_depth * 100, 1)
     )
-  event_count$year <- as.numeric(as.character(event_count$year))
-  max_count <-
-    as.data.frame(
-      table(year = subset(x, x$defol_status == "max_defol")$year)
-    )
-  max_count$year <- as.numeric(as.character(max_count$year))
-  defol_counts <-
-    merge(event_count, max_count, by = "year", all = TRUE)
-  names(defol_counts) <- c("year", "num_defol", "num_max_defol")
-  counts <- merge(series_count, defol_counts, by = "year", all = TRUE)
-  counts <- dplyr::mutate(
-    counts,
-    num_defol = replace(.data$num_defol, is.na(.data$num_defol), 0),
-    num_max_defol = replace(.data$num_max_defol, is.na(.data$num_max_defol), 0),
-    perc_defol = round(.data$num_defol / .data$samp_depth * 100, 1),
-    perc_max_defol = round(.data$num_max_defol / .data$samp_depth *
-                             100, 1)
-  )
-  filter_mask <-
-    (counts$perc_defol >= filter_perc) &
-    (counts$samp_depth >= filter_min_series) &
-    (counts$num_defol >= filter_min_defol)
-  comp_years <- subset(counts, filter_mask)$year
-  event_years <- data.frame(year = comp_years,
-                            outbreak_status = "outbreak")
-  comp <- merge(counts, event_years, by = "year", all = TRUE)
-  comp$outbreak_status <-
-    forcats::fct_explicit_na(comp$outbreak_status, na_level = "not_obr")
-  mean_series <- x %>%
-    dplyr::group_by(.data$year) %>%
-    dplyr::summarise_at(c("mean_gsi" = quos(.data$gsi), "mean_ngsi" = quos(.data$ngsi)),
+  mean_gsi <- x %>%
+    summarize_at(c("mean_gsi" = quos(.data$gsi), "mean_ngsi" = quos(.data$ngsi)),
                         ~ mean(., na.rm = TRUE) %>%
                           round(., 4))
-  out <- merge(comp, mean_series, by = "year")
-  out <-
-    dplyr::select(
-      out,
-      "year",
-      "samp_depth",
-      "num_defol",
-      "perc_defol",
-      "num_max_defol",
-      "perc_max_defol",
-      "mean_gsi",
-      "mean_ngsi",
-      "outbreak_status"
-    )
+  out <- inner_join(counts, mean_gsi, by = "year") %>%
+    mutate(outbreak_status = case_when(
+      (.data$perc_defol >= filter_perc) &
+        (.data$samp_depth >= filter_min_series) &
+        (.data$num_defol >= filter_min_defol)
+      ~ "outbreak",
+      TRUE ~ "not_obr"
+    ))
+
+  if (any("series_end_defol" %in% x$defol_status)) {
+    ev <- events_table(out$outbreak_status, "outbreak") %>%
+      filter(.data$starts == max(.data$starts))
+    if ( all(((nrow(out) - ev$ends) < 3) &
+         (out[ev$ends : nrow(out), ]$num_defol > 0)) ) {
+      out[ev$starts : nrow(out), "outbreak_status"] <- "se_outbreak"
+    }
+  }
   as_obr(out)
 }

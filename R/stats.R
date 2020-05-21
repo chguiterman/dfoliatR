@@ -33,43 +33,62 @@ sample_depth <- function(x) {
 #' @param x A defol object after running [defoliate_trees()].
 #'
 #' @return A data frame containing tree/series-level statistics.
+#' @note If series-end-events are present, they are omitted from calculations of
+#'   total event years and mean duration.
+#'
+#' @importFrom rlang .data
+#' @importFrom magrittr %>%
+#' @importFrom dplyr group_by summarize mutate left_join select
+#' @importFrom purrr map map_int map_dbl
+#' @importFrom tidyr nest
+#' @importFrom forcats fct_count
 #'
 #' @examples
 #' data("dmj_defol")
-#' head(defol_stats(dmj_defol))
+#' defol_stats(dmj_defol)
+#'
 #'
 #' @export
 defol_stats <- function(x) {
   if (!is.defol(x)) stop("x must be a defol object")
-  out <- plyr::ddply(x, c("series"), function(df) {
-    first <- min(df$year)
-    last <- max(df$year)
-    years <- length(df$year)
-    count <- plyr::count(df, "defol_status")
-    if (nrow(count) == 1) { # No defols
-      sts <- c(first, last, years, 0, 0, 0)
-    }
-    else {
-      num_defol <- count[count$defol_status == "max_defol", ]$freq
-      tot_defol <- sum(count[count$defol_status != "nd", ]$freq)
-      avg_defol <- round(tot_defol / num_defol, 0)
-      sts <- c(first, last, years, num_defol, tot_defol, avg_defol)
-    }
-    return(sts)
-  })
-  names(out) <- c("series",
-                  "first",
-                  "last",
-                  "years",
-                  "num_events",
-                  "tot_years",
-                  "mean_duration")
-  return(out)
+  left <- x %>%
+    group_by(.data$series) %>%
+    summarize(first = min(.data$year),
+              last = max(.data$year),
+              years = length(.data$year)
+    )
+  right <- x %>%
+    group_by(.data$series) %>%
+    nest() %>%
+    mutate(count = map(.data$data, ~ fct_count(.x$defol_status)),
+           n_events = map_int(.data$count, ~ .x[.x$f == "max_defol", ]$n),
+           tot_years =
+             map_dbl(.data$count,
+                     ~ if (.x[.x$f == "series_end_defol", "n"] > 0) {
+                       sum(.x[! .x$f %in% c("nd", "series_end_defol"), ]$n) - 1
+                     }
+                     else sum(.x[! .x$f %in% "nd", ]$n)),
+           mean_duration =
+             map_dbl(.data$count,
+                     ~ if (.x[.x$f == "series_end_defol", ]$n > 0) {
+                       t <- sum(.x[! .x$f %in% c("nd", "series_end_defol"), ]$n) - 1
+                       n <- .x[.x$f == "max_defol", ]$n - 1
+                       round(t / n, 0)
+                     }
+                     else {
+                       t <- sum(.x[! .x$f %in% "nd", ]$n)
+                       n <- .x[.x$f == "max_defol", ]$n
+                       round(t / n, 0)
+                     }
+             )
+    ) %>%
+    select(-.data$data, -.data$count)
+  left_join(left, right, by = "series")
 }
 
 #' Defoliation event list
 #'
-#' @param x a `defol`` object
+#' @param x a `defol` object
 #'
 #' @importFrom rlang .data
 #'
@@ -78,7 +97,7 @@ get_defol_events <- function(x) {
   if (!is.defol(x)) stop("x must be a defol object")
   defol_events <- c("defol", "max_defol", "bridge_defol", "series_end_defol")
   all_series <- defol_stats(x)
-  event_series <- dplyr::filter(all_series, .data$num_events > 0)
+  event_series <- dplyr::filter(all_series, .data$n_events > 0)
   event_list <- lapply(event_series$series, function(i) {
     dat <- dplyr::filter(x, .data$series == i)
     event_tbl <- dplyr::mutate(events_table(dat$defol_status, defol_events),
@@ -94,7 +113,7 @@ get_defol_events <- function(x) {
   })
   defol_table <- do.call(rbind, event_list)
   defol_table <- dplyr::select(defol_table, -.data$starts, -.data$ends)
-  null_series <- dplyr::filter(all_series, .data$num_events == 0)
+  null_series <- dplyr::filter(all_series, .data$n_events == 0)
   if (nrow(null_series) > 0) {
     null_tbl <- data.frame(series = null_series$series,
                            start_year = NA,
@@ -112,60 +131,68 @@ get_defol_events <- function(x) {
 #'@param x An [obr] object after running [outbreak()]
 #'
 #'@return A data frame with descriptive statistics for each outbreak event
-#'  determined by [outbreak()], including:
-#'  \itemize{
-#'    \item{"start" -- first year of outbreak}
-#'    \item{"end" -- last year of outbreak}
-#'    \item{"duration" -- length of outbreak (in years)}
-#'    \item{"num_trees_start" -- number of trees at the start}
-#'    \item{"perc_trees_start" -- percent of trees at the start}
-#'    \item{"num_trees_outbreak" -- number of trees in the outbreak}
-#'    \item{"peak_outbreak_year" -- year with maximum number of trees
-#'    defoliated}
-#'    \item{"peak_defol_year" -- year with the lowest value mean
-#'    growth suppression index}
-#'    \item{"min_gsi" -- minimum growth suppression index}
-#'    \item{"min_ngsi" -- minimum normalized gsi}
-#'  }
+#'  determined by [outbreak()], including: \itemize{ \item{"start" -- first year
+#'  of outbreak} \item{"end" -- last year of outbreak} \item{"duration" --
+#'  length of outbreak (in years)} \item{"n_df_start" -- number of trees
+#'  defoliated at the start} \item{"perc_df_start" -- percent of trees
+#'  defoliated at the start} \item{"max_df_obr" -- maximum number of trees in
+#'  the outbreak during a single year} \item{"yr_max_df" -- year with the
+#'  maximum number of trees defoliated} \item{"yr_min_ngsi" -- year with the
+#'  lowest mean normalized growth suppression index (NGSI)} \item{"min_gsi" --
+#'  minimum growth suppression index} \item{"min_ngsi" -- minimum normalized
+#'  gsi} }
 #'
-#'@examples
-#'data(dmj_obr)
-#'outbreak_stats(dmj_obr)
+#'@note Certain statistics will be set to `NA` for the final
+#'  outbreak event if there was an ongoing defoliation event (in which
+#'  `series_end_event = TRUE` in [defoliate_trees()]). This is because the end
+#'  of the outbreak remains unknown, so statistics such as duration cannot be
+#'  calculated. Stastics pertaining to the start of the event are provided.
+#'
+#' @examples
+#' data("dmj_obr")
+#' outbreak_stats(dmj_obr)
+#'
+#'@importFrom rlang .data
+#'@importFrom magrittr %>%
+#'@importFrom purrr map map_dbl map2_dbl
+#'@importFrom dplyr mutate select
 #'
 #'@export
 outbreak_stats <- function(x) {
   if (!is.obr(x)) stop("x must be an `obr` object")
-  events <- rle(x$outbreak_status == "outbreak")
-  events_index <- cumsum(events$lengths)
-  events_pos <- which(events$values == TRUE)
-  ends <- events_index[events_pos]
-  newindex <-  ifelse(events_pos > 1, events_pos - 1, 0)
-  starts <- events_index[newindex] + 1
-  if (0 %in% newindex) starts <-  c(1, starts)
-  deps <- data.frame(cbind(starts, ends))
-  start_years <- x$year[starts]
-  end_years <- x$year[ends]
-  duration <- end_years - start_years + 1
-  peaks <- data.frame(matrix(NA, ncol = 7, nrow = nrow(deps)))
-  names(peaks) <- c("num_trees_start",
-                    "perc_trees_start",
-                    "num_trees_outbreak",
-                    "peak_outbreak_year",
-                    "peak_defol_year",
-                    "min_gsi",
-                    "min_ngsi")
-  for (i in seq_len(nrow(deps))) {
-    ob <- x[deps$starts[i] : deps$ends[i], ]
-    peaks[i, 1] <- ob[1, ]$num_defol
-    peaks[i, 2] <- ob[1, ]$perc_defol
-    peaks[i, 3] <- max(ob$num_defol)
-    peaks[i, 4] <- ob[which.max(ob$num_defol), ]$year
-    peaks[i, 5] <- ob[which.min(ob$mean_ngsi), ]$year
-    peaks[i, 6] <- round(min(ob$mean_gsi), 3)
-    peaks[i, 7] <- round(min(ob$mean_ngsi), 3)
+  tbl <- events_table(x$outbreak_status,
+                      c("outbreak", "se_outbreak")) %>%
+    mutate(start = map_dbl(.data$starts, ~ x[.x, ]$year),
+           end = map_dbl(.data$ends, ~ x[.x, ]$year),
+           duration = .data$end - .data$start + 1,
+           n_df_start = map_dbl(.data$starts, ~ x[.x, ]$num_defol),
+           perc_df_start =
+             map_dbl(.data$starts, ~ {
+               round(x[.x, ]$num_defol / x[.x, ]$samp_depth * 100,
+                     1)}),
+           max_df_obr =
+             map2_dbl(.data$starts, .data$ends, ~ max(x[.x : .y, ]$num_defol)),
+           yr_max_df =
+             map2_dbl(.data$starts, .data$ends, ~ {
+               ob <- x[.x : .y, ]
+               ob[which.max(ob$num_defol), ]$year}),
+           yr_min_ngsi =
+             map2_dbl(.data$starts, .data$ends, ~ {
+               ob <- x[.x : .y, ]
+               ob[which.min(ob$mean_ngsi), ]$year}),
+           min_gsi =
+             map2_dbl(.data$starts, .data$ends, ~ {
+               ob <- x[.x : .y, ]
+               round(min(ob$mean_gsi), 3)}),
+           min_ngsi =
+             map2_dbl(.data$starts, .data$ends, ~ {
+               ob <- x[.x : .y, ]
+               round(min(ob$mean_ngsi), 3)})
+    ) %>%
+    select(-.data$starts, -.data$ends)
+  # Remove features due to ongoing outbreak event
+  if (any(x$outbreak_status %in% "se_outbreak")) {
+    tbl[nrow(tbl), c(2, 3, 7, 8)] <- NA
   }
-  out <- data.frame(start = start_years, end = end_years,
-                    duration = duration)
-  out <- cbind(out, peaks)
-  return(out)
+  tbl
 }

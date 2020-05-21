@@ -21,14 +21,15 @@ Suggests:
 Imports:
     dplR,
     dplyr,
-    rlang,
-    magrittr,
-    stats,
-    tidyr,
+    forcats,
     ggplot2,
     ggpubr,
+    magrittr,
     plyr,
-    forcats
+    purrr,
+    rlang,
+    stats,
+    tidyr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2

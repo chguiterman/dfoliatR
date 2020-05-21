@@ -7,7 +7,7 @@
 get_defol_events(x)
 }
 \arguments{
-\item{x}{a `defol`` object}
+\item{x}{a \code{defol} object}
 }
 \description{
 Defoliation event list
