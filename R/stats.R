@@ -146,7 +146,7 @@ get_defol_events <- function(x) {
 #'  outbreak event if there was an ongoing defoliation event (in which
 #'  `series_end_event = TRUE` in [defoliate_trees()]). This is because the end
 #'  of the outbreak remains unknown, so statistics such as duration cannot be
-#'  calculated. Stastics pertaining to the start of the event are provided.
+#'  calculated. Statistics pertaining to the start of the event are provided.
 #'
 #' @examples
 #' data("dmj_obr")

@@ -80,6 +80,12 @@ plot_defol <- function(x, breaks) {
 #' @importFrom ggplot2 ggplot aes geom_segment geom_vline theme_bw theme
 #'   element_blank geom_line geom_hline scale_y_continuous scale_x_continuous
 #'   geom_ribbon unit expansion
+#' @examples
+#' data(dmj_obr)
+#' plot_outbreak(dmj_obr)
+#'
+#' # Change middle panel display from the default "NGSI" to "GSI"
+#' plot_outbreak(dmj_obr, disp_index = "GSI")
 #'
 #' @export
 plot_outbreak <- function(x, disp_index = c("GSI", "NGSI")) {

@@ -3,7 +3,7 @@
 \docType{data}
 \name{efk_nh}
 \alias{efk_nh}
-\title{Baca ponderosa pine chornology}
+\title{Baca ponderosa pine chronology}
 \format{An \code{rwl} chronology object with 1 series, 1612-1987. Standardized in
 ARSTAN.}
 \source{

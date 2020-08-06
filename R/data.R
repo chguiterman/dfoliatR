@@ -16,7 +16,7 @@
 #' @source \url{https://esajournals.onlinelibrary.wiley.com/doi/10.2307/2937153}
 "efk_h"
 
-#' Baca ponderosa pine chornology
+#' Baca ponderosa pine chronology
 #'
 #' Non-host pair chronology for East Fork Douglas-fir `efk_h`
 #'

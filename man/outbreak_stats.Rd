@@ -30,7 +30,7 @@ Certain statistics will be set to \code{NA} for the final
 outbreak event if there was an ongoing defoliation event (in which
 \code{series_end_event = TRUE} in \code{\link[=defoliate_trees]{defoliate_trees()}}). This is because the end
 of the outbreak remains unknown, so statistics such as duration cannot be
-calculated. Stastics pertaining to the start of the event are provided.
+calculated. Statistics pertaining to the start of the event are provided.
 }
 \examples{
 data("dmj_obr")

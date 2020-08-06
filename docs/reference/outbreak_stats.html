@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dfoliatR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -147,39 +147,53 @@
 
     <p>A data frame with descriptive statistics for each outbreak event
 determined by <code><a href='outbreak.html'>outbreak()</a></code>, including:</p><ul>
-<li><p>"start" -- first year of outbreak</p></li>
+<li><p>"start" -- first year
+of outbreak</p></li>
 <li><p>"end" -- last year of outbreak</p></li>
-<li><p>"duration" -- length of outbreak (in years)</p></li>
-<li><p>"num_trees_start" -- number of trees at the start</p></li>
-<li><p>"perc_trees_start" -- percent of trees at the start</p></li>
-<li><p>"num_trees_outbreak" -- number of trees in the outbreak</p></li>
-<li><p>"peak_outbreak_year" -- year with maximum number of trees
-defoliated</p></li>
-<li><p>"peak_defol_year" -- year with the lowest value mean
-growth suppression index</p></li>
-<li><p>"min_gsi" -- minimum growth suppression index</p></li>
-<li><p>"min_ngsi" -- minimum normalized gsi</p></li>
+<li><p>"duration" --
+length of outbreak (in years)</p></li>
+<li><p>"n_df_start" -- number of trees
+defoliated at the start</p></li>
+<li><p>"perc_df_start" -- percent of trees
+defoliated at the start</p></li>
+<li><p>"max_df_obr" -- maximum number of trees in
+the outbreak during a single year</p></li>
+<li><p>"yr_max_df" -- year with the
+maximum number of trees defoliated</p></li>
+<li><p>"yr_min_ngsi" -- year with the
+lowest mean normalized growth suppression index (NGSI)</p></li>
+<li><p>"min_gsi" --
+minimum growth suppression index</p></li>
+<li><p>"min_ngsi" -- minimum normalized
+gsi</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Certain statistics will be set to <code>NA</code> for the final
+outbreak event if there was an ongoing defoliation event (in which
+<code>series_end_event = TRUE</code> in <code><a href='defoliate_trees.html'>defoliate_trees()</a></code>). This is because the end
+of the outbreak remains unknown, so statistics such as duration cannot be
+calculated. Statistics pertaining to the start of the event are provided.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dmj_obr</span>)
-<span class='fu'>outbreak_stats</span>(<span class='no'>dmj_obr</span>)</div><div class='output co'>#&gt;   start  end duration num_trees_start perc_trees_start num_trees_outbreak
-#&gt; 1  1680 1699       20               1             33.3                  3
-#&gt; 2  1753 1769       17               6             46.2                  7
-#&gt; 3  1825 1840       16              11             78.6                 12
-#&gt; 4  1849 1865       17               7             46.7                 13
-#&gt; 5  1881 1895       15               8             53.3                 14
-#&gt; 6  1959 1970       12               7             41.2                 15
-#&gt; 7  1987 1996       10               9             52.9                 15
-#&gt;   peak_outbreak_year peak_defol_year min_gsi min_ngsi
-#&gt; 1               1690            1692   0.121   -2.407
-#&gt; 2               1754            1755   0.343   -1.611
-#&gt; 3               1831            1826   0.500   -1.304
-#&gt; 4               1852            1853   0.252   -1.994
-#&gt; 5               1886            1885   0.262   -1.945
-#&gt; 6               1960            1965   0.328   -1.830
-#&gt; 7               1989            1995   0.378   -1.640</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"dmj_obr"</span>)
+<span class='fu'>outbreak_stats</span>(<span class='no'>dmj_obr</span>)</div><div class='output co'>#&gt;   start  end duration n_df_start perc_df_start max_df_obr yr_max_df yr_min_ngsi
+#&gt; 1  1680 1699       20          1          33.3          3      1690        1692
+#&gt; 2  1753 1769       17          6          46.2          7      1754        1755
+#&gt; 3  1825 1840       16         11          78.6         12      1831        1826
+#&gt; 4  1849 1865       17          7          46.7         13      1852        1853
+#&gt; 5  1881 1895       15          8          53.3         14      1886        1885
+#&gt; 6  1959 1970       12          7          41.2         15      1960        1965
+#&gt; 7  1987   NA       NA          9          52.9         15        NA          NA
+#&gt;   min_gsi min_ngsi
+#&gt; 1   0.121   -2.407
+#&gt; 2   0.343   -1.611
+#&gt; 3   0.500   -1.304
+#&gt; 4   0.252   -1.994
+#&gt; 5   0.262   -1.945
+#&gt; 6   0.328   -1.830
+#&gt; 7   0.378   -1.640</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -187,6 +201,7 @@ growth suppression index</p></li>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

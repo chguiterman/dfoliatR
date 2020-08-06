@@ -51,7 +51,7 @@ We recommend that the input tree-ring data be standardized in either ARSTAN or t
 
 ## Example
 
-Here we briefly explore defoliation and outbreaks patterns for a Douglas-fir site in New Mexico. These data re includedin the package
+Here we briefly explore defoliation and outbreaks patterns for a Douglas-fir site in New Mexico. These data are included in the package
 
 ```{r }
 library(dfoliatR)

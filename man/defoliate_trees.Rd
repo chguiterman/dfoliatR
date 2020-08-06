@@ -64,7 +64,7 @@ combines these tree-ring indices by calling \code{\link[=gsi]{gsi()}} to perform
 tree growth as represented by the non-host chronology. This should isolate
 a disturbance-related signal. Second, \code{\link[=defoliate_trees]{defoliate_trees()}},
 runs \code{\link[=id_defoliation]{id_defoliation()}}, which completes a
-runs analyses to evaluate sequences of negetive departures in the
+runs analyses to evaluate sequences of negative departures in the
 host tree growth series (\code{ngsi})
 for potential defoliation events.
 }

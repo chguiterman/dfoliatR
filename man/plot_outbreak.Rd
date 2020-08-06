@@ -19,3 +19,11 @@ suppression index.}
 Produce a stacked plot to present composited, site-level insect outbreak
 chronologies
 }
+\examples{
+data(dmj_obr)
+plot_outbreak(dmj_obr)
+
+# Change middle panel display from the default "NGSI" to "GSI"
+plot_outbreak(dmj_obr, disp_index = "GSI")
+
+}

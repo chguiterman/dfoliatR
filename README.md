@@ -59,7 +59,7 @@ to standardize raw ring widths in `dplR` with `detrend()`, then use the
 ## Example
 
 Here we briefly explore defoliation and outbreaks patterns for a
-Douglas-fir site in New Mexico. These data re includedin the package
+Douglas-fir site in New Mexico. These data are included in the package
 
 ``` r
 library(dfoliatR)

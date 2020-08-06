@@ -1,11 +1,11 @@
-# dfoliatR v0.1.9000
+# dfoliatR v0.2.0
 
 * Readme edits
 * Edits to function descriptions
 * Adding new logo
 * Fixed a bug in `id_defoliation()` regarding series_end_events
 * Added updated East Fork data, new objects are `efk_*`
-* Fix up `plot_outbreak()` with flexible Y-axis labels and shaed area
+* Fix up `plot_outbreak()` with flexible Y-axis labels and shaded area
 * Address issues pertaining to ongoing defoliations when users select
   `series_end_events = TRUE` in `defoliate_trees()`. 
     * Duration is no longer calculated for series-end-events in `defol_stats()`
@@ -13,6 +13,7 @@
     ongoing events
     * Duration and other statistics are not calculated for ongoing events in
     `outbreak_stats()`
+* Add examples to plotting functions
 
 # dfoliatR v0.1.0
 

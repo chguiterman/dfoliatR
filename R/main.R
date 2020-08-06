@@ -10,7 +10,7 @@
 #'tree growth as represented by the non-host chronology. This should isolate
 #'a disturbance-related signal. Second, [defoliate_trees()],
 #'runs [id_defoliation()], which completes a
-#'runs analyses to evaluate sequences of negetive departures in the
+#'runs analyses to evaluate sequences of negative departures in the
 #'host tree growth series (`ngsi`)
 #'for potential defoliation events.
 #'
