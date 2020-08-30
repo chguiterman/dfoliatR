@@ -1,0 +1,17 @@
+citHeader("To cite dfoliatR in publications use:")
+
+citEntry("dfoliatR",
+  entry    = "Article",
+  author   = "CH Guiterman, AM Lynch, and JN Axelson",
+  title    = "dfoliatR: An R package for detection and analysis of insect defoliation signals in tree rings",
+  journal  = "Dendrochronologia",
+  year     = "2020",
+  volume   = "",
+  number   = "",
+  pages    = "",
+  doi      = "10.1016/j.dendro.2020.125750",
+  url      = "https://authors.elsevier.com/sd/article/S1125786520300898",
+  textVersion = paste(
+  "Guiterman, CH, AM Lynch, and JN Axelson (2020). dfoliatR: An R package for detection and analysis of insect defoliation signals in tree rings. Dendrochronologia. DOI:10.1016/j.dendro.2020.125750"
+  )
+)
