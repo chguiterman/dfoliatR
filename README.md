@@ -21,6 +21,14 @@ exactly replicate) OUTBREAK, a FORTRAN program available from the
 [Dendrochronological Program
 Library](https://www.ltrr.arizona.edu/pub/dpl/).
 
+When using `dfoliatR` in a publication, please cite the paper:
+
+> Guiterman, CH, AM Lynch, and JN Axelson (2020) [`dfoliatR`: An R
+> package for detection and analysis of insect defoliation signals in
+> tree
+> rings.](https://authors.elsevier.com/sd/article/S1125786520300898)
+> *Dendrochronologia*. DOI: 10.1016/j.dendro.2020.125750.
+
 ## Installation
 
 You can install the released version of dfoliatR from
@@ -63,6 +71,7 @@ Douglas-fir site in New Mexico. These data are included in the package
 
 ``` r
 library(dfoliatR)
+#> Warning: package 'dfoliatR' was built under R version 3.5.3
 ## load the data
 data("dmj_h")
 data("dmj_nh")

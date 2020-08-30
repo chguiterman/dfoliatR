@@ -26,6 +26,9 @@ knitr::opts_chunk$set(
 
 The goal of `dfoliatR` is to provide dendrochronologists with tools for identifying and analyzing the signatures of insect defoliators preserved in tree rings. The methods it employs closely follow (or in some cases exactly replicate) OUTBREAK, a FORTRAN program available from the [Dendrochronological Program Library](https://www.ltrr.arizona.edu/pub/dpl/). 
 
+When using `dfoliatR` in a publication, please cite the paper:
+
+>Guiterman, CH, AM Lynch, and JN Axelson (2020) [`dfoliatR`: An R package for detection and analysis of insect defoliation signals in tree rings.](https://authors.elsevier.com/sd/article/S1125786520300898) _Dendrochronologia_. DOI: 10.1016/j.dendro.2020.125750.
 
 ## Installation
 
