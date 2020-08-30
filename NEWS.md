@@ -14,6 +14,7 @@
     * Duration and other statistics are not calculated for ongoing events in
     `outbreak_stats()`
 * Add examples to plotting functions
+* dfoliatR is now published in Dendrochronologia
 
 # dfoliatR v0.1.0
 
