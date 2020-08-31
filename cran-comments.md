@@ -1,9 +1,10 @@
 ## Submission
-This submission to `dfoliatR` to v 0.2.0
+This submission to `dfoliatR` to v0.2.0
 
 ## Test environments
-* ubuntu 14.04 (on travis-ci), R 3.6.2
-* win-builder (devel and release)
+* macOS (on travis-ci)
+* Linux (Xenial) (on travis-ci)
+* win-builder, R 3.6.2
 
 ## R CMD check results
 
