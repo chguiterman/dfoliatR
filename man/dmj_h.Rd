@@ -4,8 +4,10 @@
 \name{dmj_h}
 \alias{dmj_h}
 \title{Demi John Douglas-fir}
-\format{An \code{rwl} object with 17 tree-level series, standardized in ARSTAN.
-Dates range from 1620-1997.}
+\format{
+An \code{rwl} object with 17 tree-level series, standardized in ARSTAN.
+Dates range from 1620-1997.
+}
 \usage{
 dmj_h
 }

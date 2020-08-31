@@ -4,7 +4,9 @@
 \name{dmj_nh}
 \alias{dmj_nh}
 \title{Demi John area ponderosa pine}
-\format{An \code{rwl} object with 1 series, 1675-1997.}
+\format{
+An \code{rwl} object with 1 series, 1675-1997.
+}
 \usage{
 dmj_nh
 }

@@ -4,7 +4,9 @@
 \name{efk_defol}
 \alias{efk_defol}
 \title{East Fork defol object}
-\format{A \code{defol} object with 5142 rows and 5 columns}
+\format{
+A \code{defol} object with 5142 rows and 5 columns
+}
 \usage{
 efk_defol
 }

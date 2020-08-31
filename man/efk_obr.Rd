@@ -4,7 +4,9 @@
 \name{efk_obr}
 \alias{efk_obr}
 \title{East Fork outbreak object}
-\format{An \code{outbreak} object with 221 rows and 9 columns}
+\format{
+An \code{outbreak} object with 221 rows and 9 columns
+}
 \usage{
 efk_obr
 }

@@ -4,8 +4,10 @@
 \name{efk_nh}
 \alias{efk_nh}
 \title{Baca ponderosa pine chronology}
-\format{An \code{rwl} chronology object with 1 series, 1612-1987. Standardized in
-ARSTAN.}
+\format{
+An \code{rwl} chronology object with 1 series, 1612-1987. Standardized in
+ARSTAN.
+}
 \source{
 \url{https://esajournals.onlinelibrary.wiley.com/doi/10.2307/2937153}
 }

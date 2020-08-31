@@ -4,7 +4,9 @@
 \name{dmj_obr}
 \alias{dmj_obr}
 \title{Demi John outbreak object}
-\format{An object of class \code{obr} (inherits from \code{data.frame}) with 323 rows and 9 columns.}
+\format{
+An object of class \code{obr} (inherits from \code{data.frame}) with 323 rows and 9 columns.
+}
 \usage{
 dmj_obr
 }

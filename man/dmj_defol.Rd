@@ -4,7 +4,9 @@
 \name{dmj_defol}
 \alias{dmj_defol}
 \title{Demi John dfol object}
-\format{A \code{defol} object with 4267 rows and 5 columns}
+\format{
+A \code{defol} object with 4267 rows and 5 columns
+}
 \usage{
 dmj_defol
 }
