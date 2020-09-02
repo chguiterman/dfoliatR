@@ -7,9 +7,9 @@ Authors@R: c(person("Chris", "Guiterman", email = "chguiterman@email.arizona.edu
             person("Jodi", "Axelson", role = "aut", comment = c(ORCID = "0000-0002-1799-6364")))
 Description: Tools to identify, quantify, analyze, and visualize growth
     suppression events in tree rings that are often produced by insect
-    defoliation.
+    defoliation. Described in Guiterman et al. (2020) <doi:10.1016/j.dendro.2020.125750>.
 URL: https://chguiterman.github.io/dfoliatR/
-BugReports: http://github.com/chguiterman/dfoliatR/issues
+BugReports: https://github.com/chguiterman/dfoliatR/issues
 Depends:
     R (>= 3.2)
 License: GPL (>= 3)

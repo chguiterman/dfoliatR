@@ -1,5 +1,8 @@
 ## Submission
-This submission to `dfoliatR` to v0.2.0
+This is a resubmission of `dfoliatR` to v0.2.0. In this version I have:
+
+* Corrected the url for the GitHub issues page to https://github.com/chguiterman/dfoliatR/issues
+* Provided the citation for the publication describing the package in the Description field
 
 ## Test environments
 * macOS (on travis-ci)
