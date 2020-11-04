@@ -1,3 +1,5 @@
+# dfoliatR v0.3.0
+
 # dfoliatR v0.2.0
 
 * Readme edits
