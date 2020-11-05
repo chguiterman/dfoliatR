@@ -135,10 +135,12 @@ outbreak <- function(x,
               num_defol = sum(.data$defol_status %in% defol_events),
               perc_defol = round(.data$num_defol / .data$samp_depth * 100, 1),
               num_max_defol = sum(.data$defol_status %in% "max_defol"),
-              perc_max_defol = round(.data$num_max_defol / .data$samp_depth * 100, 1)
+              perc_max_defol =
+                round(.data$num_max_defol / .data$samp_depth * 100, 1)
     )
   mean_gsi <- x %>%
-    summarize_at(c("mean_gsi" = quos(.data$gsi), "mean_ngsi" = quos(.data$ngsi)),
+    summarize_at(c("mean_gsi" = quos(.data$gsi),
+                   "mean_ngsi" = quos(.data$ngsi)),
                         ~ mean(., na.rm = TRUE) %>%
                           round(., 4))
   out <- inner_join(counts, mean_gsi, by = "year") %>%
@@ -153,8 +155,8 @@ outbreak <- function(x,
   if (any("series_end_defol" %in% x$defol_status)) {
     ev <- events_table(out$outbreak_status, "outbreak") %>%
       filter(.data$starts == max(.data$starts))
-    if ( all(((nrow(out) - ev$ends) < 3) &
-         (out[ev$ends : nrow(out), ]$num_defol > 0)) ) {
+    if (all(((nrow(out) - ev$ends) < 3) &
+         (out[ev$ends : nrow(out), ]$num_defol > 0))) {
       out[ev$starts : nrow(out), "outbreak_status"] <- "se_outbreak"
     }
   }
