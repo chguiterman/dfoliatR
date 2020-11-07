@@ -38,6 +38,13 @@
 #'  require a long-form data frame identifiable as a [defol()] object. Selecting
 #'  `list_output = TRUE` will trigger errors in running other functions.
 #'
+#'@importFrom rlang .data :=
+#'@importFrom magrittr %>%
+#'@importFrom glue glue
+#'@importFrom tibble rownames_to_column
+#'@importFrom tibble column_to_rownames
+#'@importFrom stats na.omit
+#'
 #'@examples
 #'# Load host and non-host data
 #'data("dmj_h") # Host trees
@@ -47,15 +54,17 @@
 #'
 #'
 #'@export
-defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
+defoliate_trees <- function(host_tree, nonhost_chron = NULL, duration_years = 8,
                             max_reduction = -1.28, bridge_events = FALSE,
                             series_end_event = FALSE, list_output = FALSE) {
+
+  nonhost_chron <- data.frame(nonhost_chron)
+
+  # If there is a nonhost chronology
   if (ncol(nonhost_chron) > 1) stop("nonhost_chron can only contain 1 series")
   if (max_reduction > 0) max_reduction <- max_reduction * -1
-  # To DO: Add provision that if only host series are given, no correction is
-  # made, but series are scanned for defol_status
+
   host_tree <- data.frame(host_tree)
-  nonhost_chron <- data.frame(nonhost_chron)
   nseries <- ncol(host_tree)
   tree_list <- lapply(seq_len(nseries), function(i) {
     input_series <-
@@ -64,7 +73,20 @@ defoliate_trees <- function(host_tree, nonhost_chron, duration_years = 8,
           host_tree[, i, drop = FALSE],
           nonhost_chron)
       )
-    corrected_series <- gsi(input_series)
+
+   #If there is no nonhost chronology
+    if (nrow(nonhost_chron) > 0) corrected_series <- gsi(input_series)
+    else corrected_series <- host_tree %>%
+      rownames_to_column(var = "year") %>%
+      select(year, colnames(host_tree)[i]) %>%
+      na.omit() %>%
+      mutate(nonhost = NA,
+             nonhost_rescale = NA,
+             !!glue("{colnames(host_tree)[i]}_gsi") := .data[[colnames(host_tree)[i]]],
+             !!glue("{colnames(host_tree)[i]}_ngsi") := scale(.data[[glue("{colnames(host_tree)[i]}_gsi")]])
+      ) %>%
+      column_to_rownames(var = "year")
+
     defoliated_series <- id_defoliation(corrected_series,
                                         duration_years = duration_years,
                                         bridge_events = bridge_events,
