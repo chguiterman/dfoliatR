@@ -55,9 +55,12 @@
 #'
 #'
 #'@export
-defoliate_trees <- function(host_tree, nonhost_chron = NULL, duration_years = 8,
-                            max_reduction = -1.28, bridge_events = FALSE,
-                            series_end_event = FALSE, list_output = FALSE) {
+defoliate_trees <- function(host_tree, nonhost_chron = NULL,
+                            duration_years = 8,
+                            max_reduction = -1.28,
+                            bridge_events = FALSE,
+                            series_end_event = FALSE,
+                            list_output = FALSE) {
 
   nonhost_chron <- data.frame(nonhost_chron)
 
@@ -79,7 +82,7 @@ defoliate_trees <- function(host_tree, nonhost_chron = NULL, duration_years = 8,
     if (nrow(nonhost_chron) > 0) corrected_series <- gsi(input_series)
     else corrected_series <- host_tree %>%
       rownames_to_column(var = "year") %>%
-      select(year, colnames(host_tree)[i]) %>%
+      select(.data$year, colnames(host_tree)[i]) %>%
       na.omit() %>%
       mutate(nonhost = NA,
              nonhost_rescale = NA,
