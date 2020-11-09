@@ -1,6 +1,10 @@
 # dfoliatR v0.3.0
 
 * Updated `defoliated_trees()` to work without nonhost chronology #2
+  * Thanks for the contribution of @MaxenceMartin on this
+  * @chguiterman added a unit test, cleaned up a RCMD note, some linting,
+  Also updated the function description for this new option
+  
 
 # dfoliatR v0.2.0
 
