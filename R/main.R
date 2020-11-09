@@ -3,22 +3,23 @@
 #'[defoliate_trees()] is the starting point for most analyses of insect
 #'defoliation signals preserved in the growth patterns of trees. It requires
 #'individual-tree standardized measurements from potential host trees and a
-#'tree-ring chronology from a nearby non-host species.
-#'First, [defoliate_trees()]
-#'combines these tree-ring indices by calling [gsi()] to perform a
-#'"correction" of the host-tree indices to remove the climatic influences on
-#'tree growth as represented by the non-host chronology. This should isolate
-#'a disturbance-related signal. Second, [defoliate_trees()],
-#'runs [id_defoliation()], which completes a
-#'runs analyses to evaluate sequences of negative departures in the
-#'host tree growth series (`ngsi`)
-#'for potential defoliation events.
+#'tree-ring chronology from a nearby non-host species. First,
+#'[defoliate_trees()] combines these tree-ring indices by calling [gsi()] to
+#'perform a "correction" of the host-tree indices to remove the climatic
+#'influences on tree growth as represented by the non-host chronology. This
+#'should isolate a disturbance-related signal. Second, [defoliate_trees()], runs
+#'[id_defoliation()], which completes a runs analyses to evaluate sequences of
+#'negative departures in the host tree growth series (`ngsi`) for potential
+#'defoliation events.
 #'
 #'@param host_tree A `dplR::rwl` object containing the tree-level growth series
 #'  for all host trees to be compared to the non-host chronology.
 #'
 #'@param nonhost_chron A `dplR::rwl` object containing a single non-host
-#'  chronology.
+#'  chronology. If blank, defoliation events will be inferred on the host_tree
+#'  series as provided. It is incumbent on the user to ensure the host_tree
+#'  series are properly prepared for analyses when there is no nonhost_chron
+#'  provided.
 #'
 #'@inheritParams id_defoliation
 #'
@@ -82,8 +83,10 @@ defoliate_trees <- function(host_tree, nonhost_chron = NULL, duration_years = 8,
       na.omit() %>%
       mutate(nonhost = NA,
              nonhost_rescale = NA,
-             !!glue("{colnames(host_tree)[i]}_gsi") := .data[[colnames(host_tree)[i]]],
-             !!glue("{colnames(host_tree)[i]}_ngsi") := scale(.data[[glue("{colnames(host_tree)[i]}_gsi")]])
+             !!glue("{colnames(host_tree)[i]}_gsi") :=
+               .data[[colnames(host_tree)[i]]],
+             !!glue("{colnames(host_tree)[i]}_ngsi") :=
+               scale(.data[[glue("{colnames(host_tree)[i]}_gsi")]])
       ) %>%
       column_to_rownames(var = "year")
 

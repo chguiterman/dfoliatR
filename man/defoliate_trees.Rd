@@ -6,7 +6,7 @@
 \usage{
 defoliate_trees(
   host_tree,
-  nonhost_chron,
+  nonhost_chron = NULL,
   duration_years = 8,
   max_reduction = -1.28,
   bridge_events = FALSE,
@@ -19,7 +19,10 @@ defoliate_trees(
 for all host trees to be compared to the non-host chronology.}
 
 \item{nonhost_chron}{A \code{dplR::rwl} object containing a single non-host
-chronology.}
+chronology. If blank, defoliation events will be inferred on the host_tree
+series as provided. It is incumbent on the user to ensure the host_tree
+series are properly prepared for analyses when there is no nonhost_chron
+provided.}
 
 \item{duration_years}{The minimum length of time in which the tree is
 considered to be in defoliation.}
@@ -57,16 +60,14 @@ the host and nonhost data.
 \code{\link[=defoliate_trees]{defoliate_trees()}} is the starting point for most analyses of insect
 defoliation signals preserved in the growth patterns of trees. It requires
 individual-tree standardized measurements from potential host trees and a
-tree-ring chronology from a nearby non-host species.
-First, \code{\link[=defoliate_trees]{defoliate_trees()}}
-combines these tree-ring indices by calling \code{\link[=gsi]{gsi()}} to perform a
-"correction" of the host-tree indices to remove the climatic influences on
-tree growth as represented by the non-host chronology. This should isolate
-a disturbance-related signal. Second, \code{\link[=defoliate_trees]{defoliate_trees()}},
-runs \code{\link[=id_defoliation]{id_defoliation()}}, which completes a
-runs analyses to evaluate sequences of negative departures in the
-host tree growth series (\code{ngsi})
-for potential defoliation events.
+tree-ring chronology from a nearby non-host species. First,
+\code{\link[=defoliate_trees]{defoliate_trees()}} combines these tree-ring indices by calling \code{\link[=gsi]{gsi()}} to
+perform a "correction" of the host-tree indices to remove the climatic
+influences on tree growth as represented by the non-host chronology. This
+should isolate a disturbance-related signal. Second, \code{\link[=defoliate_trees]{defoliate_trees()}}, runs
+\code{\link[=id_defoliation]{id_defoliation()}}, which completes a runs analyses to evaluate sequences of
+negative departures in the host tree growth series (\code{ngsi}) for potential
+defoliation events.
 }
 \note{
 Other functions in \code{dfoliatR}, like \code{\link[=outbreak]{outbreak()}} and \code{\link[=plot_defol]{plot_defol()}},
