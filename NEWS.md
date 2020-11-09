@@ -1,5 +1,7 @@
 # dfoliatR v0.3.0
 
+* Updated `defoliated_trees()` to work without nonhost chronology #2
+
 # dfoliatR v0.2.0
 
 * Readme edits
