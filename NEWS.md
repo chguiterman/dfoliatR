@@ -4,6 +4,10 @@
   * Thanks for the contribution of @MaxenceMartin on this
   * @chguiterman added a unit test, cleaned up a RCMD note, some linting,
   Also updated the function description for this new option
+* Changed use of {vdiffr} in `testthat` files to be conditional
+  * {vdiffr} does not load on Apply M1 machines, and thanks to @lionel- 
+  for code example on how to fix the issue
+  https://github.com/lionel-/ggstance/commit/eac216f6
   
 
 # dfoliatR v0.2.0
