@@ -8,6 +8,8 @@
   * {vdiffr} does not load on Apply M1 machines, and thanks to @lionel- 
   for code example on how to fix the issue
   https://github.com/lionel-/ggstance/commit/eac216f6
+* Removed Travis CI and implented GitHub Actions
+  * Thanks to @brews for this helpful resource: https://deanattali.com/blog/migrating-travis-to-github/
   
 
 # dfoliatR v0.2.0

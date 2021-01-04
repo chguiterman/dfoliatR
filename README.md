@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![Build
-Status](https://travis-ci.org/chguiterman/dfoliatR.svg?branch=master)](https://travis-ci.org/chguiterman/dfoliatR)
+[![R build
+status](https://github.com/chguiterman/dfoliatR/workflows/R-CMD-check/badge.svg)](https://github.com/chguiterman/dfoliatR/actions)
 [![Coverage
 Status](https://coveralls.io/repos/github/chguiterman/dfoliatR/badge.svg?branch=master)](https://coveralls.io/github/chguiterman/dfoliatR?branch=master)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/dfoliatR)](https://cran.r-project.org/package=dfoliatR)
@@ -34,16 +34,12 @@ When using `dfoliatR` in a publication, please cite the paper:
 You can install the released version of dfoliatR from
 [CRAN](https://CRAN.R-project.org) with:
 
-``` r
-install.packages("dfoliatR")
-```
+    install.packages("dfoliatR")
 
 And the development version from [GitHub](https://github.com/) with:
 
-``` r
-# install.packages("devtools")
-devtools::install_github("chguiterman/dfoliatR")
-```
+    # install.packages("devtools")
+    devtools::install_github("chguiterman/dfoliatR")
 
 ## Usage
 
@@ -69,35 +65,28 @@ to standardize raw ring widths in `dplR` with `detrend()`, then use the
 Here we briefly explore defoliation and outbreaks patterns for a
 Douglas-fir site in New Mexico. These data are included in the package
 
-``` r
-library(dfoliatR)
-#> Warning: package 'dfoliatR' was built under R version 3.5.3
-## load the data
-data("dmj_h")
-data("dmj_nh")
-```
+    library(dfoliatR)
+    ## load the data
+    data("dmj_h")
+    data("dmj_nh")
 
 To start out, we identify *defoliation* events on individual trees,
 
-``` r
-## Identify defoliation signals
-dmj_defol <- defoliate_trees(host_tree = dmj_h, nonhost_chron = dmj_nh)
+    ## Identify defoliation signals
+    dmj_defol <- defoliate_trees(host_tree = dmj_h, nonhost_chron = dmj_nh)
 
-## Plot the results
-plot_defol(dmj_defol)
-```
+    ## Plot the results
+    plot_defol(dmj_defol)
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 And then scale up to *outbreaks* by compositing across the site via
 
-``` r
-## Identify site-level outbreak patterns
-dmj_obr <- outbreak(dmj_defol)
+    ## Identify site-level outbreak patterns
+    dmj_obr <- outbreak(dmj_defol)
 
-## Plot those results
-plot_outbreak(dmj_obr)
-```
+    ## Plot those results
+    plot_outbreak(dmj_obr)
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
@@ -105,18 +94,18 @@ plot_outbreak(dmj_obr)
 
 Analyses of the tree series (termed `defol` objects) can be done via:
 
-  - `plot_defol()`
-  - `defol_stats()`
-  - `get_defol_events()`
-  - `sample_depth()`
+-   `plot_defol()`
+-   `defol_stats()`
+-   `get_defol_events()`
+-   `sample_depth()`
 
 To identify ecologically-significant outbreak events, use the
 `outbreak()` function. Various filters are available to aid users in
 defining outbreak thresholds. Analyses of outbreak series (termed `obr`
 objects) can be done via:
 
-  - `plot_outbreak()`
-  - `outbreak_stats()`
+-   `plot_outbreak()`
+-   `outbreak_stats()`
 
 For the full range of usage in `dfoliatR`, please visit the
 [introduction

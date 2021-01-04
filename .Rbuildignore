@@ -3,7 +3,6 @@
 ^pkgdown$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.travis\.yml$
 ^\_config\.yml$
 ^doc$
 ^Meta$
@@ -11,3 +10,4 @@
 ^CRAN-RELEASE$
 ^README\.Rmd$
 ^revdep$
+^\.github$

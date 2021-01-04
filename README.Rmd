@@ -16,11 +16,11 @@ knitr::opts_chunk$set(
 # dfoliatR <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
-
-[![Build Status](https://travis-ci.org/chguiterman/dfoliatR.svg?branch=master)](https://travis-ci.org/chguiterman/dfoliatR)
+[![R build status](https://github.com/chguiterman/dfoliatR/workflows/R-CMD-check/badge.svg)](https://github.com/chguiterman/dfoliatR/actions)
 [![Coverage Status](https://coveralls.io/repos/github/chguiterman/dfoliatR/badge.svg?branch=master)](https://coveralls.io/github/chguiterman/dfoliatR?branch=master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/dfoliatR)](https://cran.r-project.org/package=dfoliatR)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3626135.svg)](https://doi.org/10.5281/zenodo.3626135)
+
 
 <!-- badges: end -->
 
