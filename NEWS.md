@@ -8,9 +8,11 @@
   * {vdiffr} does not load on Apply M1 machines, and thanks to @lionel- 
   for code example on how to fix the issue
   https://github.com/lionel-/ggstance/commit/eac216f6
-* Removed Travis CI and implented GitHub Actions
+* Removed Travis CI and implemented GitHub Actions
   * Thanks to @brews for this helpful resource: https://deanattali.com/blog/migrating-travis-to-github/
-  
+* New feature to allow users to change the y-axis label on the bottom tile of `plot_outbreak()`
+  * Thanks to Ann Lynch and Wojciech Kędziora for the suggestion. This should provide greater
+  flexibility for users that are not only looking at defoliation but other causes of growth suppression
 
 # dfoliatR v0.2.0
 

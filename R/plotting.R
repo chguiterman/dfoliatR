@@ -70,10 +70,11 @@ plot_defol <- function(x, breaks) {
 #' chronologies
 #'
 #' @param x an 'obr' object produced by [outbreak()]
-#' @param disp_index Identify the timeseries index to plot. Defaults to
-#'   `NGSI`, the average normalized growth suppression index for the
-#'   site. The only other option is `GSI`, the average growth
-#'   suppression index.
+#' @param disp_index Identify the timeseries index to plot. Defaults to `NGSI`,
+#'   the average normalized growth suppression index for the site. The only
+#'   other option is `GSI`, the average growth suppression index.
+#' @param label_defol Allows users to change the bottom tile of the printed
+#'   ouput to read what they'd like. Defaults to "% defoliated"
 #'
 #' @importFrom rlang .data
 #' @importFrom  magrittr %>%
@@ -88,7 +89,9 @@ plot_defol <- function(x, breaks) {
 #' plot_outbreak(dmj_obr, disp_index = "GSI")
 #'
 #' @export
-plot_outbreak <- function(x, disp_index = c("GSI", "NGSI")) {
+plot_outbreak <- function(x,
+                          disp_index = c("GSI", "NGSI"),
+                          label_defol = "% defoliated") {
 
   if (!is.obr(x)) stop("'x' must be an 'obr' object")
   if (missing(disp_index)) disp_index <- "NGSI"
@@ -147,7 +150,7 @@ plot_outbreak <- function(x, disp_index = c("GSI", "NGSI")) {
   prop <- p +
     geom_vline(xintercept = minor_labs, colour = "grey90") +
     geom_ribbon(aes(ymax = .data$perc_defol, ymin = 0)) +
-    scale_y_continuous(name = "% defoliated",
+    scale_y_continuous(name = label_defol,
                        expand = expansion(mult = c(0, 0.05))) +
     scale_x_continuous(name = "Year") +
     ggpubr::theme_pubr() +

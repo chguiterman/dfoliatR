@@ -5,15 +5,17 @@
 \title{Produce a stacked plot to present composited, site-level insect outbreak
 chronologies}
 \usage{
-plot_outbreak(x, disp_index = c("GSI", "NGSI"))
+plot_outbreak(x, disp_index = c("GSI", "NGSI"), label_defol = "\% defoliated")
 }
 \arguments{
 \item{x}{an 'obr' object produced by \code{\link[=outbreak]{outbreak()}}}
 
-\item{disp_index}{Identify the timeseries index to plot. Defaults to
-\code{NGSI}, the average normalized growth suppression index for the
-site. The only other option is \code{GSI}, the average growth
-suppression index.}
+\item{disp_index}{Identify the timeseries index to plot. Defaults to \code{NGSI},
+the average normalized growth suppression index for the site. The only
+other option is \code{GSI}, the average growth suppression index.}
+
+\item{label_defol}{Allows users to change the bottom tile of the printed
+ouput to read what they'd like. Defaults to "\% defoliated"}
 }
 \description{
 Produce a stacked plot to present composited, site-level insect outbreak
