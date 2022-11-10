@@ -42,8 +42,7 @@
 #'@importFrom rlang .data :=
 #'@importFrom magrittr %>%
 #'@importFrom glue glue
-#'@importFrom tibble rownames_to_column
-#'@importFrom tibble column_to_rownames
+#'@importFrom tibble rownames_to_column remove_rownames column_to_rownames
 #'@importFrom stats na.omit
 #'
 #'@examples
@@ -89,8 +88,9 @@ defoliate_trees <- function(host_tree, nonhost_chron = NULL,
              !!glue("{colnames(host_tree)[i]}_gsi") :=
                .data[[colnames(host_tree)[i]]],
              !!glue("{colnames(host_tree)[i]}_ngsi") :=
-               scale(.data[[glue("{colnames(host_tree)[i]}_gsi")]])
+               scale(.data[[glue("{colnames(host_tree)[i]}_gsi")]])[, 1]
       ) %>%
+      remove_rownames() %>%
       column_to_rownames(var = "year")
 
     defoliated_series <- id_defoliation(corrected_series,
