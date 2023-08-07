@@ -1,5 +1,8 @@
 ## Submission
-This is a release of `dfoliatR` to v0.3.0. 
+This is a resubmission of `dfoliatR` to v0.3.0. In this version, I have:
+
+* Changed \url tags to \doi tags in @source for package data sets
+* Changed CITATION file from citEntry to bibentry
 
 ## R CMD check results
 
