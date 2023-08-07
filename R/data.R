@@ -5,7 +5,7 @@
 #' @format An `rwl` object with 37 tree-level series, standardized in ARSTAN.
 #'   Dates range from 1776-1987.
 #'
-#' @source \url{https://doi.org/10.2307/2937153}
+#' @source \doi{10.2307/2937153}
 "efk_h"
 
 #' Baca ponderosa pine chronology
@@ -15,7 +15,7 @@
 #' @format An `rwl` chronology object with 1 series, 1612-1987. Standardized in
 #'   ARSTAN.
 #'
-#' @source \url{https://doi.org/10.2307/2937153}
+#' @source \doi{10.2307/2937153}
 "efk_nh"
 
 #' East Fork defol object
