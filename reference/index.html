@@ -50,7 +50,51 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h2>
+      
+      <p class="section-desc"></p><p>Identifying insect defoliation and outbreak events in tree-ing growth patterns is the goal of dfoliatR. Two functions perform the majority of the workload. They take indexed tree-ring data and find tree-level defoliation events [defoliate_trees()] and then composite all trees [outbreak()] to identify outbreak events.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="defoliate_trees.html">defoliate_trees()</a></code> 
+        </dt>
+        <dd>Identify defoliation events in host trees</dd>
+      </dl><dl><dt>
+          
+          <code><a href="outbreak.html">outbreak()</a></code> 
+        </dt>
+        <dd>Composite defoliation series to determine outbreak events</dd>
+      </dl></div><div class="section level2">
+      <h2 id="graphics">Graphics<a class="anchor" aria-label="anchor" href="#graphics"></a></h2>
+      
+      <p class="section-desc"></p><p>Objects created by the two functions above can be plotted via:</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="plot_defol.html">plot_defol()</a></code> 
+        </dt>
+        <dd>Produce a Gantt plot of individual tree-ring series to show defoliation
+events in time</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_outbreak.html">plot_outbreak()</a></code> 
+        </dt>
+        <dd>Produce a stacked plot to present composited, site-level insect outbreak
+chronologies</dd>
+      </dl></div><div class="section level2">
+      <h2 id="summary-statistics">Summary statistics<a class="anchor" aria-label="anchor" href="#summary-statistics"></a></h2>
       
       
 
@@ -62,14 +106,40 @@
 
       <dl><dt>
           
-          <code><a href="as.defol.html">as.defol()</a></code> 
+          <code><a href="defol_stats.html">defol_stats()</a></code> 
         </dt>
-        <dd>Alias to <code><a href="../reference/as_defol.html">as_defol()</a></code></dd>
+        <dd>Descriptive statistics for defoliation trees</dd>
       </dl><dl><dt>
           
-          <code><a href="as.obr.html">as.obr()</a></code> 
+          <code><a href="outbreak_stats.html">outbreak_stats()</a></code> 
         </dt>
-        <dd>Alias to <code><a href="../reference/as_obr.html">as_obr()</a></code></dd>
+        <dd>Outbreak statistics</dd>
+      </dl></div><div class="section level2">
+      <h2 id="helpful-functions">Helpful functions<a class="anchor" aria-label="anchor" href="#helpful-functions"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="sample_depth.html">sample_depth()</a></code> 
+        </dt>
+        <dd>Calculate the sample depth of a defol object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="series_names.html">series_names()</a></code> 
+        </dt>
+        <dd>Extract series names from a defol object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_defol_events.html">get_defol_events()</a></code> 
+        </dt>
+        <dd>Defoliation event list</dd>
       </dl><dl><dt>
           
           <code><a href="as_defol.html">as_defol()</a></code> 
@@ -82,20 +152,36 @@
         <dd>Cast data frame to list-like <code>obr</code> object</dd>
       </dl><dl><dt>
           
-          <code><a href="defol.html">defol()</a></code> 
+          <code><a href="as.defol.html">as.defol()</a></code> 
         </dt>
-        <dd>Constructor for S3 defol class</dd>
+        <dd>Alias to <code><a href="../reference/as_defol.html">as_defol()</a></code></dd>
       </dl><dl><dt>
           
-          <code><a href="defol_stats.html">defol_stats()</a></code> 
+          <code><a href="as.obr.html">as.obr()</a></code> 
         </dt>
-        <dd>Descriptive statistics for defoliation trees</dd>
+        <dd>Alias to <code><a href="../reference/as_obr.html">as_obr()</a></code></dd>
       </dl><dl><dt>
           
-          <code><a href="defoliate_trees.html">defoliate_trees()</a></code> 
+          <code><a href="is.defol.html">is.defol()</a></code> 
         </dt>
-        <dd>Identify defoliation events in host trees</dd>
+        <dd>Check if object is tree-level defoliation object: <code>defol</code></dd>
       </dl><dl><dt>
+          
+          <code><a href="is.obr.html">is.obr()</a></code> 
+        </dt>
+        <dd>Check if object is outbreak, meaning site-level outbreak object</dd>
+      </dl></div><div class="section level2">
+      <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a></h2>
+      
+      <p class="section-desc"></p><p>Tree-ring data from four sites in New Mexico are available for users to explore and test functions. These include two sets of Douglas-fir host series and two separate ponderosa pine non-host chronologies. The samples were collected to reconstruct western spruce budwork outbreak dynamics.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="dmj_defol.html">dmj_defol</a></code> 
         </dt>
@@ -135,12 +221,18 @@
           <code><a href="efk_obr.html">efk_obr</a></code> 
         </dt>
         <dd>East Fork outbreak object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="get_defol_events.html">get_defol_events()</a></code> 
-        </dt>
-        <dd>Defoliation event list</dd>
-      </dl><dl><dt>
+      </dl></div><div class="section level2">
+      <h2 id="miscileaneous">Miscileaneous<a class="anchor" aria-label="anchor" href="#miscileaneous"></a></h2>
+      
+      <p class="section-desc"></p><p>These functions are mainly called internally, but could assist in troubleshooting or in other unusual situations.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="gsi.html">gsi()</a></code> 
         </dt>
@@ -152,14 +244,14 @@
         <dd>Identify defoliation events in a host series</dd>
       </dl><dl><dt>
           
-          <code><a href="is.defol.html">is.defol()</a></code> 
+          <code><a href="stack_defoliation.html">stack_defoliation()</a></code> 
         </dt>
-        <dd>Check if object is tree-level defoliation object: <code>defol</code></dd>
+        <dd>Stack a defoliation list</dd>
       </dl><dl><dt>
           
-          <code><a href="is.obr.html">is.obr()</a></code> 
+          <code><a href="defol.html">defol()</a></code> 
         </dt>
-        <dd>Check if object is outbreak, meaning site-level outbreak object</dd>
+        <dd>Constructor for S3 defol class</dd>
       </dl><dl><dt>
           
           <code><a href="obr.html">obr()</a></code> 
@@ -167,48 +259,12 @@
         <dd>Constructor for an <code>obr</code> object.</dd>
       </dl><dl><dt>
           
-          <code><a href="outbreak.html">outbreak()</a></code> 
-        </dt>
-        <dd>Composite defoliation series to determine outbreak events</dd>
-      </dl><dl><dt>
-          
-          <code><a href="outbreak_stats.html">outbreak_stats()</a></code> 
-        </dt>
-        <dd>Outbreak statistics</dd>
-      </dl><dl><dt>
-          
           <code><a href="plot.defol.html">plot(<i>&lt;defol&gt;</i>)</a></code> 
         </dt>
         <dd>Plot a <code>defol</code> object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_defol.html">plot_defol()</a></code> 
-        </dt>
-        <dd>Produce a Gantt plot of individual tree-ring series to show defoliation
-events in time</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_outbreak.html">plot_outbreak()</a></code> 
-        </dt>
-        <dd>Produce a stacked plot to present composited, site-level insect outbreak
-chronologies</dd>
-      </dl><dl><dt>
-          
-          <code><a href="sample_depth.html">sample_depth()</a></code> 
-        </dt>
-        <dd>Calculate the sample depth of a defol object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="series_names.html">series_names()</a></code> 
-        </dt>
-        <dd>Extract series names from a defol object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="stack_defoliation.html">stack_defoliation()</a></code> 
-        </dt>
-        <dd>Stack a defoliation list</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
