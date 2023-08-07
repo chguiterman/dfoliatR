@@ -4,8 +4,8 @@ bibentry(
   author   = "CH Guiterman, AM Lynch, and JN Axelson",
   journal  = "Dendrochronologia",
   year     = "2020",
-  volume   = ,
-  number   = ,
-  pages    = ,
+  volume   = "",
+  number   = "",
+  pages    = "",
   doi      = "10.1016/j.dendro.2020.125750"
 )
