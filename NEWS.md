@@ -13,6 +13,7 @@
 * New feature to allow users to change the y-axis label on the bottom tile of `plot_outbreak()`
   * Thanks to Ann Lynch and Wojciech Kędziora for the suggestion. This should provide greater
   flexibility for users that are not only looking at defoliation but other causes of growth suppression
+* Removed `ef_*` data objects in preference for `efk_*` objects
 
 # dfoliatR v0.2.0
 
