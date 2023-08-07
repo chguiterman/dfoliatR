@@ -9,7 +9,7 @@ An \code{rwl} chronology object with 1 series, 1612-1987. Standardized in
 ARSTAN.
 }
 \source{
-\url{https://esajournals.onlinelibrary.wiley.com/doi/10.2307/2937153}
+\url{https://doi.org/10.2307/2937153}
 }
 \usage{
 efk_nh

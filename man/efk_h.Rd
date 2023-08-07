@@ -9,7 +9,7 @@ An \code{rwl} object with 37 tree-level series, standardized in ARSTAN.
 Dates range from 1776-1987.
 }
 \source{
-\url{https://esajournals.onlinelibrary.wiley.com/doi/10.2307/2937153}
+\url{https://doi.org/10.2307/2937153}
 }
 \usage{
 efk_h
