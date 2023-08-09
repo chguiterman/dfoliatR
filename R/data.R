@@ -5,7 +5,10 @@
 #' @format An `rwl` object with 37 tree-level series, standardized in ARSTAN.
 #'   Dates range from 1776-1987.
 #'
-#' @source <https://doi.org/10.2307/2937153>
+#' @references Swetnam, T.W., Lynch, A.M., 1993. Multicentury, Regional-Scale
+#' Patterns of Western Spruce Budworm Outbreaks. Ecological Monographs 63,
+#' 399–424. https://doi.org/10.2307/2937153
+
 "efk_h"
 
 #' Baca ponderosa pine chronology
@@ -14,6 +17,10 @@
 #'
 #' @format An `rwl` chronology object with 1 series, 1612-1987. Standardized in
 #'   ARSTAN.
+#'
+#' @references Swetnam, T.W., Lynch, A.M., 1993. Multicentury, Regional-Scale
+#' Patterns of Western Spruce Budworm Outbreaks. Ecological Monographs 63,
+#' 399–424. https://doi.org/10.2307/2937153
 #'
 #' @source  <https://www.ncei.noaa.gov/access/paleo-search/study/5068>
 "efk_nh"

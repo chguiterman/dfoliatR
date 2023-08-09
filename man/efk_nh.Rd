@@ -9,12 +9,17 @@ An \code{rwl} chronology object with 1 series, 1612-1987. Standardized in
 ARSTAN.
 }
 \source{
-\url{https://doi.org/10.2307/2937153}
+\url{https://www.ncei.noaa.gov/access/paleo-search/study/5068}
 }
 \usage{
 efk_nh
 }
 \description{
 Non-host pair chronology for East Fork Douglas-fir \code{efk_h}
+}
+\references{
+Swetnam, T.W., Lynch, A.M., 1993. Multicentury, Regional-Scale
+Patterns of Western Spruce Budworm Outbreaks. Ecological Monographs 63,
+399–424. https://doi.org/10.2307/2937153
 }
 \keyword{datasets}
