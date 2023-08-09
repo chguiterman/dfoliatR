@@ -72,9 +72,9 @@ knitr::kable(head(dmj_nh, 10))
 The `dfoliatR` package also includes a second site for users to explore: 
 
 ```R
-data(ef_h)
+data(efk_h)
 
-data(ef_nh)
+data(efk_nh)
 ```
 
 All data created and presented in this vignette is available through the package by the object names used here.
