@@ -15,7 +15,7 @@
 #' @format An `rwl` chronology object with 1 series, 1612-1987. Standardized in
 #'   ARSTAN.
 #'
-#' @source <https://doi.org/10.2307/2937153>
+#' @source  <https://www.ncei.noaa.gov/access/paleo-search/study/5068>
 "efk_nh"
 
 #' East Fork defol object
