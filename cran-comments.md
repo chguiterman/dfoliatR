@@ -1,8 +1,7 @@
 ## Submission
 This is a resubmission of `dfoliatR` to v0.3.0. In this version, I have:
 
-* Corrected urls for data documentation
-* Corrected missing values in CITATION file
+* Changed urls in data documentation to address new rules
 
 ## R CMD check results
 
